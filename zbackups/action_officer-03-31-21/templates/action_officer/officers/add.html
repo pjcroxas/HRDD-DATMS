@@ -1,0 +1,27 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+
+<form method="POST">
+      {% csrf_token %}
+      <table class="table table-bordered table-light">
+          {{user_form.as_table}}
+           {{ user_form.non_field_errors }}
+           {{author_form.as_table}}
+      </table>
+      <br>
+      <button type="submit" class="btn btn-warning float-right">Add Officer</button>
+  </form>
+
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+{% endif %}
+</center>
+{% endfor %}
+<!-- dont remove by BRIAN-->
+</main>
+{% endblock content %}

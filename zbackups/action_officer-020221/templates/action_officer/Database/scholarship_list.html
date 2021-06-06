@@ -1,0 +1,33 @@
+{%for dscholarship in dscholarship %}
+  <tr>
+
+    <td>{{dscholarship.gender}}</td>
+
+    <td>{{dscholarship.first_name}} {{dscholarship.last_name}}</td>
+      <td>{{dscholarship.position}}</td>
+        <td>{{dscholarship.office}}</td>
+
+
+    <td>{{dscholarship.category}}</td>
+    <td>{{dscholarship.prog_title}}</td>
+    <td>{{dscholarship.scho_donor}}</td>
+    <td>{{dscholarship.location}}</td>
+    <td>{{dscholarship.start_date}}</td>
+    <td>{{dscholarship.end_date}}</td>
+    <td>{{dscholarship.other_expense}}</td>
+    <td>{{dscholarship.reap_title}}</td>
+    <td>{{dscholarship.contract}}</td>
+    <td>{{dscholarship.service_obligation}}</td>
+    <td>{{dscholarship.echo}}</td>
+    <td>{{dscholarship.training_report}}</td>
+    <td>{{dscholarship.remarks}}</td>
+
+
+      <td><button type="button"
+              class="btn btn-info btn-sm js-update-scholarship"
+              data-url="{% url 'dupdatescholarship' dscholarship.pk %}">
+      Edit
+      </button></td>
+    </tr>
+
+{% endfor %}

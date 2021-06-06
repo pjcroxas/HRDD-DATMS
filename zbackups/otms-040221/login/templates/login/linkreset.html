@@ -1,0 +1,50 @@
+{% extends "basetemp/base.html" %}
+{% block content %}
+{% load static %}
+
+<center>
+{% for message in messages %}
+<div class="alert alert-primary" role="alert">
+	{{ message }}
+</div>
+{% endfor %}
+<style>
+.formc {
+	width: 450px;
+}
+</style>
+</center>
+
+
+<div class = "container formc">
+  <h4>Reset Password</h4> 
+	<form method="POST" enctype="multipart/form-data" class = "fp">	
+    {% csrf_token %}
+    <div class="form-row">
+
+      <div class="form-group col-md-12 mb-0">
+        Username:
+        <input type = "text" name = "uname" value="{% for items in res %}{{items.username}}{% endfor %}" 
+        class = "form-control" disabled>
+      </div>
+
+      <div class="form-group col-md-12 mb-0">
+      	Password:
+        <input type = "password" name = "pword1"
+        class = "form-control" required>
+      </div>
+      <div class="form-group col-md-12 mb-0">
+      	Confirm Password:
+        <input type = "password" name = "pword2"
+        class = "form-control" required>
+      </div>
+       <div class = "form-group col-xs-12 col-lg-12 col-md-12 mb-0 econ">
+        <button class ="btn btn-primary form-control editbtn" type = "submit">Update Password</button>
+    </div>
+    </div>
+      
+  	</form> 
+</div>
+
+
+{% endblock content %}

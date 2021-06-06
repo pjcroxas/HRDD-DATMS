@@ -1,0 +1,50 @@
+{% extends "basetemp/base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- start of style -->
+<style>
+  .resetdiv {
+    margin-top: 30px;
+  }
+
+  .resetform {
+  	width: 400px;
+  }
+  .successm {
+  	color: green;
+  }
+  .rbutton {
+  	/*background-color: #0d47a1;*/
+  	color: white;
+  }
+</style>
+
+<!-- end of style -->
+<!-- start of reset form -->
+<br></br>
+<br></br>
+<br></br>
+<div class = "container resetdiv">
+	<center>
+		{% for message in messages %}
+		<div class="alert alert-primary" role="alert">
+		{{ message }}
+		</div>
+		{% endfor %}
+	<form method = "POST" class = "resetform">
+		
+		{% csrf_token %}
+		<h3 style = "font-family:helvetica; color: #4F4F4F"><b>Email</b></h3>
+		<h5 style = "font-family:helvetica; color: #4F4F4F"><b>Please enter you registered email address.</b></h5>
+		<input type = "email" class = "form-control" name = "eadd" placeholder = "Email" required><br>
+ 		<div class = "form-group">
+			<button class ="btn btn-primary form-control loginbtn" type = "submit">Reset Password</button>
+	 	</div>
+
+	</form>
+	
+	</center>
+</div>
+<!-- end of reset form -->
+{% endblock content %}

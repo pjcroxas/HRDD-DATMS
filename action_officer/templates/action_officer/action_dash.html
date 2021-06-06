@@ -1,0 +1,587 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% load bootstrap_pagination %}
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'action_officer/jquery.dataTables.css'%}">
+
+<script type="text/javascript" charset="utf8" src="{% static 'action_officer/jquery.dataTables.js'%}"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+td {
+    text-transform:uppercase;
+    color:gray;
+    text-align: left;
+    }
+
+th {
+text-transform:uppercase;
+text-align: left;
+}
+  .dropbtn {
+    background-color: #0d47a1;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    height: 52px;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {background-color: #f1f1f1;}
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #0d47a1;
+  }
+
+  .boxed {
+  border: 1px solid gray ;
+  border-radius: 15px;
+  display: inline-block;
+ width: 100px;
+ height: 100px;
+ border: 5px solid gray;
+ font-size: 16px;
+ text-align: center;
+ font-weight: bold;
+
+}
+.boxed2 {
+border: 1px solid gray ;
+border-radius: 15px;
+display: inline-block;
+width: 100px;
+height: 100px;
+border: 5px solid #979BFB;
+font-size: 16px;
+text-align: center;
+font-weight: bold;
+
+}
+.boxed3 {
+border: 1px solid gray ;
+border-radius: 15px;
+display: inline-block;
+width: 100px;
+height: 100px;
+border: 5px solid #FA92C4;
+font-size: 16px;
+text-align: center;
+font-weight: bold;
+
+}
+.boxed4 {
+border: 1px solid gray ;
+border-radius: 15px;
+display: inline-block;
+width: 100px;
+height: 100px;
+border: 5px solid #9196A2;
+font-size: 12px;
+text-align: center;
+font-weight: bold;
+
+}
+
+.boxed5 {
+border: 1px solid gray ;
+border-radius: 15px;
+display: inline-block;
+width: 100px;
+height: 100px;
+border: 5px solid #07BF11;
+font-size: 15.5px;
+text-align: center;
+font-weight: bold;
+}
+
+.boxed6 {
+border: 1px solid gray ;
+border-radius: 15px;
+display: inline-block;
+width: 100px;
+height: 100px;
+border: 5px solid #F9B40C;
+font-size: 15.3px;
+text-align: center;
+font-weight: bold;
+}
+
+.boxed7 {
+border: 1px solid gray ;
+border-radius: 15px;
+display: inline-block;
+width: 100px;
+height: 100px;
+border: 5px solid #1F4245;
+font-size: 15.5px;
+text-align: center;
+font-weight: bold;
+
+}
+
+
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 14px;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.styled-table thead tr {
+{%if urlpath == "travel"%}
+
+    background-color: #009879;
+    {%else%}
+background-color: #030ffc;
+    {%endif%}
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align:center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  {%if urlpath == "travel"%}
+    border-bottom: 2px solid #009879;
+    {%else%}
+    border-bottom: 2px solid #030ffc;
+    {%endif%}
+
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+
+
+</style>
+
+
+<!-- <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          &nbsp  &nbsp    REPORTS &nbsp &nbsp
+              </button>
+              <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li class="dropdown-item"><a href="#">Summary Report</a></li>
+                  <li class="dropdown-item"><a href="#">Graphical Report</a></li>
+                  <li class="dropdown-item"><a href="#">GEDSI Report</a></li>
+                </ul>
+          </div>
+
+&nbsp
+
+<div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                &nbsp  &nbsp   MAINTENANCE  &nbsp &nbsp
+              </button>
+              <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                  <li class="dropdown-item"><a href="{% url 'officersindex'%}">Accounts</a></li>
+                  <li class="dropdown-divider"></li>
+                  <li class="dropdown-submenu">
+                    <a  class="dropdown-item" tabindex="-1" href="{% url 'officersindex' ">Database</a>
+                    <ul class="dropdown-menu">
+
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item" href="#">Travel Authority</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="{% url 'dtravelforeign'%}">Foreign</a></li>
+                              <li class="dropdown-item"><a href="{% url 'dtravellocal'%}">Local</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" tabindex="-1" href="{% url 'dscholarship'%}">Scholarship</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+          </div> -->
+<br>
+<!-- <div class="card"> -->
+
+
+<div class="w3-container">
+<!-- start of new design -->
+  <div class="content-main">
+      <div class="row">
+
+        <div class="col-md-6 col-lg-3">
+          <a href="#" target="_blank">
+          <div class="widget-small primary coloured-icon"><i class="icon"><h6>{{total}}</h6></i>
+            <div class="info">
+              <h4>Total Requests Received</h4>
+            </div>
+          </div></a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          {%if urlpath == "travel" %}
+          <a href="{%url 'newsub' 1 %}">
+          {%else%}
+          <a href="{%url 'newsub' 2 %}">
+        {%endif%}
+          <div class="widget-small danger coloured-icon"><i class="icon"><h6>{{newsubmissions}}</h6></i>
+            <div class="info">
+              <h4>New Submissions</h4>
+            </div>
+          </div></a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          {%if urlpath == "travel" %}
+          <a href="{%url 'assigned' 1 %}">
+          {%else%}
+          <a href="{%url 'assigned' 2 %}">
+        {%endif%}
+          <div class="widget-small primary coloured-icon"><i class="icon"><h6>{{totalmar}}</h6></i>
+            <div class="info">
+              <h4>My Assigned Requests</h4>
+            </div>
+          </div></a>
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+          <a href="#">
+          <div class="widget-small primary coloured-icon"><i class="icon"><h6>0</h6></i>
+            <div class="info">
+              <h4>Total Completed Requests</h4>
+            </div>
+          </div></a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <a href="#">
+          <div class="widget-small info coloured-icon"><i class="icon"><h6>0</h6></i>
+            <div class="info">
+              <h4>Total Requests with Issues</h4>
+            </div>
+          </div></a>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <a href="#">
+          <div class="widget-small danger coloured-icon"><i class="icon"><h6>0</h6></i>
+            <div class="info">
+              <h4>Total Cancelled Requests</h4>
+            </div>
+          </div></a>
+        </div>
+
+	<div class="col-md-6 col-lg-3">
+
+
+            {%if urlpath == "travel" %}
+          <a href="{% url 'followup' %}">
+            {%else%}
+            <a href="{% url 'followup_sch' %}">
+          {%endif%}
+          <div class="widget-small danger coloured-icon"><i class="icon"><h6>{{fcount}}</h6></i>
+            <div class="info">
+              <h4><i class="fas fa-bell" style="color:red"></i>&nbsp;&nbsp;Follow Up</h4>
+            </div>
+          </div></a>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- end of new design -->
+</div>
+<!-- </div> -->
+  <br>
+
+  <button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#attendee">Search</button>
+      <div id="attendee" class="collapse in">
+          <br>
+
+
+
+          <form>
+          <div class="form-group row">
+            <div class="col-sm-5">
+              <input class="form-control" id="myInput" type="text" placeholder="Search">
+            </div>
+          </div>
+        </form>
+
+    </div>
+<br>
+  <!-- end of expanding search -->
+
+{%if urlpath == "travel"%}
+
+<br>
+<!-- start of tr -->
+<div class="card">
+<div class="card-header py-3">
+    <head>
+        <h3 style="color:#009688;  font-family: "Trebuchet MS", Helvetica, sans-serif;">
+          &nbsp<i class="fas fa-list"></i>&nbsp; HRDD Travel Requests Dashboard
+        </h3>
+    </head>
+  </div>
+  <div class="card-body">
+
+
+
+
+<div class="table">
+<table id="table_id" class="styled-table">
+    <thead>
+        <tr>
+            <th>Reference</th>
+            <th >Sector</th>
+            <th >Category</th>
+            <th >Program Title</th>
+            <th >Date Filed</th>
+            <th >Assigned</th>
+
+            <th >Status</th>
+            <th >Action</th>
+            </tr>
+    </thead>
+    <tbody>
+
+      {% for request in requestors %}
+
+        <tr>
+                <td align='center' style='border-color: #000000; width: 15%;'>TR-{{ request.date_filed|date:"m/d/y"}}-{{ request.travelreq_id }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.sector }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.request_category }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.program_title }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.date_filed }}</td>
+
+                <td align='center' style='border-color: #000000'>
+                  {% if request.assigned %}
+                  {{ request.assigned.first_name }} {{ request.assigned.last_name }}
+                  {%else%}
+                  None
+                  {%endif%}
+                </td>
+                <td align='center' style='border-color: #000000'>
+
+                {{request.status}}
+
+                </td>
+                <td align='center' style='border-color: #000000'>
+			{% if request.status_id == 3 %}
+			<a href="#" class="btn btn-secondary ab"><small>View</small></a>
+			{% else %}
+			<a href="{% url 'requestdetailstravel' request.pk  %}" class="btn btn-primary ab"><small>View</small></a>
+			{% endif %}
+                </td>
+            </tr>
+{%endfor%}
+    </tbody>
+</table>
+</div
+<br>
+<!-- end of tr -->
+{%else%}
+
+
+
+<br>
+<div class="card">
+<div class="card-header py-3">
+    <head>
+        <h2 style="color:#3091ff">
+          &nbsp<i class="fas fa-list" ></i>&nbsp;HRDD Scholarship Applications Dashboard
+
+        </h2>
+    </head>
+  </div>
+  <div class="card-body">
+
+
+
+<br>
+<table id="table_id" class="styled-table">
+    <thead class="thead-inverse">
+        <tr>
+
+            <th align='center' style='border-color: #000000'>Reference</th>
+            <th align='center' style='border-color: #000000'>Sector</th>
+            <th align='center' style='border-color: #000000'>Category</th>
+            <th align='center' style='border-color: #000000'>Program Title</th>
+            <th align='center' style='border-color: #000000'>Date Filed</th>
+            <th align='center' style='border-color: #000000'>Assigned</th>
+            <th align='center' style='border-color: #000000'>Status</th>
+            <th align='center' style='border-color: #000000'>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+      {% for request in requestors %}
+
+        <tr>
+
+            <td align='center' style='border-color: #000000; width:15%;' >{{ request.category.shortterm }}-{{request.date_filed|date:"y-m-d"}}-000{{ request.incrementor }}</td>
+            <td align='center' style='border-color: #000000'>{{request.sector_for_scholarship}}</td>
+            <td align='center' style='border-color: #000000'>
+		{% if request.category_id == 1 %}
+		{{request.category|truncatechars:8}}
+		{% else %}
+		{{request.category|truncatechars:6}}
+		{% endif %}
+	    </td>
+            <td align='center' style='border-color: #000000'>{{request.prog_title}}</td>
+            <td align='center' style='border-color: #000000'>{{request.date_filed}}</td>
+            <td align='center' style='border-color: #000000'>
+              {%if request.assigned %}
+              {{request.assigned.first_name}} {{request.assigned.last_name}}
+              {%else%}
+              None
+              {%endif%}
+            </td>
+            <td align='center' style='border-color: #000000; width:10%;'>{{request.status}}
+
+            </td>
+            <td><center>
+			{% if request.status_id == 3 %}
+			<center><a href="#" class="btn btn-secondary ab"><small>View</small></a></center>
+			{% else %}
+                        <center><a href="{% url 'requestdetails' request.pk  %}" class="btn btn-primary ab"><small>View</small></a></center>
+                        {% endif %}</td>
+
+</td>
+        </tr>
+{%endfor%}
+    </tbody>
+
+</table>
+
+
+
+</div>
+</div>
+
+{%endif%}
+<div class="pagination-row float-right">
+  {% bootstrap_paginate requestors range=4 %}
+</div>
+<!-- remove by BRIAN-->
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table_id tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% endblock content %}

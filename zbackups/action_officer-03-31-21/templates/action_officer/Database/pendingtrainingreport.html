@@ -1,0 +1,326 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.dataTables.min.css">
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
+<style>
+table.dataTable thead {background-color:#82CEF7}
+
+table.dataTable
+{
+  font-size: 13px;
+  width: 100%;
+  border: 0;
+  text-align: center;
+
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+#demo {
+    -webkit-transition: width 1s ease;
+    -moz-transition: width 1s ease;
+    -o-transition: width 1s ease;
+    transition: width 1s ease;
+
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 30px;
+    height: 38px;
+    width: 0px;
+}
+#demo.in {
+    width: 800px;
+}
+
+
+</style>
+
+
+
+<!--<div id="wrapper"
+style="background-color: white;
+margin-right: auto; margin-left:  auto;
+padding-right: 10px;
+padding-left: 10px;
+padding-bottom: 10px;
+border-radius: 5px;">-->
+
+
+
+<script>
+
+$(document).ready(function(){
+
+  $("[data-toggle='toggle']").click(function() {
+      var selector = $(this).data("target");
+      $(selector).toggleClass('in');
+  });
+
+  $('.filter').on('keyup change', function() {
+    //clear global search values
+    dtable.search('');
+    dtable.column($(this).data('columnIndex')).search(this.value).draw();
+  });
+
+  $(".dataTables_filter input").on('keyup change', function() {
+    //clear column search values
+    dtable.columns().search('');
+    //clear input values
+    $('.filter').val('');
+  });
+
+  $('#resetinput').click(function() {
+      dtable.columns().search('').draw();
+      $('.filter').val('');
+  });
+
+
+
+  $(function(){
+  var loadForm =  function () {
+      var btn = $(this);
+      console.log(btn.attr("data-url"));
+      $.ajax({
+        url: btn.attr("data-url"),
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function () {
+          $("#modal-pendingtrainingreport .modal-content").html("");
+          $("#modal-pendingtrainingreport").modal("show");
+        },
+        success: function (data) {
+          $("#modal-pendingtrainingreport .modal-content").html(data.html_form);
+        }
+      });
+    }
+
+    var saveForm = function () {
+      var form = $(this);
+      $.ajax({
+        url: form.attr("action"),
+        data: form.serialize(),
+        type: form.attr("method"),
+        dataType: 'json',
+        success: function (data) {
+          if (data.form_is_valid) {
+            $("#modal-pending").modal("hide");
+            setTimeout(1000);
+            window.location.href = '/action_officer/database/pendingtrainingreport';
+
+          }
+          else {
+            $("#modal-pendingtrainingreport .modal-content").html(data.html_form);
+          }
+        }
+      });
+      return false;
+    };
+
+
+
+
+    $("#table_id").on("click", ".js-update-pendingtrainingreport",  loadForm)
+    $("#modal-pendingtrainingreport").on("submit", ".js-pendingtrainingreport-update-form", saveForm);
+  });
+
+
+
+  var dtable =  $('#table_id').DataTable(
+    {
+        "scrollX": true,
+        "scrollY": "500px",
+        "scrollCollapse": true,
+
+
+            dom: 'Brtlip',
+            buttons: [
+
+            // {
+            //     extend: 'pdfHtml5',
+            //     orientation: 'landscape',
+            //     pageSize: 'LEGAL',
+            //     exportOptions: {columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17,18,19,20,21,22,23 ]},
+            //     customize : function(doc){
+            //     doc.pageMargins = [10, 10, 10,10 ];
+            //     doc.styles.tableHeader.alignment = 'left';
+            //     doc.defaultStyle.fontSize = 5;
+            //
+            //     doc.styles.tableHeader.fontSize = 5;    //giustifica a sinistra titoli colonne
+            //     doc.content[1].table.widths = [10,20,10,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45 ]; //costringe le colonne ad occupare un dato spazio per gestire il baco del 100% width che non si concretizza mai
+            //     }
+            //
+            // },
+
+            {
+                extend: 'print', 	className: 'btn btn-dark',
+                exportOptions: {columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12 ]}
+
+            },
+            {
+                extend: 'csv', 	text: 'Download ', className: 'btn btn-success',
+                exportOptions: {columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12 ]}
+            }
+            ]
+        }
+
+    );
+
+} );
+
+
+
+
+
+
+
+</script>
+
+<div class="card shadow mb-4">
+<div class="card-header py-3">
+      <h1 class="m-0 font-weight-bold text-info">
+        Pending Training Report</h1>
+  </div>
+
+<div class="card-body">
+<div class="table-responsive">
+<button type="button" class="btn btn-primary btn-md"
+        data-toggle="toggle" data-target="#demo">
+    Search
+</button>
+<div id="demo" class="">
+
+  <button type="button" class="btn btn-danger btn-md" id="resetinput">  Reset</button>
+
+
+
+  <!-- <input type="text" placeholder="Referrence No."  value='' class='filter' data-column-index=''> -->
+
+
+  <input  type="text" placeholder="Name" value=''  class='filter' data-column-index='0'>
+
+    <input  type="text" placeholder="Date From" value=''  class='filter' data-column-index='7'>
+
+    <input  type="text" placeholder="Date To" value=''  class='filter' data-column-index='8'>
+
+
+
+</div>
+<br></br>
+
+
+<table id="table_id" class="display" >
+    <thead class="thead-dark">
+        <tr>
+
+
+
+            <th style="width:110px;" >Name</th>
+            <th>Gender</th>
+            <th style="width:100px;">Position</th>
+            <th>Office</th>
+            <th>Training Institution</th>
+            <th>Course Name</th>
+            <th>Duration In Days</th>
+            <th>Date From</th>
+            <th>Date To</th>
+            <th>Program Fee</th>
+            <th>Post Report Submit Date</th>
+            <th>Echo Seminar Date</th>
+            <th style="width:100px;">Remarks</th>
+            <th style="width:5px">Action</th></tr>
+    </thead>
+    <tbody>
+      {% include 'action_officer/Database/pendingtrainingreportlist.html' %}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="modal-pendingtrainingreport">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+
+
+
+
+
+<!-- dont remove by BRIAN-->
+
+</main>
+{% endblock content %}

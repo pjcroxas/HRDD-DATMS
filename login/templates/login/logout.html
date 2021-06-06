@@ -1,0 +1,15 @@
+{% extends "basetemp/base.html" %}
+{% block content %}
+{% load static %}
+<br></br>
+<br></br>
+<br></br>
+<center>
+	<a href="/">
+	<img src="{% static 'basetemp/dotricon.png' %}" width="180" height="180" >
+	</a>
+
+	<h5 class="warning" style = "font-family:helvetica; color: #4F4F4F"><small><b>You've logged out from TMS</b></small></h5>
+    	<a href = "/">Log-in to continue</a>      
+</center>
+{% endblock content %}

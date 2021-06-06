@@ -1,0 +1,82 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+<style>
+	.fw {
+		width: 400px;
+	}
+
+         td {
+    	text-transform:uppercase;
+    	color:gray;
+    	text-align: left;
+   	 }
+</style>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-xs-12">
+
+<div class="card">
+<div class="card-body">
+<table class="table rtbl">
+	<a href="/requestor/requests"><h6 class="caption">Scholarship Application </a>/ Cancel Request</h6>
+
+	<thead class="thead-default">
+          <tr>
+          <th>REFERENCE</th>
+          <th style="text-align:left">CREATED</th>
+          <th style="text-align:left">CATEGORY</th>
+          <th style="text-align:left">PROGRAM</th>
+          <th style="text-align:left">DESTINATION</th>
+          <th style="text-align:left">ATTENDEE</th>
+          <th style="text-align:left">FROM</th>
+	        <th style="text-align:left">TO</th>
+					<th style="text-align:left">STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for request in rdata %}
+            <tr>
+                <td align='center' style='border-color: #000000'>{{ request.category.shortterm }}-{{request.date_filed|date:"y-m-d"}}-000{{ request.incrementor }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.date_filed }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.category }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.prog_title }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.location }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.first_name }} {{ request.middle_initial }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.start_date  }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.end_date  }}</td>
+                <td align='center' style='border-color: #000000'>{{request.status}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+		</div></div>
+<br></br>
+<div class="card">
+<div class="card-body">
+
+      <form method="POST">
+      	{% csrf_token %}
+      	<table>
+      		<tr>
+      			<td>Indicate your reason for cancellation: </td>
+      			<td><input type="text" name="reason" class="form-control fw" required></td>
+      		</tr>
+                <tr>
+			<td>Attachment Justification: </td>
+			<td><input type = "file" name = "justification" required></td>
+		</tr>
+                <br></br>
+      		<tr>
+      			<td><input type="submit" name="update" value="UPDATE" class="btn btn-primary">&nbsp;&nbsp;<a href="/requestor/requests" class="btn btn-warning">Return</a></td>
+
+      		</tr>
+      	</table>
+      </form>
+
+	</div>
+</div>
+</div>
+</div>
+<!-- do not remove -->
+</main>
+{% endblock content %}

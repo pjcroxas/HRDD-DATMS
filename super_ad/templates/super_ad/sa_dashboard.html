@@ -1,0 +1,74 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<style>
+
+</style>
+	<div class="content-main">
+      <div class="row">
+      	
+        <div class="col-md-6 col-lg-3">
+          <a href="/admin" target="_blank">
+          <div class="widget-small primary coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Admin Config</h4>
+            </div>
+          </div></a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="/admin/auth/user/" target="_blank">
+          <div class="widget-small info coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>End-users</h4>
+            </div>
+          </div></a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="/super_ad/sa_log">
+          <div class="widget-small warning coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Log History</h4>
+            </div>
+          </div></a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="/super_ad/record_dash">
+          <div class="widget-small danger coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Records</h4>
+            </div>
+          </div></a>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Monthly Travel Requests</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="lineChartDemo" width="700" height="392" style="width: 560px; height: 314px;"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Local Travel vs Foreign Travel</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="pieChartDemo" width="700" height="392" style="width: 560px; height: 314px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+    </main>
+
+
+
+
+    <!-- Essential javascripts for application to work-->
+
+{% endblock content %}

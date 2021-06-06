@@ -1,0 +1,193 @@
+{% extends "basetemp/main_base.html" %}
+{% load bootstrap_pagination %}
+{% block content %}
+{% load static %}
+<style>
+
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 14px;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align:center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.breadcrumb {
+    margin-bottom: 0;
+    background-color: #fcfcfc;
+}
+
+</style>
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+
+					<ol class="breadcrumb my-3" style="font-size: 16px;">
+						 <li class="breadcrumb-item"><a href="{%url 'action-dash' 1 %}">Dashboard</a></li>
+						 <li class="breadcrumb-item active">My Assigned Requests</li>
+					 </ol>
+
+					 					<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#attendee">Search</button>
+					 				      <div id="attendee" class="collapse in">
+					 				          <br>
+					 				          <form>
+					 				          <div class="form-group row">
+					 				            <div class="col-sm-5">
+					 				              <input class="form-control" id="myInput" type="text" placeholder="Search">
+					 				            </div>
+					 				          </div>
+					 				        </form>
+					 				    </div>
+<br><br>
+
+<div class="card">
+	<div class="card-header py-2.5">
+	    <head>
+	        <h4 style="color:#009688">
+	          &nbsp<i class="fas fa-list" ></i>&nbsp;My Assigned Requests
+
+	        </h3>
+	    </head>
+	  </div>
+	<div class="card-body">
+
+
+{%if urlpath == "Travel" %}
+
+<!-- start of table -->
+<table id="table_id" class="styled-table">
+    <thead class="thead-inverse">
+        <tr>
+
+            <th>Reference Code</th>
+            <th>Sector</th>
+            <th>Category</th>
+            <th>Program Title</th>
+            <th>Date Time/Filled</th>
+							<th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+            {% for items in martr %}
+        <tr>
+					<tr>
+
+            <td>{{items.reference_scholarship}}TR-{{ items.date_filed|date:"m/d/y"}}-{{ items.travelreq_id }}</td>
+            <td>{{items.sector}}</td>
+            <td>{{items.support_category}}</td>
+            <td>{{items.program_title}}</td>
+						<td>{{items.date_filed}}</td>
+            <td><center><a href="{% url 'updatedetailstravel' items.pk %}" class="btn btn-primary">Update</a></a></center></td>
+        </tr>
+        {% endfor %}
+<tr>
+	</tr>
+
+    </tbody>
+</table>
+<div class="pagination-row float-right">
+  {% bootstrap_paginate martr range=4 %}
+</div>
+</div>
+
+<br><br>
+
+{%else%}
+
+<h6>Scholarship Applications</h6>
+<!-- start of table -->
+<table id="table_id" class="display reftbl">
+    <thead class="thead-inverse">
+        <tr>
+
+            <th>Reference Code</th>
+            <th>Sector</th>
+            <th>Category</th>
+            <th>Program Title</th>
+            <th>Date Time/Filled</th>
+							<th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+            {% for items in mar %}
+        <tr>
+					<tr>
+
+
+            <td>{{items.reference_scholarship}}</td>
+            <td>{{items.sector}}</td>
+            <td>{{items.category}}</td>
+            <td>{{items.prog_title}}</td>
+						<td>{{items.date_filed}}</td>
+            <td><center><a href="{% url 'updatedetails' items.pk %}" class="btn btn-primary">Update</a></a></center></td>
+        </tr>
+        {% endfor %}
+<tr>
+	<td>
+{{form}}
+	</td>
+	</tr>
+
+    </tbody>
+</table>
+</div>
+{%endif%}
+
+<!-- end of table -->
+<!-- dont remove by BRIAN-->
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+</main>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table_id tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% endblock content %}

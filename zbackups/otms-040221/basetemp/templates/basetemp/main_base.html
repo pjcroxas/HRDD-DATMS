@@ -1,0 +1,347 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://pratikborsadiya.in/vali-admin/dashboard.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- Open Graph Meta-->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'basetemp/favicondotr32.png' %}"/>
+    <title>DOTMS</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link href = "{% static 'site_admin/main.css' %}" type = "text/css" rel = "stylesheet">
+
+    <!-- Font-icon css-->
+    <!-- <link href = "{% static 'site_admin/font-awesome.min.css' %}" type = "text/css" rel = "stylesheet"> -->
+    <script src="https://kit.fontawesome.com/12beb098c1.js" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Excel table filter -->
+    <link href="{% static '/action_officer/jquerysctipttop.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static '/action_officer/excel-bootstrap-table-filter-style.css' %}">
+    <script src="{% static '/action_officer/excel-bootstrap-table-filter-bundle.js' %}"></script>
+  </head>
+  <style>
+* {
+   margin: 0px;
+   padding: 0px;
+}
+  body {
+  margin-bottom: 0px;
+  margin-top: -50px;
+  
+  background-color: #fcfcfc;
+}
+
+
+.profilepic {
+  width: 30px;
+  height: 30px;
+}
+/* nav bar */
+.customnav {
+  background-color: #0d47a1;
+}
+.logoimg {
+  width: 60px;
+  height: 60px;
+}
+
+.footer {
+position: fixed;
+bottom: 0;
+width: 100%;
+height: 50px;
+background-color: #0d47a1;
+}
+.footertext {
+color: black;
+}
+.mbtm {
+overflow: hidden;
+}
+.sc {
+background-color: #0d47a1;
+}
+
+.app-sidebar__overlay a, .dropdown-btn {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 15px;
+display: block;
+border: none;
+width: 100%;
+text-align: left;
+cursor: pointer;
+outline: none;
+color: #f1f1f1;
+}
+.app-sidebar {
+background-color:#0d47a1;
+}
+.app_menu__item:hover {
+background-color: #5dbcd2;
+}
+.dropdown-container {
+display: none;
+background-color: #222d32;
+font-size: 15px;
+color: #f1f1f1;
+
+}
+
+.fa-caret-down {
+float: right;
+padding-right: 8px;
+}
+.app-sidebar__overlay ul:hover,  {
+color: #f1f1f1;
+background-color:#152859;
+}
+
+.dropdown-btn:hover {
+background-color: #152859;
+}
+button:hover{
+background-color:#152859;
+}
+  </style>
+
+  <body class="app sidebar-mini  pace-done">
+	
+  <div class="pace  pace-inactive">
+	<div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+    <!-- Loader -->
+
+    <!-- end of loader -->
+  	<div class="pace-progress-inner"></div>
+	</div>
+	<div class="pace-activity"></div></div>
+    <!-- Navbar-->
+	
+    
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar" style="background-color:"#4c74dc"></div>
+    <aside class="app-sidebar">
+
+    {% for items in designation %}
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar img-responsive profilepic" src="/media/{{items.image}}" alt="#">
+    {% endfor %}
+      <div>
+        <p class="app-sidebar__user-name">{% for items in user %}{{items.first_name}} {{items.last_name}}{% endfor %}</p>
+        <small><p class="app-sidebar__user-designation">{% for item in designation %}{{item.official_designation}}{% endfor %}</p></small>
+        <small><p class="app-sidebar__user-designation">{% for item in designation %}{{item.role}}{% endfor %}</p></small>
+      </div>
+    </div>
+    <ul class="app-menu">
+	  <hr class="sidebar-divider" style="background-color:white">
+
+
+      {% for item in designation %}
+          {% if item.role_id == 1 %}  <!-- Requestor -->
+          <li><a class="app-menu__item"  href="/travelauth/main_dash"><span class="app-menu__label"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</span></a></li>
+	   <hr class="sidebar-divider my-0">
+          <li><a class="app-menu__item"  href="/travelauth/local_dash"><span class="app-menu__label"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Local Travel Application</span></a></li>           
+<hr class="sidebar-divider my-0">
+          <li><a class="app-menu__item"  href="/travelauth/dash"><span class="app-menu__label"><i class="fas fa-globe-asia"></i>&nbsp;&nbsp;Foreign Travel Applications</span></a></li>
+           <hr class="sidebar-divider my-0"> 
+        <li><a class="app-menu__item"  href="/requestor/redirect_scholarship"><span class="app-menu__label"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Scholarship Applications</span></a></li>
+	<!--  <li><a class="app-menu__item"  href="#"><span class="app-menu__label"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Scholarship Applications</span></a></li> -->
+
+           <hr class="sidebar-divider my-0">
+          {% elif item.role_id == 2 %} <!-- Action Officer -->
+
+         
+	 <li><a class="app-menu__item"  href="/"><span class="app-menu__label"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</span></a></li> 
+		<hr class="sidebar-divider my-0">
+	<li><a class="app-menu__item"  href="#"><span class="app-menu__label"><i class="fas fa-users-cog"></i>&nbsp;&nbsp;Accounts</span></a></li> 
+		<hr class="sidebar-divider my-0">
+
+          <button class="dropdown-btn " style="background-color:#0d47a1"><i class="far fa-chart-bar"></i>&nbsp;&nbsp;Reports
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container"  style="background-color:#152859">
+            <ul><a href="{% url 'graphical_reports' %}">Graphical Report</a></ul>
+            <ul><a href="{% url '_gedsi_search' %}">Gender</a></ul>
+            <ul><a href="{% url '_ethnicity_search' %}">Ethnicity </a></ul>
+            <ul><a href="{% url '_disability_search' %}">Disability</a></ul>
+          </div>
+		<hr class="sidebar-divider my-0">
+          <button class="dropdown-btn" style="background-color:#0d47a1"><i class="fas fa-database"></i>&nbsp;&nbsp;Database
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container"  style="background-color:#152859; font:white">  
+            <ul><a href="#">Scholarship Applications</a></ul>
+	    <ul><a href="{% url 'dtravelforeign' %}">Foreign Travel Applications</a></ul>
+            <ul><a href="#">Local Travel Applications</a></ul>            
+          </div>
+	 	<hr class="sidebar-divider my-0">
+          {% else %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+	
+	<!--<div class="container text-center" style="position: absolute; bottom:100px;>
+          <small  class = "footertext"><img src="{% static 'basetemp/footer_2.png' %}" class = "img img-responsive logoimg"></small>
+      	</div>
+	<div class="container text-center">
+          <small>
+		<p style="position: absolute; bottom:15px;color:white">DEVELOPED BY</p>
+	  </small>
+      	</div>
+	<div class="container text-center">
+          <small>
+		<p style="position: absolute; bottom:1px;color:white">Computer Systems Division</p>
+	  </small>
+      	</div>-->
+
+	<!--<div class="container text-center">
+  	 <img style="vertical-align:middle" src="{% static 'basetemp/footer_2.png' %}" width="65" height="65">
+         <span style="color:white">DEVELOPED BY</span>
+	 <ul>Computer Systems Division</ul>
+        </div>-->
+
+	<div class="container text-left" style="position: absolute; bottom:5px;">
+	<img style="float:left" src = "{% static 'basetemp/footer_2.png' %}" width="65" height="65"/>
+		<p style="color:white; font-size: 13px">DEVELOPED BY Management Information Service</p>
+        </div>
+		
+  </aside>
+
+
+    <main class="app-content mbtm" style="background-color:#fcfcfc">
+      <div class="app-title"style="height:70px;">
+        <div style="font-family:helvetica; color:#00032C"> 
+	        
+         <h1><img src={% static 'basetemp/dotricon.png' %} width="65" height="65" ><b>DOTr TRAVEL MANAGEMENT SYSTEM</b></h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#log">
+              Logout
+            </button>
+
+            <!-- Modal -->
+          <div class="modal fade" id="log" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5>Are you sure you want to logout?</h5>
+                </div>
+                <div class="modal-footer">
+                  <a href="/logout" class="btn btn-danger">Logout</a>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </li>
+          <!-- <li class="breadcrumb-item"><a href="/logout">Logout</a></li> -->
+        </ul>
+      </div>
+
+
+    {% block content %}{% endblock %}
+	</main>
+     
+   
+
+
+    <!-- <script async="" src="{% static 'site_admin/analytics.js.download' %}"></script><script src="{% static 'site_admin/jquery-3.3.1.min.js.download' %}"></script>
+    <script src="{% static 'site_admin/popper.min.js.download' %}"></script>
+    <script src="{% static 'site_admin/bootstrap.min.js.download' %}"></script>
+    <script src="{% static 'site_admin/main.js.download' %}"></script> -->
+    <!-- The javascript plugin to display page loading on top-->
+    <!-- <script src="{% static 'site_admin/pace.min.js.download' %}"></script> -->
+    <!-- Page specific javascripts-->
+    <!-- <script type="text/javascript" src="{% static 'site_admin/chart.js.download' %}"></script> -->
+
+    <!-- <script type="text/javascript">
+      var data = {
+      	labels: ["January", "February", "March", "April", "May"],
+      	datasets: [
+      		{
+      			label: "My First dataset",
+      			fillColor: "rgba(220,220,220,0.2)",
+      			strokeColor: "rgba(220,220,220,1)",
+      			pointColor: "rgba(220,220,220,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(220,220,220,1)",
+      			data: [65, 59, 80, 81, 56]
+      		},
+      		{
+      			label: "My Second dataset",
+      			fillColor: "rgba(151,187,205,0.2)",
+      			strokeColor: "rgba(151,187,205,1)",
+      			pointColor: "rgba(151,187,205,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(151,187,205,1)",
+      			data: [28, 48, 40, 19, 86]
+      		}
+      	]
+      };
+
+      var pdata = [
+      	{
+      		value: 55,
+      		color: "#46BFBD",
+      		highlight: "#5AD3D1",
+      		label: "Foreign"
+      	},
+      	{
+      		value: 55,
+      		color:"#F7464A",
+      		highlight: "#FF5A5E",
+      		label: "Local"
+      	}
+      ]
+
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+
+      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+      var pieChart = new Chart(ctxp).Pie(pdata);
+    </script> -->
+    <!-- Google analytics script-->
+    <!-- <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+    </script> -->
+
+  
+
+</body>
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>

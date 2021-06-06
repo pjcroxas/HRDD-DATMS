@@ -1,0 +1,197 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.collapsible {
+  background-color: #244A80;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #377A98;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #D0EFFF;
+}
+
+.collapsible, .content {
+  width: 900px;
+}
+
+/* .container_2 {
+	display: none;
+} */
+
+@media print {
+        /* body * {
+          display:none;
+        } */
+        .container_1 {
+          display:none;
+        }
+        .random {
+          display:none;
+        }
+        .title {
+          display:none;
+        }
+
+        .container_2 {
+          display:block;
+        }
+      }
+</style>
+<body>
+    <div class="container_1" id='not_printable'>
+      <table class='table'>
+        <tr>
+          <td style='border-color: #000000'><b>Reference:</b> {{ requestors.reference_scholarship }}</td>
+          <td style='border-color: #000000'><b>Category:</b> {{ requestors.category }}</td>
+          <td style='border-color: #000000'><b>Sector:</b> {{ requestors.sector_for_scholarship }}</td>
+        </tr>
+        <tr>
+          <td style='border-color: #000000'><b>Program Title:</b> {{ requestors.prog_title }}</td>
+          <td style='border-color: #000000'><b>Venue:</b> {{ requestors.location }}</td>
+          <td style='border-color: #000000'><b>From:</b> {{ requestors.start_date }} <b> to:</b> {{ requestors.end_date }}</td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class = "container_2" id="printable">
+      <table class='table'>
+        <tr class='row'>
+          <p><b>I. Nominee's Information</b></p>
+        </tr>
+        <tr>
+          <td><b>Title :</b></td>
+          <td>{{ requestors.name_title }}</td>
+        </tr>
+        <tr>
+          <td><b>Name :</b></td>
+          <td>{{ requestors.last_name }}, {{ requestors.first_name }} {{ requestors.middle_initial }}</td>
+        </tr>
+        <tr>
+          <td><b>Nickname :</b></td>
+          <td>{{ requestors.nickname }}</td>
+        </tr>
+        <tr>
+          <td><b>Position :</b></td>
+          <td>{{ requestors.position }}</td>
+        </tr>
+        <tr>
+          <td><b>Salary Grade :</b></td>
+          <td>{{ requestors.salary_grade }}</td>
+        </tr>
+        <tr>
+          <td><b>Office/Division :</b></td>
+          <td>{{ requestors.office }}</td>
+        </tr>
+        <tr>
+          <td><b>Email :</b></td>
+          <td>{{ requestors.e_mail }}</td>
+        </tr>
+        <tr>
+          <td><b>Mobile Number :</b></td>
+          <td>{{ requestors.mobile_no }}</td>
+        </tr>
+        <tr>
+          <td><b>Office Number :</b></td>
+          <td>{{ requestors.office_no }}</td>
+        </tr>
+        <tr>
+          <td><b>Address :</b></td>
+          <td>{{ requestors.address }}</td>
+        </tr>
+        <!--  -->
+      </table>
+      <table class="table">
+        <tr>
+          <p><b>Gender Equality, Disability and Social Inclusion (GEDSI)</b></p>
+        </tr>
+        <tr>
+          <td><b>Gender :</b></td>
+          <td>{{ requestors.gender }}</td>
+        </tr>
+        <tr>
+          <td><b>Age :</b></td>
+          <td>{{ requestors.age }}</td>
+        </tr>
+        <tr>
+          <td><b>Civil Status :</b></td>
+          <td>{{ requestors.civil_status }}</td>
+        </tr>
+        <tr>
+          <td><b>Disability :</b></td>
+          <td>{{ requestors.disability }}</td>
+        </tr>
+        <tr>
+          <td><b>Ethnicity :</b></td>
+          <td>{{ requestors.ethnicity }}</td>
+        </tr>
+        </table>
+        <table class=table>
+          <tr>
+            <p><b>II. Actual Duties and Responsibilities :</b></p>
+          </tr>
+          <tr>
+            <td><p>{{ requestors.duties }}</p></td>
+          </tr>
+        </table>
+        <table class=table>
+          <tr>
+            <p><b>III. Core Functions of the Office (To be filled out by the Supervisor):</b></p>
+          </tr>
+          <tr>
+            <td><p>{{ requestors.duties }}</p></td>
+          </tr>
+        </table>
+        <table>
+          <p><i>This is to certify that I have briefed the nominee of the expected output and we have agreed on how and when he/she will apply the new learning in the workplace.</i></p>
+
+        </table>
+    </div>
+    <div class="random">
+      <p><input  class="btn btn-success" id="btnSubmit" type="submit" value="Print" onclick="divPrint(printable);" /></p>
+    </div>
+    </body>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function divPrint() {
+        // Some logic determines which div should be printed...
+        // This example uses div3.
+        $("#printable").addClass("printable");
+        window.print();
+      }
+    </script>
+
+</main>
+{% endblock content %}

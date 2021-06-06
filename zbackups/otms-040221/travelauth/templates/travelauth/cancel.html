@@ -1,0 +1,97 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% for item in designation %}
+          {% if item.role_id == 1 %} <!-- Requestor -->
+
+<style>
+	.fw {
+		width: 400px;	
+	}
+</style>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-xs-12">
+	
+<!-- start of travel table -->
+      <table class="table rtbl">
+        <h6 class="caption">Travel Requests / Cancel Request</h6>
+        <thead class="thead-default">
+          <tr>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>ID</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Reference</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Date Filed</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Category</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Program Title</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Destination</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Attendee</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>From</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>To</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Status</th>
+            
+          </tr>
+          <!--<tr>
+            <th  style='border-color: #000000' scope="col">Start Date</th>
+            <th  style='border-color: #000000' scope="col">End Date</th>
+          </tr>-->
+        </thead>
+        <tbody>
+          {% for request in rdata %}
+            <tr>
+                <td align='center' style='border-color: #000000'>#{{ request.travelreq_id }}</td>
+                <td align='center' style='border-color: #000000'>TR-{{ request.date_filed|date:"m/d/y"}}-{{ request.travelreq_id }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.date_filed }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.request_category }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.program_title }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.destination }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.last_name  }} {{request.first_name}} {{request.middle_initial}}</td>
+                <td align='center' style='border-color: #000000'>{{ request.programdates_from  }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.programdates_to  }}</td>
+                <!-- <td align='center' style='border-color: #000000'><a href="/travelauth/travel_files/{{request.travelreq_id}}"><i class="fa fa-file ficon" style="font-size:24px"></i></a></td> -->
+                
+                <td align='center' style='border-color: #000000'>
+                  {% if request.status == "1" %}
+                  Submitted
+                  {% elif request.status == "0" %}
+                  Saved as Draft
+                  {% endif %}
+
+                </td>
+                
+
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- end of travel table -->
+      <form method="POST" enctype = "multipart/form-data">
+      	{% csrf_token %}
+      	<table>
+      		<tr>
+      			<td>Indicate your reason for cancellation: </td>
+      			<td><input type="text" name="reason" class="form-control fw" required></td>
+      		</tr>
+		<tr>
+			<td>Proof/Attachment: </td>
+			<td><input type = "file" name = "cancel_file" required></td>
+		</tr>
+      		<tr>
+      			<td><input type="submit" name="update" value="Update" class="btn btn-primary">&nbsp;&nbsp;<a href="/requestor/t_r" class="btn btn-warning">Cancel</a></td>
+      			
+      		</tr>
+      	</table>
+      </form>
+
+	</div>
+</div>
+<!-- do not remove -->
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+</main>
+{% endblock content %}

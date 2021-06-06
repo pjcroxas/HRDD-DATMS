@@ -1,0 +1,291 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+	.tamenus {
+		width: 50%;
+	}
+	.tamenus1 {
+		margin-top: 20px;	 
+	}
+	.subta {
+		width: 30%;
+		margin-top: 10px;
+	}
+	.caption {
+		color: #0d47a1;
+	}
+	.bl {
+		background-color: black;
+		color: white;
+	}
+</style>
+
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<div class="form-group">
+	<h6 class="caption"><a href="/travelauth/local_dash/">New Local Travel Request</a> / Training-Related Travel Request</h6>
+	<br>
+              <div class="row">
+
+               
+
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#attendee">Nomination Form</button>
+                    <div id="attendee" class="collapse in">
+                    	<br>
+                      <!-- start of attendee details -->
+                      <table>
+                        <tr>
+                          <select class="form-control" id="rc" name="rc" hidden="True">
+                          {% for items in rc %}      
+                            <option value="{{items.catt_id}}"{% if items.catt_id == 1 %}selected{% endif %}>{{items.request_category}}</option>
+                          {% endfor %}
+                          </select>
+                        </tr>
+                      	<tr>
+                      		<td>Program Title/ Purpose <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="program_title" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Venue <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="destination" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Program Dates <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+                      			From: <input type="date" name="from" required>
+                      			To: <input type="date" name="to" required>
+                      		</td>
+                      	</tr>
+                      	<tr>
+                      		<td class="bl">I. Nominee's Information</td>
+                      		<td class="bl"></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Title (ie. Mr., Mrs., Dr., Atty., Engr,) <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="name_title" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Last Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="lname" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>First Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="fname" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Middle Initial <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="mname" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Suffix</td>
+                      		<td><input type="text" name="suff" class="form-control"></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Nickname</td>
+                      		<td><input type="text" name="nname" class="form-control"></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Position <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="pos" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Salary Grade <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="sg" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Office/Division <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+                          <input type="text" name="office" class="form-control">
+                          </td>
+                      	</tr>
+                      	<tr>
+                      		<td>Email Address <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="email" name="email" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Mobile Number <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="mobile" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Office Number<i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="office_number" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Address <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="address" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td class="bl">Gender Equality, Disability and Social Inclusion (GEDSI)</td>
+                      		<td class="bl"></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Gender <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      <select class="form-control" id="sel1" name="gender">
+				                    <option value="Male">Male</option>
+				                    <option value="Female">Female</option>
+				                </select>
+			            	</td>
+                      	</tr>
+                      	<tr>
+                      		<td>Age <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="age" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Civil Status <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="civil_status">
+				                    <option value="Single">Single</option>
+				                    <option value="Married">Married</option>
+				                    <option value="Divorced">Divorced</option>
+				                    <option value="Widowed">Widowed</option>
+				                </select>
+			            	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Disability</td>
+                      		<td><input type="text" name="disability" class="form-control"></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Ethnicity</td>
+                      		<td><input type="text" name="ethnicity" class="form-control"></td>
+                      	</tr>
+
+                      	
+                      </table>
+                      
+                      <!-- end of attendee details -->
+                    </div>
+                 </div> 
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#attachments">Eligibility Status </button>
+                    <div id="attachments" class="collapse in">
+
+                    	<!-- start of international -->
+                    	<br>
+	                    <div id="trainings" class="">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Do you have pending training report since 2016?
+	                      		</td>
+	                      		<td>
+	                      			<a href="">Check Status here</a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Yes [Post Travel Report] - Upload PDF
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="report" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      
+
+	                      	
+	                      </table>
+	                    </div>
+                    	<!-- end of internatioanl -->
+                    	<br>
+                      	<!-- start of meetings -->
+                      	
+                      	<!-- end of FAT -->
+                    </div>
+                 </div> 
+
+
+                 <!-- Req -->
+
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus tamenus1" data-toggle="collapse" data-target="#req">Requirements </button>
+                    <div id="req" class="collapse in">
+
+                    	<!-- start of international -->
+                    	<br>
+	                    <div id="trainings" class="">
+	                      <table>
+	                      	
+
+	                      	<tr>
+	                      		<td>
+	                   				Pre Registration form from inviting institution
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="preg" type="file">
+	                      		</td>
+	                      	</tr>
+
+                          <tr>
+                            <td>
+                            Personal Data Sheet
+                            </td>
+                            <td>
+                              <input type="file" name="pds" type="file">
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                            Individual Performance Commitment and Review
+                            </td>
+                            <td>
+                              <input type="file" name="ipcr" type="file">
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                           Potential Assessment Form
+                            </td>
+                            <td>
+                              <input type="file" name="paf" type="file">
+                            </td>
+                          </tr>
+	                      
+
+	                      	
+	                      </table>
+	                    </div>
+                    	<!-- end of internatioanl -->
+                    	<br>
+                      	<!-- start of meetings -->
+                      	
+                      	<!-- end of FAT -->
+                    </div>
+                 </div> 
+                 <!-- end of req -->
+              </div>
+
+              <br>
+
+              
+              <!-- start of buttons -->
+              <br>
+              <div class="row">
+              	<div class="col-lg-12 col-md-12 col-xs-12">
+              		<input type="submit" name="draft" value="Save as Draft" class="btn btn-warning">
+              		<input type="submit" name="save" value="Submit" class="btn btn-danger">
+              	</div>
+              </div>
+              <!-- end of buttons -->	
+            </div>
+		</form>
+        </main>
+        
+
+
+{% endblock content %}

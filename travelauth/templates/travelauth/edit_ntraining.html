@@ -1,0 +1,250 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+	.tamenus {
+		width: 50%;
+	}
+	.subta {
+		width: 30%;
+		margin-top: 10px;
+	}
+	.caption {
+		color: #0d47a1;
+	}
+</style>
+{% for items in rdata %}
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<div class="form-group">
+	<h6 class="caption"><a href="/travelauth/local_dash/">New Local Travel Request</a> / Non-Training Related</h6>
+	<br>
+              
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#attendee">Attendee Details</button>
+                    <div id="attendee" class="collapse in">
+                    	<br>
+                      <!-- start of attendee details -->
+                      <table>
+                        <tr>
+                                                 </tr>
+                      	<tr>
+                      		<td>Program Title/ Purpose <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="program_title" class="form-control" value = "{{items.program_title}}" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Last Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="lname" class="form-control" value = "{{items.last_name}}" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>First Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="fname" class="form-control" value = "{{items.first_name}}" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Middle Initial <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="mname" class="form-control" value = "{{items.middle_initial}}" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Suffix</td>
+                      		<td><input type="text" name="suff" class="form-control" value = "{{items.suffix}}"></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Position <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="pos" class="form-control" value = "{{items.position}}"required></td>
+                      	</tr>
+                       <tr>
+                          <td>Office/Division <i style="font-size:14px;color:red">*</i></td>
+                          <td>
+                          <input type="text" name="office" class="form-control" value = "{{items.office}}">
+                          </td>
+                        </tr>
+                      	<tr>
+                      		<td>Gender <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="gender">
+				                    <option value="Male">Male</option>
+				                    <option value="Female">Female</option>
+						    <option value="Prefer not to say">Prefer not to say</option>
+				                </select>
+			            	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Civil Status <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="civil_status">
+				                    <option value="Single">Single</option>
+				                    <option value="Married">Married</option>
+						    <option value="Separated">Separated</option>
+				                    <option value="Divorced">Divorced</option>
+				                    <option value="Widowed">Widowed</option>
+				                </select>
+			            	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Disability</td>
+                      		<td><input type="text" name="disability" class="form-control" value = "{{items.disability}}"></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Ethnicity</td>
+                      		<td><input type="text" name="ethnicity" class="form-control" value = "{{items.ethnicity}}"></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Agency <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<input type = "text" name = "agency" class = "form-control" value = "{{items.agency}}" required>
+				        	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Destination/Location <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="destination" class="form-control" value = "{{items.destination}}"required></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Program Dates <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+                      			From: <input type="date" name="from" value = "{{items.programdates_from}}"required>
+                      			To: <input type="date" name="to" value = "{{items.programdates_to}}"required>
+                      		</td>
+                      	</tr>
+                      </table>
+                      
+                      <!-- end of attendee details -->
+                    </div>
+                 </div> 
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                   <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#cat">Category </button>
+
+                  <div id="cat" class="collapse in">
+                    <table>
+                      <tr>
+                        <td>
+                          
+                          <input type="radio" id="Meeting" name="cate" value="Meeting" checked>
+                          <label for="male">Meeting</label><br>
+                          <input type="radio" id="female" name="cate" value="Site Inspection">
+                          <label for="female">Site Inspection</label><br>
+                          <input type="radio" id="other" name="cate" value="Ocular Visit">
+                          <label for="other">Ocular Visit</label><br>
+                          <input type="radio" id="other" name="cate" value="Others">
+                          <label for="other">Others</label>
+                                                          
+                          
+                        </td>
+                      </tr>
+                    </table>
+
+                  </div>
+
+                </div>
+                
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#req">Requirements </button>
+                    <div id="req" class="collapse in">
+                        <table>
+                          <tr>
+                            <td>
+                            Invitation, Program
+                            </td>
+                            <td>
+                              <a href = "/media/{{MEDIA_URL}}{{ items.nt_invitation}}">{{ items.nt_invitation}}</a>
+                            </td>
+			    <td><a href = "/travelauth/nteinvitation/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+                          </tr>
+
+                        
+                        
+                        </table>
+                      </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-xs-12">
+
+                    	<!-- start of international -->
+                    	<button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#proj">Projected Expenses</button>
+	                    <div id="proj" class="collapse in">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Transportation
+	                      		</td>
+	                      		 <td>
+                              <a href = "/media/{{MEDIA_URL}}{{ items.nt_transportation}}">{{ items.nt_transportation}}</a>
+                            </td>
+			    <td><a href = "/travelauth/ntetransportation/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+	                      	</tr>
+
+                          <tr>
+                            <td>
+                            Daily Subsistence Allowance, if applicabl based on EO 77
+                            </td>
+                            <td>
+                              <a href = "/media/{{MEDIA_URL}}{{ items.nt_allowance}}">{{ items.nt_allowance}}</a>
+                            </td>
+			    <td><a href = "/travelauth/nteallowance/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                            Others
+                            </td>
+                             <td>
+                              <a href = "/media/{{MEDIA_URL}}{{ items.nt_others}}">{{ items.nt_others}}</a>
+                            </td>
+			    <td><a href = "/travelauth/nteothers/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+                          </tr>
+
+	                      	
+
+	                      
+	                      </table>
+	                    </div>
+                    	<!-- end of internatioanl -->
+                    	<br>
+                      	<!-- start of meetings -->
+                      	
+                      	<!-- end of FAT -->
+                    </div>
+                    </div>
+                 </div> 
+              </div>
+
+              <br>
+
+              
+              <!-- start of buttons -->
+              <br>
+              <div class="row">
+              	<div class="col-lg-12 col-md-12 col-xs-12">
+              		<input type="submit" name="draft" value="Save as Draft" class="btn btn-warning">
+              		<input type="submit" name="save" value="Submit" class="btn btn-danger">
+              	</div>
+              </div>
+              <!-- end of buttons -->	
+            </div>
+		</form>
+	{% endfor %}
+        </main>
+        
+
+
+{% endblock content %}

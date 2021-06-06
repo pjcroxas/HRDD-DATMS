@@ -1,0 +1,140 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style>
+.collapsible {
+  background-color: #244A80;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #377A98;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #D0EFFF;
+}
+
+.collapsible, .content {
+  width: 900px;
+}
+</style>
+
+
+<!-- <div class="container">
+<div class="breadcrumb my-4">
+<h1><b><i class="fas fa-table text-primary"></i>
+<small class="text-primary">&nbsp New Scholarship Application</small></b></h1>
+
+</div><div></div> -->
+
+
+
+
+   </div>
+<div class="card">
+   <div class="card-body">
+     <div class='container'>
+     <ol>
+         <div class = 'column'>
+           <h1><b><i class="fas fa-table text-primary"></i>
+           <small class="text-primary">&nbsp Update Scholarship Application</small></b></h1>
+           <div class="border-bottom border-primary col"></div>
+        </div>&nbsp;
+
+        <form method="post" action = "{% url 'editpost' requestors.pk %}" enctype="multipart/form-data" id="newrequestForm" data-sector-url="{% url 'ajax_load_sectors' %}">
+            {% csrf_token %}
+            <div>
+            <div>
+                <button type="button" class="collapsible">Category</button>
+                <div class="content">
+                  &nbsp{% crispy requestor_form %}
+                </div>
+            </div>&nbsp;
+            <div>
+                <button type="button" class="collapsible">Nomination Form</button>
+                <div class="content">
+                  &nbsp<p><b>I.  Nominee's Information</b></p>
+                  {% crispy nomination_form %}
+                  <p><b>Gender Equality, Disability and Social Inclusion (GEDSI)</b></p>
+                  {% crispy gedsi_form %}
+
+                </div>
+            </div>&nbsp;
+            <div>
+                <button type="button" class="collapsible">Eligibility Status</button>
+                <div class="content">
+                  &nbsp{% crispy eligibilitystatus_form %}
+                </div>
+            </div>&nbsp;
+            <div>
+                <button type="button" class="collapsible">Requirements</button>
+                <div class="content">
+                   &nbsp{% crispy requirements_form %}
+                </div>
+            </div>&nbsp;
+
+                &nbsp&nbsp&nbsp;&nbsp&nbsp&nbsp;&nbsp&nbsp&nbsp;
+                <div>
+                  <!-- <button type="submit" name ="_save" class="btn btn-success">Submit</button> -->
+                  <button type="submit" name ="_update" class="btn btn-warning">Update</button>
+                  <button type="submit" name ="_submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+      </ol>
+  </div>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+
+
+
+    $("#id_category").change(function () {
+      const url = $("#newrequestForm").attr("data-sector-url");  // get the url of the `load_cities` view
+      const scholar_category = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'scholar_category': scholar_category       // add the country id to the GET parameters
+        },
+        success: function (data) {
+          console.log(data)   // `data` is the return of the `load_cities` view function
+          $("#id_sector_for_scholarship").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+</script>
+
+</main>
+{% endblock content %}

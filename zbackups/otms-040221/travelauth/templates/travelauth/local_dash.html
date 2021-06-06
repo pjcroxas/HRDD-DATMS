@@ -1,0 +1,83 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+<style>
+	.caption {
+		color: #0d47a1;
+	}
+
+	.ic {
+		background-color: #0d47a1;
+		width: 200px;
+		height: 200px;
+	}
+
+	.me {
+		background-color: #8B0000;
+		width: 200px;
+		height: 200px;
+	}
+
+	.tr {
+		background-color: #595C72;	
+		width: 200px;
+		height: 200px;
+	}
+
+	.fi {
+		background-color: #F1646A;
+		width: 200px;
+		height: 200px;
+	}
+
+	.ic:hover, .me:hover, .tr:hover, .fi:hover {
+		width: 250px;
+		height: 200px;
+	}
+</style>
+<h6 class="caption">Local Travel Request</h6>
+<br>
+<div class="container">
+	<div class="row">
+		<!-- <div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/ltpt/">
+
+			<div class="ic">
+				<img src="{% static 'basetemp/pt1.png' %}" alt="ic">
+			</div>
+			</a>
+			<br>
+			<h6>Personal Travel</h6>
+			</center>
+		</div> -->
+
+		<div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/ltts/">
+			<div class="tr">
+				<img src="{% static 'basetemp/tc.png' %}" alt="tc">
+			</div>
+			</a>
+			<br>
+			<h6>Training Related</h6>
+			</center>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/ltpt/"><div class="fi">
+				<img src="{% static 'basetemp/nt1.png' %}" alt="fc">
+			</div>
+			</a>
+			<br>
+			<h6>Non-Training Related</h6>
+			</center>
+		</div>
+
+		
+	</div>
+</div>
+</main>
+
+{% endblock content %}

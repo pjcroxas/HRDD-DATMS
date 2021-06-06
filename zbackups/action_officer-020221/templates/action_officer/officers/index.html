@@ -1,0 +1,74 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+
+<div class="card">
+<div class="card-header py-3">
+    <head>
+        <h2 style="color:#3091ff">
+          &nbsp<i class="fas fa-list" ></i>&nbsp;Action Officers
+
+        </h2>
+    </head>
+  </div>
+  <div class="card-body">
+    <div class='container'>
+
+
+<a href="{%url 'officers_add'%}"<button type="submit" class="btn btn-warning">Create Account</button></a>
+<br><br>
+<table id="table_id" border="1">
+    <thead class="thead-inverse">
+        <tr>
+          <th>ID</th>
+          <th>UserName</th>
+					<th>Name</th>
+          <th>Official Designation</th>
+          <th>Office/Agency</th>
+          <th>Sector</th>
+
+					<th>Actions</th>
+            </tr>
+    </thead>
+    <tbody>
+
+      {% for officer in officers %}
+
+        <tr>
+                <td>{{officer.id}}</td>
+                <td>{{officer.username}}</td>
+                <td>{{officer.first_name}} {{officer.last_name}}</td>
+                <td>{{officer.authordisplay.official_designation}}</td>
+                <td>{{officer.authordisplay.office_or_agency}}</td>
+                <td>{{officer.authordisplay.sector}}</td>
+                <td ><a href="{%url 'officers_edit' officer.pk %}" class="btn btn-primary ab"><small>View/Update</small></a>&nbsp;
+                  {% if officer.is_active == False %}
+                  <a href="{%url 'unblock' officer.pk %}" class="btn btn-warning ab"><small>Unblock</small></a>
+                  {%else%}
+                  <a href="{%url 'block' officer.pk %}" class="btn btn-warning ab"><small>Block</small></a>
+                  {%endif%}
+
+                </td>
+            </tr>
+{%endfor%}
+
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+{% endif %}
+</center>
+{% endfor %}
+
+
+
+<!-- dont remove by BRIAN-->
+</main>
+{% endblock content %}

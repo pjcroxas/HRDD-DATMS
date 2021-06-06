@@ -1,0 +1,268 @@
+{% extends "basetemp/main_base.html" %}
+{% load bootstrap_pagination %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 14px;
+    font-family: sans-serif;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align:center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.breadcrumb {
+    margin-bottom: 0;
+    background-color: #fcfcfc;
+}
+
+</style>
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+
+<!--<div class="row">
+
+        <div class="col-md-4 col-lg-4">
+          <a href="#" target="_blank">
+          <div class="widget-small primary coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>New Request Submissions</h4>
+            </div>
+          </div></a>
+        </div>
+</div>-->
+
+			{%if urlpath == "travel"%}
+
+			<ol class="breadcrumb my-3" style="font-size: 16px;">
+         <li class="breadcrumb-item"><a href="{%url 'action-dash' 1 %}">Dashboard</a></li>
+				 <li class="breadcrumb-item active">New Requests</li>
+       </ol>
+
+
+			<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#attendee">Search</button>
+		      <div id="attendee" class="collapse in">
+		          <br>
+		          <form>
+		          <div class="form-group row">
+		            <div class="col-sm-5">
+		              <input class="form-control" id="myInput" type="text" placeholder="Search">
+		            </div>
+		          </div>
+		        </form>
+		    </div>
+<br><br>
+<!-- start of tr -->
+<div class="card">
+<div class="card-header py-2.5">
+    <head>
+        <h3 style="color:#009688">
+          &nbsp<i class="fas fa-list" ></i>&nbsp;New Travel Requests
+
+        </h3>
+    </head>
+  </div>
+
+  <div class="card-body">
+
+
+<table id="table_id" class="styled-table">
+    <thead class="thead-inverse">
+        <tr>
+
+					<th>Reference Code</th>
+					<th>Sector</th>
+					<th>Category</th>
+					<th>Program Title</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Date/Time Filled</th>
+					<th>Actions</th>
+            </tr>
+    </thead>
+    <tbody>
+{%if requestor%}
+      {% for request in requestor %}
+
+        <tr>
+                <td align='center' style='border-color: #000000'>TR-{{ request.date_filed|date:"m/d/y"}}-{{ request.travelreq_id }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.sector }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.request_category }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.program_title }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.programdates_from }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.programdates_to }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.date_filed }}</td>
+                <td align='center' style='border-color: #000000'><a href="{%url 'requestdetailstravel' request.pk %}" class="btn btn-primary ab"><small>View</small></a>&nbsp;
+				<!-- confirm modal -->
+
+	<button class="btn btn-warning" id="{{request.pk}}" onclick="myFunction(this.id, this.value);" value="/action_officer/new_sub/take/{{request.travelreq_id}}/{{request.requestor}}/{{ request.date_filed|date:'m-d-y'}}/{{request.last_name}}/{{request.first_name}}/{{request.middle_initial}}/{{request.program_title}}/{{request.programdates_from}}/{{request.programdates_to}}/{{request.destination}}/{{request.travelreq_id}}/{% for items in user %}{{items.last_name}}/{{items.email}}{% endfor %}"><small>Take</small></button>
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-btn-{{request.pk}}">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				<h5>	Are you sure? </h5>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="modal-btn-si">Yes, Sir</button>
+					<button type="button" class="btn btn-danger" id="modal-btn-no">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+						<!-- confirm modal end -->
+							</td>
+						</tr>
+{%endfor%}
+{%else%}
+<tr>
+<td colspan="8">NO DATA</td>
+</tr>
+
+
+{%endif%}
+
+    </tbody>
+</table>
+<div class="pagination-row float-right">
+  {% bootstrap_paginate requestor range=4 %}
+</div>
+</div>
+<br>
+<!-- start of table -->
+{% else %}
+<h6>Scholarship Applications</h6>
+<br>
+<table id="table_id" class="display reftbl">
+    <thead class="thead-inverse">
+        <tr>
+
+            <th>Reference Code</th>
+            <th>Sector</th>
+						<th>Category</th>
+            <th>Request Details</th>
+						<th>Program Title</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Date/Time Filled</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+            {% for items in requestor %}
+        <tr>
+
+            <td>{{items.pk}}</td> TR-{{ request.date_filed|date:"m/d/y"}}-{{ request.travelreq_id }}
+            <td>{{items.reference_scholarship}}</td>
+            <td>{{items.sector}}</td>
+						<td>{{items.category}}</td>
+            <td>{{items.prog_title}}</td>
+						<td>{{items.prog_title}}</td>
+						<td>{{items.programdates_from}}</td>
+						<td>{{items.programdates_to}}</td>
+						<td>{{items.date_filed}}</td>
+            <td><center><a href="{% url 'requestdetails' items.pk %}" class="btn btn-primary">View</a> &nbsp <a href="/action_officer/new_sub/take/{{items.id}}" class="btn btn-warning">Take</a></center></td>
+
+        </tr>
+        {% endfor %}
+{% endif %}
+
+    </tbody>
+</table>
+
+</div>
+
+
+
+<!-- end of table -->
+
+<!-- dont remove by BRIAN-->
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+</main>
+
+<script>
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table_id tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+function myFunction(id, value) {
+
+
+
+ 	 $("#modal-btn-"+id+"").modal('show');
+
+	   $("#modal-btn-si").on("click", function(){
+	     $("#modal-btn-"+id+"").modal('hide');
+			 window.location.href = value;
+	   });
+
+	   $("#modal-btn-no").on("click", function(){
+	     $("#modal-btn-"+id+"").modal('hide');
+	   });
+
+
+
+}
+
+
+
+
+</script>
+{% endblock content %}

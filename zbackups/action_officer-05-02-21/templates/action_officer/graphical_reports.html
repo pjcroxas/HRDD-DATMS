@@ -1,0 +1,397 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.highcharts.com/modules/sunburst.js"></script>
+<body>
+
+<div class="row">
+  <div class="col-xl-12 col-lg-7">
+       <div class="card shadow mb-4">
+           <!-- Card Header - Dropdown -->
+           <div
+               class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+               <h4 class="m-0 font-weight-bold text-info" style="font-family:helvetica">Travel Request Per Day</h4>
+           </div>
+           <!-- Card Body -->
+           <div class="card-body">
+               <div class="chart-area">
+                   <div id="chart_a" width="100" height="40"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+<!-- bar chart -->
+
+</div>
+
+<div class="row">
+
+   <div class="col-xl-6 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-info" style="font-family:helvetica">Travel Request per Office</h4>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie">
+                    <div id="chart_b" width="100" height="40"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-5">
+         <div class="card shadow mb-4">
+             <!-- Card Header - Dropdown -->
+             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                 <h4 class="m-0 font-weight-bold text-info" style="font-family:helvetica">Travel Request per Agency</h4>
+
+             </div>
+             <!-- Card Body -->
+             <div class="card-body">
+                 <div class="chart-pie">
+                     <div id="chart_c" width="100" height="40"></div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+
+<div class="row">
+
+   <div class="col-xl-6 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-info" style="font-family:helvetica">Travel Request per Travel Type</h4>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie">
+                    <div id="chart_d" width="100" height="40"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lg-5">
+         <div class="card shadow mb-4">
+             <!-- Card Header - Dropdown -->
+             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                 <h4 class="m-0 font-weight-bold text-info" style="font-family:helvetica">Travel Request per Nature</h4>
+
+
+             </div>
+             <!-- Card Body -->
+             <div class="card-body">
+                 <div class="chart-pie">
+                     <div id="chart_e" width="100" height="40"></div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+</div>
+
+
+
+
+
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://highcharts.github.io/export-csv/export-csv.js"></script>
+
+<script>
+  Highcharts.chart('chart_a', {
+      chart: {
+          type: 'areaspline'
+      },
+      credits: {
+            enabled: false
+          },
+      exporting: {
+            buttons: {
+                contextButton: {
+                    align: 'left',
+
+                    verticalAlign: 'bottom'
+                }
+            }
+        },
+
+
+      title:{
+          text: null
+        },
+
+      xAxis: {
+          categories: [
+            {% for entry in travel_request_per_day %}'{{ entry.date_filed__date }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+      },
+      yAxis:{
+        allowDecimals: false,
+        title:{
+          text:'Requests'
+        },
+        labels: {
+          enabled: true,
+        },
+      },
+      plotOptions: {
+    areaspline: {
+      fillOpacity: 0.2
+    }
+  },
+      series: [{
+          name: 'Local',
+          data: [
+            {% for entry in travel_request_per_day %}{{ entry.local }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: '#2B2B2B'
+      }, {
+          name: 'Foreign',
+          data: [
+            {% for entry in travel_request_per_day %}{{ entry.foreign }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: '#0099CC',
+      }
+
+      ]
+  });
+
+
+
+
+ Highcharts.chart('chart_b', {
+      chart: {
+          type: 'bar'
+      },
+      credits: {
+            enabled: false
+          },
+      exporting: {
+            buttons: {
+                contextButton: {
+                    align: 'left',
+
+                    verticalAlign: 'bottom'
+                }
+            }
+        },
+
+
+
+      title: {
+          text: null
+      },
+      xAxis: {
+          categories: [
+            {% for entry in travel_request_per_office %}'{{ entry.office }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+      },
+
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            formatter: function() {
+              var sliceIndex = this.point.index;
+              var sliceName = this.series.chart.axes[0].categories[sliceIndex];
+              return sliceName
+            }
+          },
+          innerSize: '60%'
+        },
+
+      },
+      series: [{
+          name: 'Request',
+          data: [
+            {% for entry in travel_request_per_office %}{{ entry.travelreq_id__count }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: '#0d47a1'
+      }]
+  });
+
+
+
+
+  Highcharts.chart('chart_c', {
+      chart: {
+          type: 'bar'
+      },
+      credits: {
+            enabled: false
+          },
+      exporting: {
+            buttons: {
+                contextButton: {
+                    align: 'left',
+
+                    verticalAlign: 'bottom'
+                }
+            }
+        },
+
+
+
+      title: {
+          text: null
+      },
+      xAxis: {
+          categories: [
+            {% for entry in travel_request_per_agency %}'{{ entry.agency }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+      },
+
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            formatter: function() {
+              var sliceIndex = this.point.index;
+              var sliceName = this.series.chart.axes[0].categories[sliceIndex];
+              return sliceName
+            }
+          },
+          innerSize: '60%'
+        },
+
+      },
+      series: [{
+          name: 'Request',
+          data: [
+            {% for entry in travel_request_per_agency %}{{ entry.travelreq_id__count }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: '#0d47a1'
+      }]
+  });
+
+
+  Highcharts.chart('chart_d', {
+      chart: {
+          type: 'pie'
+      },
+      credits: {
+            enabled: false
+          },
+      exporting: {
+            buttons: {
+                contextButton: {
+                    align: 'left',
+
+                    verticalAlign: 'bottom'
+                }
+            }
+        },
+
+
+
+      title: {
+          text: null
+      },
+      xAxis: {
+          categories: [
+            {% for entry in travel_request_per_type %}'{{ entry.sub_category }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+      },
+
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            formatter: function() {
+              var sliceIndex = this.point.index;
+              var sliceName = this.series.chart.axes[0].categories[sliceIndex];
+              return sliceName
+            }
+          },
+          innerSize: '60%'
+        },
+
+      },
+      // tooltip: {
+      //       formatter: function() {
+      //               return this.series.chart.axes[0].categories[sliceIndex] ;
+      //           },
+      series: [{
+          name: 'Request',
+          data: [
+            {% for entry in travel_request_per_type %}{{ entry.travelreq_id__count }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: '#0d47a1'
+      }]
+  });
+
+  Highcharts.chart('chart_e', {
+      chart: {
+          type: 'pie'
+      },
+
+      credits: {
+            enabled: false
+          },
+      exporting: {
+            buttons: {
+                contextButton: {
+                    align: 'left',
+
+                    verticalAlign: 'bottom'
+                }
+            }
+        },
+
+
+
+      title: {
+          text: null
+      },
+      xAxis: {
+          categories: [
+            {% for entry in travel_request_per_nature %}'{{ entry.support_category|truncatechars:12 }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+      },
+
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            formatter: function() {
+              var sliceIndex = this.point.index;
+              var sliceName = this.series.chart.axes[0].categories[sliceIndex];
+              return sliceName
+            }
+          },
+          innerSize: '60%'
+        },
+
+      },
+      series: [{
+          name: 'Request',
+          data: [
+            {% for entry in travel_request_per_nature %}{{ entry.travelreq_id__count }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          // color: ['#0d47a1']
+      }]
+  });
+
+
+</script>
+<body>
+{% else %}
+<center>
+<h1>You are unauthorized to access this page</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+
+</main>
+{% endblock content %}

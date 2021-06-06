@@ -1,0 +1,60 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+.dp {
+width: 300px;
+height: 300px;
+}
+</style>
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+<h6><b>SELECT DASHBOARD</b></h6>
+<div class="row">
+
+<!-- copied -->
+<div class="col-lg-12 col-md-12 col-xs-12">
+<center>
+
+    </center>
+    </div>
+<!-- end of copied -->
+
+<br></br>
+<br></br>
+
+<div class="col-lg-6 col-md-6 col-xs-6">
+<center><a href="{% url 'action-dash' 1 %}"><img src="{% static 'basetemp/travel.svg' %}" alt="ic" class="img-responsive dp rounded"></a>
+<h4><a href="{% url 'action-dash' 1 %}">TRAVEL REQUESTS</a></h4>
+</center>
+</div>
+
+<div class="col-lg-6 col-md-6 col-xs-6">
+<center><a href="{% url 'action-dash' 2 %}" disabled><img src="{% static 'basetemp/grad.svg' %}" alt="ic" class="img-responsive dp rounded"></a>
+<h4><a href="#"disabled>SCHOLARSHIP APPLICATION</a></h4>
+</center>
+</div>
+
+</div>
+<!-- do not remove -->
+
+
+
+
+
+
+
+<!-- end of table -->
+
+<!-- dont remove by BRIAN-->
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+</main>
+{% endblock content %}

@@ -1,0 +1,62 @@
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+</style>
+
+
+<table border="1" style="border: 1px solid black; border-collapse: collapse;">
+<tr>
+<th colspan="2" style="text-align:left; background-color:#0DF305; border: 1px solid black; border-collapse: collapse;">OTHER ISSUES</th>
+</tr>
+  <tr>
+    <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">
+      {%if statusform|stringformat:'s' == "On Hold: Lacking Original Documents" %}
+      Yes Sir!
+      {%elif statusform|stringformat:'s' == "Approved" %}
+Hi <b>{{emailquery.first_name}}{{emailquery.last_name}}</b>,<br>We are pleased to inform you that your request for Travel Authority is already <b>APPROVED</b> in the DOTMS. <br> To check, visit DOTMS and click on DOWNLOAD TA. The hard copy is being mailed to your office today. <br><br>Safe Travels.<br>-HRD Travel Team"
+    {%endif%}
+
+</td>
+  </tr>
+
+<tr>
+  <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">
+     <table border="1" width="100%" style="border: 1px solid black; border-collapse: collapse;">
+     <tr>
+     <th colspan="2" style="background-color:#A5AAA8">REQUEST DETAILS</th>
+     </tr>
+        <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Request Reference Number:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;"> TR-{{ emailquery.date_filed|date:"Y-m-d"}}-{{ emailquery.travelreq_id }}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Request Date:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.date_filed}}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Program Title/Purpose:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.program_title}}</td>
+       </tr>
+        <tr>
+        <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Travel Dates:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.programdates_from}} to {{with_issues.programdates_to}}</td>
+       </tr>
+       <tr>
+         <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Destination:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.destination}}</td>
+       </tr>
+
+
+
+
+     </table>
+    </tr>
+</td>
+</tr>
+
+</table>

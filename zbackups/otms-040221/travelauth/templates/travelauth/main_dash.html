@@ -1,0 +1,45 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% for item in designation %}
+          {% if item.role_id == 1 %} <!-- Requestor -->
+
+<style>
+.dp {
+	width: 300px;
+	height: 300px;
+}
+</style>
+<h6><b>SELECT DASHBOARD</b></h6>
+<br></br>
+<br></br>
+<div class="row">
+
+	<!-- end of copied -->
+	<div class="col-lg-6 col-md-6 col-xs-6">
+		<center><a href="/requestor/t_r"><img src="{% static 'basetemp/travel.svg' %}" alt="ic" class="img-responsive dp rounded"></a>
+			<h4><a href="/requestor/t_r">TRAVEL REQUESTS</a></h4>
+		</center>
+	</div>
+
+	<div class="col-lg-6 col-md-6 col-xs-6">
+		<center><a href="/requestor/requests"><img src="{% static 'basetemp/grad.svg' %}" alt="ic" class="img-responsive dp rounded"></a>
+			 <h4><a href="/requestor/t_r">SCHOLARSHIP APPLICATIONS</a></h4>
+	</center>
+	<!-- <center><a href="#"><img src="{% static 'basetemp/grad.svg' %}" alt="ic" class="img-responsive dp rounded"></a>
+			 <h4><a href="#">SCHOLARSHIP APPLICATIONS</a></h4>
+	</center> -->
+	</div>
+</div>
+
+<!-- do not remove -->
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+</main>
+{% endblock content %}

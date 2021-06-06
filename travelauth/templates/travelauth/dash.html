@@ -1,0 +1,129 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% for item in designation %}
+          {% if item.role_id == 1 %} <!-- Requestor -->
+
+<style>
+	.caption {
+		color: #0d47a1;
+	}
+
+	.ic {
+		background-color: #0d47a1;
+		width: 200px;
+		height: 200px;
+	}
+
+	.me {
+		background-color: #8B0000;
+		width: 200px;
+		height: 200px;
+	}
+
+	.tr {
+		background-color: #595C72;	
+		width: 200px;
+		height: 200px;
+	}
+
+	.fi {
+		background-color: #F1646A;
+		width: 200px;
+		height: 200px;
+	}
+
+	.ic:hover, .me:hover, .tr:hover, .fi:hover, .pt:hover {
+		width: 250px;
+		height: 200px;
+	}
+
+	.pt {
+		background-color: gray;
+		width: 200px;
+		height: 200px;
+	}
+        h6
+        {
+        text-transform:uppercase;
+        }
+</style>
+<h6 class="caption">FOREIGN TRAVEL REQUESTS</h6>
+<br>
+<div class="container">
+	<div class="row">
+
+		
+
+		<div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/tic/">
+
+			<div class="ic">
+				<img src="{% static 'basetemp/ic.png' %}" alt="ic">
+			</div>
+			</a>
+			<br>
+			<h6>International Commitment</h6>
+			</center>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/tmc/">
+
+			<div class="me">
+				<img src="{% static 'basetemp/mc.png' %}" alt="mc">
+			</div>
+			</a>
+			<br>
+			<h6>Meetings/Conferences/Special Missions</h6>
+			</center>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/tts/">
+			<div class="tr">
+				<img src="{% static 'basetemp/tc.png' %}" alt="tc">
+			</div>
+			</a>
+			<br>
+			<h6>Trainings/Seminars/Workshop</h6>
+			</center>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/tfi/"><div class="fi">
+				<img src="{% static 'basetemp/fc.png' %}" alt="fc">
+			</div>
+			</a>
+			<br>
+			<h6>FAT/Inspection</h6>
+			</center>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-xs-3">
+			<center>
+			<a href="/travelauth/tpt/"><div class="pt">
+				<img src="{% static 'basetemp/pt1.png' %}" alt="pt">
+			</div>
+			</a>
+			<br>
+			<h6>Personal Travel</h6>
+			</center>
+		</div>
+	</div>
+</div>
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+</main>
+
+{% endblock content %}

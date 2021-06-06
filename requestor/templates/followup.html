@@ -1,0 +1,108 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% for item in designation %}
+          {% if item.role_id == 1 %} <!-- Requestor -->
+
+<style>
+	.fw {
+		width: 400px;
+
+	}
+  td {
+  text-transform:uppercase;
+  color:gray;
+  text-align: left;
+  }
+</style>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-xs-12">
+
+<!-- start of travel table -->
+<div class="card">
+<div class="card-body">
+      <table class="table rtbl">
+        <a href="/requestor/requests"><h6 class="caption">Scholarship Application </a>/ Details</h6>
+        <thead class="thead-default">
+          <tr>
+            <!-- <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>ID</th> -->
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>REFERENCE</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>CREATED AT</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>CATEGORY</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>PROGRAM</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>DESTINATION</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>ATTENDEE</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>FROM</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>TO</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>STATUS</th>
+
+          </tr>
+          <!--<tr>
+            <th  style='border-color: #000000' scope="col">Start Date</th>
+            <th  style='border-color: #000000' scope="col">End Date</th>
+          </tr>-->
+        </thead>
+        <tbody>
+          {% for request in rdata %}
+            <tr>
+
+                <td align='center' style='border-color: #000000'>{{ request.category.shortterm  }}{{ request.date_filed|date:"Y-m-d"}}-000{{ request.incrementor }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.date_filed }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.category }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.prog_title|truncatechars:9 }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.location }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.last_name  }} {{request.first_name}} {{request.middle_initial}}</td>
+                <td align='center' style='border-color: #000000'>{{ request.start_date  }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.end_date  }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.status  }}</td>
+
+
+
+
+
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div></div>
+    <br></br>
+      <!-- end of travel table -->
+    <div class="card">
+    <div class="card-body">
+      <form method="POST" enctype = "multipart/form-data">
+      	{% csrf_token %}
+	{% for items in rdata %}
+      	<table>
+      		<!-- <tr>
+      			<td>Indicate your reason for cancellation: </td>
+      			<td><input type="text" name="reason" class="form-control fw" required></td>
+      		</tr> -->
+		<tr>
+			<td>FOLLOW UP HRDD: </td>
+			<td><input type="checkbox" name = "followup" value = "True"></td>
+		</tr>
+      		<tr>
+      			<!-- sc <td><input type="submit" name="update" value="Follow Up" class="btn btn-primary">&nbsp;&nbsp;<a href="/requestor/t_r" class="btn btn-warning">Cancel</a></td> -->
+			<td><a href = "/requestor/fup/{{items.id}}/{{items.assigned}}/{{ request.category.shortterm  }}{{ request.date_filed|date:"Y-m-d"}}-000{{ request.incrementor }}/{{items.first_name}}/{{items.middle_initial}}/{{items.last_name}}/{{items.prog_title}}/{{items.start_date}}/{{items.end_date}}/{{items.location}}/{{items.status}}" class = "btn btn-primary">Follow Up</a>&nbsp;<a href="/requestor/requests" class="btn btn-warning">Cancel</a></td>
+			
+      		</tr>
+      	</table>
+	{% endfor %}
+      </form>
+    </div>
+    </div>
+
+	</div>
+</div>
+<!-- do not remove -->
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+</main>
+{% endblock content %}

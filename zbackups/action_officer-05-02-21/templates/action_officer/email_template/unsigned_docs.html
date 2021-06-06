@@ -1,0 +1,67 @@
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+</style>
+
+
+<table border="1" style="border: 1px solid black; border-collapse: collapse;">
+<tr>
+<th colspan="2" style="text-align:left; background-color:#0DF305; border: 1px solid black; border-collapse: collapse;">UNSIGNED ATTACHMENT</th>
+</tr>
+  <tr>
+    <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">Hi, {{unsigned_docs.first_name}} {{unsigned_docs.first_name}}!<BR>
+
+      We would like to inform you that you have attached an unverified/unsigned
+      document/requirement for the requested travel (see request details below).<br>
+<i>Please attach approved/signed:</i> <b> {% for unsigned_docs in unsigned_docs.unsigned_docs%}{{unsigned_docs}}{% if forloop.last %}.
+                             {%else%},
+                         {% endif %}{%endfor%} </b><br><br>
+        Kindly visit the DOTMS and review all attached requirements specified. Please note that
+        failure to comply within the timeline would mean a delay in the processing of TA.
+<br><br>
+Thank you!<br>
+-HRD Travel Team
+</td>
+  </tr>
+
+<tr>
+  <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">
+     <table border="1" width="100%" style="border: 1px solid black; border-collapse: collapse;">
+     <tr>
+     <th colspan="2" style="background-color:#A5AAA8">REQUEST DETAILS</th>
+     </tr>
+        <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Request Reference Number:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;"> TR-{{ unsigned_docs.date_filed|date:"Y-m-d"}}-{{ unsigned_docs.travelreq_id }}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Request Date:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{unsigned_docs.date_filed}}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Program Title/Purpose:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{unsigned_docs.program_title}}</td>
+       </tr>
+        <tr>
+        <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Travel Dates:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{unsigned_docs.programdates_from}} to {{unsigned_docs.programdates_to}}</td>
+       </tr>
+       <tr>
+   <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Destination:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{unsigned_docs.destination}}</td>
+       </tr>
+
+
+
+
+     </table>
+    </tr>
+</td>
+</tr>
+
+</table>

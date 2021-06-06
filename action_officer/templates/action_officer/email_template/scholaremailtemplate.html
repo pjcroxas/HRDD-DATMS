@@ -1,0 +1,133 @@
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+</style>
+
+
+<table border="1" style="border: 1px solid black; border-collapse: collapse;">
+<tr>
+<th colspan="2" style="text-align:left; background-color:#3238a8; color:white; border: 1px solid black; border-collapse: collapse;">
+
+  {%if statusform|stringformat:'s' == "Evaluation: LACK DOCUMENTARY REQUIREMENTS" %}
+  LACK DOCUMENTART REQUIREMENTS
+  {%elif statusform|stringformat:'s' == "Approved" %}
+  DOWNLOAD
+  {%elif statusform|stringformat:'s' == "UNABLE TO PROCEED WITH THE APPLICATION DUE TO PENDING SUBMISSION" %}
+  UNABLE TO PROCEED WITH THE APPLICATION DUE TO PENDING SUBMISSION
+{%elif statusform|stringformat:'s' == "Evaluation: Failed" %}
+Evaluation: Failed
+{%elif statusform|stringformat:'s' == "Take" %}
+SUBMISSION
+{% elif statusform|stringformat:'s' == "Scholarship Acceptance"%}
+SCHOLARSHIP ACCEPTANCE
+{%endif%}
+
+</th>
+</tr>
+  <tr>
+    <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">
+      {%if statusform|stringformat:'s' == "Evaluation: LACK DOCUMENTARY REQUIREMENTS" %}
+Hi <b>{{emailquery.first_name}} {{emailquery.last_name}}</b>, <br><br>
+We would like to remind you of the pending documents reflected below that the applicant<br>
+needs to provide the HRD so he/she can proceed with the training application.<br>
+{%for query in emailquery.lacking_documents%}
+- {{query}}<br>
+{%endfor%}
+Kindly visit the DOTMS and attach the requirements within the day.
+Failure to comply within the deadline may cause possible cancellation of the said application.<br><br>
+Thank you!<br>
+-HRD Scholarship Team
+
+{%elif statusform|stringformat:'s' == "Approved" %}
+Hi <b>{{emailquery.first_name}} {{emailquery.last_name}}</b>,<br>We are pleased to inform you that your request for Scholarship is already <b>APPROVED</b> in the DOTMS. <br>
+To check, visit DOTMS and click on DOWNLOAD TA. The hard copy is being mailed to your office today. <br><br>Safe Travels.<br>-HRD Travel Team"
+
+
+
+{%elif statusform|stringformat:'s' == "UNABLE TO PROCEED WITH THE APPLICATION DUE TO PENDING SUBMISSION" %}
+Hi <b>{{emailquery.first_name}} {{emailquery.last_name}}</b>, <br><br>
+We would like to inform you that we were unable to proceed with the scholarship<br>
+application due to unsubmitted documentary requirements. Unfortunately, the deadline for<br>
+this scholarship has already lapsed.<br><br>
+Thank you!<br>
+-HRD Scholarship Team
+
+{%elif statusform|stringformat:'s' == "Evaluation: Failed" %}
+Hi, <b>{{emailquery.first_name}} {{emailquery.last_name}}</b>, <br><br>
+Thank you very much for the interest in applying to the _(e.g. AAAEP, JICA, KOICA etc)_ scholarship program. We appreciate you taking the time in sending the nomination details to us.<br>
+Upon evaluation of the application, the HRD Scholarship Team prioritizes participants with the closest job functions to the course.<br>
+Should there be another scholarship suited for the applicant, we will send another invitation and we are hopeful that said applicant will consider applying again.<br><br>
+Thank you!<br>
+-HRD Scholarship Team
+
+
+{%elif statusform|stringformat:'s' == "Take" %}
+Hi  <b>{{emailquery.first_name}} {{emailquery.last_name}}</b>,<br><br>
+Thank you for your interest in one of our Scholarship programs.<br>
+The nomination/application is now being reviewed by our Action Officer in the Human Resource Development Division.<br>
+If you have other information that may help in the evaluation process or details you may want to add, you can reach the HRD Team via hrdd@dotr.gov.ph.<br>
+Please note that the original signed copy of the nomination form including all other attachments shall be submitted to HRDD before the Travel Authority will be granted.<br>
+To view your application status, visit DOTMS.<br><br>
+Good luck!<br>
+-HRD Scholarship Team
+
+{% elif statusform|stringformat:'s' == "Scholarship Acceptance"%}
+Hi, <b>{{emailquery.first_name}}  {{emailquery.last_name}}</b>! <br><br>
+Congratulations!<br>
+We would like to inform you that the scholarship nomination has been accepted and the
+applicant is now moving to the next process.<br>
+To comply, please accomplish the following requirements and send to HRD via email:<br>
+hrdd@dotr.gov.ph:<br>
+- Inviting Institution’s list of Requirements<br>
+- DOTr’s Requirements (include Duly notarized Local Scholarship Contract (LOCAL) /
+Scholarship Service Contract (FOREIGN)<br><br>
+
+Thank you!<br>
+-HRD Scholarship Team<br>
+
+    {%endif%}
+
+</td>
+  </tr>
+
+<tr>
+  <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">
+     <table border="1" width="100%" style="border: 1px solid black; border-collapse: collapse;">
+     <tr>
+     <th colspan="2" style="background-color:#A5AAA8">REQUEST DETAILS</th>
+     </tr>
+        <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Application Reference Number:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;"> {{ emailquery.category.shortterm }}-{{emailquery.date_filed|date:"y-m-d"}}-000{{ emailquery.incrementor }}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Application Date:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.date_filed}}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Course Title:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.prog_title}}</td>
+       </tr>
+        <tr>
+        <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Inclusive Dates:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.start_date}} to {{emailquery.end_date}}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Venue:</td>
+      <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{emailquery.location}}</td>
+      </tr>
+
+
+
+
+     </table>
+    </tr>
+</td>
+</tr>
+
+</table>
