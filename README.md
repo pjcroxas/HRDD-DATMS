@@ -5,7 +5,7 @@ Before running the commands below, make sure you are inside the root folder.
 
 windows: **pip install -r requirements.txt**
 
-linux: **pip3 install -r requirements.txt
+linux: **pip3 install -r requirements.txt**
 
 ### Running the DATMS in your local:
 
