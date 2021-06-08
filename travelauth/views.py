@@ -2097,6 +2097,38 @@ def travel_report(request):
 
 	return render(request, 'travelauth/travel_report.html', query)
 
+def edita1(request, tag = 0):
+
+	query = {
+		'tag': tag
+	}
+	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
+	query['user'] = User.objects.filter(username = request.user)
+	query['designation'] =  Author.objects.filter(user = request.user)
+
+	if request.method == "POST" and 'edit' in request.POST:
+		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
+		upd.additional_requirement_1 = request.FILES.get('a1')
+		upd.save()
+
+	return render(request, 'travelauth/edita1.html', query)
+
+def edita2(request, tag = 0):
+
+	query = {
+		'tag': tag
+	}
+	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
+	query['user'] = User.objects.filter(username = request.user)
+	query['designation'] =  Author.objects.filter(user = request.user)
+
+	if request.method == "POST" and 'edit' in request.POST:
+		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
+		upd.additional_requirement_2 = request.FILES.get('a2')
+		upd.save()
+
+	return render(request, 'travelauth/edita2.html', query)
+
 
 
 
