@@ -1,0 +1,121 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+<style>
+table {
+	width: 100%;
+}
+th, td {
+}
+
+
+
+</style>
+
+
+<ol class="breadcrumb my-3" style="font-size: 16px;">
+	 <li class="breadcrumb-item">{%if urlpath == "Travel"%}<a href="{%url 'action-dash' 1 %}">{%else%}<a href="{%url 'action-dash' 2 %}">{%endif%}Dashboard</a></li>
+	 <li class="breadcrumb-item active">Scholarship Details</li>
+ </ol>
+
+<div class="row">
+
+        <div class="col-md-4 col-lg-4">
+          <a href="#" target="_blank">
+          <div class="widget-small info coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Filed: {{requestors.date_filed}}</h4>
+              By: {{requestors.first_name}} {{requestors.last_name}}
+            </div>
+          </div></a>
+        </div>
+</div>
+
+<!-- start of table -->
+<div class="container">
+	<table class='table' border="0">
+		<tr>
+			<td><b>Reference:</b> {{ requestors.category.shortterm }}-{{requestors.date_filed|date:"y-m-d"}}-000{{ requestors.incrementor }}</td>
+		</tr>
+		<tr>
+			<td><b>Category:</b> {{ requestors.category }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Sector:</b> {{ requestors.sector_for_scholarship }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Program Title:</b> {{ requestors.prog_title }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Attendee:</b> {{requestors.first_name}} {{requestors.last_name}}</td>
+		</tr>
+
+		<tr>
+			<td><b>From:</b> {{ requestors.start_date }} <b> to:</b> {{ requestors.end_date }}</td>
+		</tr>
+	</table>
+
+
+			<div id="accordion">
+				<div class="card">
+					<div class="card-header text-white" style="background-color: #0d47a1;  ">
+						<a class="card-link" data-toggle="collapse" href="#collapseOne">
+							<b style="color: white !important;"> ATTACHMENTS </b>
+						</a>
+					</div>
+					<div id="collapseOne" class="collapse show" data-parent="#accordion">
+						<div class="card-body">
+		<table class='table' border="0">
+
+
+
+			<td><b>Personal Data Sheet:</b>
+				{% if requestors.personal_data_sheet %}
+				<a href="{{requestors.personal_data_sheet.url}}" target="_blank">{{requestors.personal_data_sheet|default_if_none:'#'}}</a>
+				{% else %}
+				<i>No attachment</i>
+				{%endif%}
+	 </td>
+		</tr>
+<tr>
+	<td>
+			<b>Individual Performance Commitment and Review</b>:
+			{% if requestors.individual_performance_commitment_and_review %}
+			<a href="{{requestors.individual_performance_commitment_and_review.url}}" target="_blank">{{requestors.individual_performance_commitment_and_review|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i>
+			{%endif%}
+		</td>
+		</tr>
+		<tr>
+			<td>
+					<b>Potential Assessment Form</b>:
+					{% if requestors.potential_assessment_form %}
+
+					<a href="{{requestors.potential_assessment_form.url}}" target="_blank">{{requestors.potential_assessment_form|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i>
+					{%endif%}
+				</td>
+				</tr>
+
+
+
+
+
+	</table>
+	</div>
+	</div>
+</div>
+	</div>
+
+
+
+<!-- end of table -->
+
+<!-- dont remove by BRIAN-->
+</main>
+{% endblock content %}

@@ -1,0 +1,37 @@
+{%for tforeign in travelforeign %}
+  <tr>
+
+      <td>{{tforeign.pk}}</td>
+      <td>{{tforeign.fta}}</td>
+      <td>{{tforeign.gender}}</td>
+      <td>{{tforeign.first_name}} {{tforeign.last_name}}</td>
+      <td>{{tforeign.agency}}</td>
+      <td>{{tforeign.position}}</td>
+      <td>{{tforeign.programdates_from}}</td>
+      <td>{{tforeign.programdates_to}}</td>
+      <td>{{tforeign.request_category}}</td>
+      <td>{{tforeign.program_title}}</td>
+      <td>{{tforeign.destination}}</td>
+      <td>{{tforeign.sponsor}}</td>
+      <td>{{tforeign.pre_travel_expense}}</td>
+      <td>{{tforeign.dsa_day}}</td>
+      <td>{{tforeign.clothing_allowance}}</td>
+      <td>{{tforeign.remarks}}</td>
+      <td>{{tforeign.sector}}</td>
+      <td>{{tforeign.rep_allowance}}</td>
+      <td>{{tforeign.other_remarks}}</td>
+      <td>{{tforeign.ptr_submitted}}</td>
+      <td>{{tforeign.echo_seminar}}</td>
+      <td>{{tforeign.year}}</td>
+      <td>{{tforeign.ptr_dnpt}}</td>
+      <td>{{tforeign.acknowledgement}}</td>
+      <td>{{tforeign.endorsement}}</td>
+
+      <td  ><button type="button"
+              class="btn btn-info btn-sm js-update-travel"
+              data-url="{% url 'dtravelupdateforeign' tforeign.pk %}">
+      Edit
+      </button></td>
+    </tr>
+
+{% endfor %}

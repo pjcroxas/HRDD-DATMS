@@ -1,0 +1,43 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<div class="container-thumb">
+	<div class="row">
+		<div class="col-lg-4 col-md-4 col-xs-4">
+			<a href="#">
+          <div class="widget-small info coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Local Travel Requests</h4>
+            </div>
+          </div></a>
+		</div>
+
+		<div class="col-lg-4 col-md-4 col-xs-4">
+			<a href="#">
+          <div class="widget-small danger coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Foreign Travel Requests</h4>
+            </div>
+          </div></a>
+		</div>
+
+		<div class="col-lg-4 col-md-4 col-xs-4">
+			<a href="#">
+          <div class="widget-small warning coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Scholarship Applications</h4>
+            </div>
+          </div></a>
+		</div>
+	</div>
+</div>
+</main>
+
+
+
+
+    <!-- Essential javascripts for application to work-->
+
+{% endblock content %}

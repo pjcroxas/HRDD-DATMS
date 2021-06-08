@@ -1,0 +1,291 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+	.tamenus {
+		width: 50%;
+	}
+	.subta {
+		width: 30%;
+		margin-top: 10px;
+	}
+	.caption {
+		color: #0d47a1;
+	}
+</style>
+
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<div class="form-group">
+	<h6 class="caption"><a href="/travelauth/local_dash/">New Local Travel Request</a> / Meetings/Conferences/Special Missions</h6>
+	<br>
+              <div class="row">
+
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                  <label for="sel1">Request Category</label>
+                  <select class="form-control" id="sel1" name="request_category" disabled>
+                    <option value = "Foreign">Foreign</option>
+                    <option value = "Local" selected>Local</option>
+               
+                  </select>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                  <label for="sel1">Sub Category</label>
+                  <br>
+                  <select class="form-control" id="sel1" name="sub_category">
+                    <option value = "Official">Official</option>
+                    <option value = "Personal">Personal</option>
+                  </select>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                  <label for="sel1">Support Category</label>
+                  <select class="form-control" id="sel1" name="support_category" disabled="">
+                    <option value = "Meetings/Conferences/Special Missions">Meetings/Conferences/Special Missions</option>
+                  </select>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                  <label for="sel1">Sector</label>
+                  <select class="form-control" id="sel1" name="sector">
+                    <option value = "DOTr - CO">DOTr - CO</option>
+                    <option value = "Maritime">Maritime</option>
+                    <option value = "Road">Road</option>
+                    <option value = "Aviation">Aviation</option>
+                    <option value = "Rail">Rail</option>
+                  </select>
+                </div>
+
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#attendee">Attendee Details</button>
+                    <div id="attendee" class="collapse in">
+                    	<br>
+                      <!-- start of attendee details -->
+                      <table>
+                      	<tr>
+                      		<td>Program Title/ Purpose <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="program_title" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Last Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="lname" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>First Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="fname" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Middle Initial <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="mname" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Suffix</td>
+                      		<td><input type="text" name="suff" class="form-control"></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Position <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="pos" class="form-control" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Gender <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="gender">
+				                    <option value="Male">Male</option>
+				                    <option value="Female">Female</option>
+				                </select>
+			            	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Civil Status <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="civil_status">
+				                    <option value="Single">Single</option>
+				                    <option value="Married">Married</option>
+				                    <option value="Divorced">Divorced</option>
+				                    <option value="Widowed">Widowed</option>
+				                </select>
+			            	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Disability</td>
+                      		<td><input type="text" name="disability" class="form-control"></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Ethnicity</td>
+                      		<td><input type="text" name="ethnicity" class="form-control"></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Agency <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="agency">
+					                    <option value="DOTr-CO">DOTr-CO</option>
+					                    <option value="LTO">LTO</option>
+					            </select>
+				        	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Destination/Location <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="destination" class="form-control" required></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Program Dates <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+                      			From: <input type="date" name="from" required>
+                      			To: <input type="date" name="to" required>
+                      		</td>
+                      	</tr>
+                      </table>
+                      
+                      <!-- end of attendee details -->
+                    </div>
+                 </div> 
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#attachments">Attachements </button>
+                    <div id="attachments" class="collapse in">
+
+                    	<!-- start of international -->
+                    	<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#meetings">Meetings/Conferences/Special Missions </button>
+	                    <div id="meetings" class="collapse in">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Endorsement from Usec. concerned
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="endorsement" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Request for Travel Authority 
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="icd" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="invitation" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="task" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin case
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="case" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="service" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of availability of funds
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="funds" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of expenses
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="expenses" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="unliquidated" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="retirement" type="file">
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<input type="file" name="undertaking" type="file">
+	                      		</td>
+	                      	</tr>
+	                      </table>
+	                    </div>	
+                    	<!-- end of internatioanl -->
+                    	<br>
+                      	<!-- start of meetings -->
+                      	
+                      	<!-- end of FAT -->
+                    </div>
+                 </div> 
+              </div>
+
+              <br>
+
+              
+              <!-- start of buttons -->
+              <br>
+              <div class="row">
+              	<div class="col-lg-12 col-md-12 col-xs-12">
+              		<input type="submit" name="draft" value="Save as Draft" class="btn btn-warning">
+              		<input type="submit" name="save" value="Submit" class="btn btn-danger">
+              	</div>
+              </div>
+              <!-- end of buttons -->	
+            </div>
+		</form>
+        </main>
+        
+
+
+{% endblock content %}

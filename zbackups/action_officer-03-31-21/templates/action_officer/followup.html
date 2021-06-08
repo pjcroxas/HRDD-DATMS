@@ -1,0 +1,151 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Requestor -->
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .nrmodal {
+      width: 125%;
+    }
+
+    .rtbl {
+      overflow-x: scroll;
+    }
+    .caption {
+    color: #0d47a1;
+    }
+    .ab {
+      width: 60px;
+      margin-top: 5px;
+    }
+    .ficon {
+      color: gray;
+    }
+    .subta {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    }
+    .smenu {
+      float: right;
+    }
+    .es {
+      width: 100%;
+    }
+    .sbar {
+     width: 40%;
+   }
+
+   td {
+   text-transform:uppercase;
+   color:gray;
+   text-align: left;
+   }
+
+
+
+   #myTable tbody td div{
+      width:160px;
+      height:28px;
+      overflow:hidden;
+      word-wrap:break-word;
+      white-space: nowrap;
+      }
+  </style>
+
+
+<!-- expanding  search -->
+<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#attendee">Search</button>
+      <div id="attendee" class="collapse in">
+        <table class="es">
+          <tr>
+            <td>
+              <input type="text" name="category" placeholder="Search" class="form-control sbar" autocomplete="off" id = "myInput">
+            </td>
+          </tr>
+
+        </table>
+      </div>
+      <br>
+<!-- end of expanding search -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h1 class="m-0 font-weight-bold text-info">
+          <i class="fas fa-paper-plane"></i>&nbsp&nbspFollow up</h1>
+  </div>
+  <div class="card-body">
+    <div class='table-responsive'>
+      <table class="table" id="table" width="100%">
+        <thead class="thead-default">
+        <tr>
+          <th>REFERENCE</th>
+          <th style="text-align:left">CREATED</th>
+          <th style="text-align:left">CATEGORY</th>
+          <th style="text-align:left">PROGRAM</th>
+          <th style="text-align:left">DESTINATION</th>
+          <th style="text-align:left">ATTENDEE</th>
+          <th style="text-align:left">FROM</th>
+	        <th style="text-align:left">TO</th>
+          <!-- <th style="text-align:left">HISTORY</th> -->
+          <th style="text-align:left">STATUS</th>
+          <th style="text-align:left">FOLLOWED BY</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for request in followed %}
+          <tr height="100">
+            <td>{{ request.request_category.shorterm  }}{{ request.date_filed|date:"Y-m-d"}}-00{{ request.incrementor }}</td>
+            <td>{{request.date_filed}}</td>
+            <td>{{request.request_category.true_name}}</td>
+            <td>{{request.program_title|truncatechars:10}}</td>
+            <td>{{request.destination}}</td>
+            <td>{{request.last_name}} {{request.first_name}} {{request.middle_name}}</td>
+            <td>{{request.programdates_from}}</td>
+            <td>{{request.programdates_to}}</td>
+            <td>{{request.status}}</td>
+            <td>{{request.requestor.first_name}} {{request.requestor.last_name}}</td>
+          </tr>
+          {% empty %}
+            <tr>
+              <td align='center' style='border-color: #a0b0bb' colspan="9">No data</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+// $(function () {
+//   $('#table').excelTableFilter();
+// });
+</script>
+{% else %}
+<center>
+<h1>Unauthorized Access</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+
+
+
+</main>
+
+
+
+{% endblock content %}

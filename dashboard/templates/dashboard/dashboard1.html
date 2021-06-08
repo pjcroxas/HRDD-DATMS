@@ -1,0 +1,46 @@
+{% load static %}
+<title>DOTMS</title>
+<link rel="shortcut icon" type="image/png" href="{% static 'basetemp/favicondotr32.png' %}"/>
+{% for items in user_role_sa %}
+	{% if items.user == request.user %}
+	<script>
+		window.location.href = '/super_ad/';
+	</script>
+	{% endif %}
+{% endfor %}
+
+{% for items in user_role_sact %}
+	{% if items.user == request.user %}
+	<script>
+		window.location.href = '/sa_action_officer/';
+	</script>
+	{% endif %}
+{% endfor %}
+
+{% for items in user_role %}
+	{% if items.user == request.user %}
+	<script>
+		window.location.href = '/site_admin/';
+	</script>
+	
+	{% endif %}
+{% endfor %}
+
+{% for items in user_role_req %}
+	{% if items.user == request.user %}
+	<!-- <script>
+		window.location.href = '/requestor/requests';
+	</script> -->
+	<script>
+		window.location.href = '/travelauth/main_dash/';
+	</script>
+	{% endif %}
+{% endfor %}
+
+{% for items in user_role_act %}
+	{% if items.user == request.user %}
+	<script>
+		window.location.href = '/action_officer/';
+	</script>
+	{% endif %}
+{% endfor %}

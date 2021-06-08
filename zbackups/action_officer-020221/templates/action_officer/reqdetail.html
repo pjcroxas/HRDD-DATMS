@@ -1,0 +1,93 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+<style>
+table {
+	width: 100%;
+}
+th, td {
+}
+</style>
+
+<div class="row">
+
+        <div class="col-md-4 col-lg-4">
+          <a href="#" target="_blank">
+          <div class="widget-small primary coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Filed: {{requestors.date_filed}}</h4>
+              <h6><small>By: {{requestors.user.first_name}} {{requestors.user.last_name}}</small></h6>
+            </div>
+          </div></a>
+        </div>
+</div>
+
+<!-- start of table -->
+<div class="container">
+	<table class='table' border="0">
+		<tr>
+			<td><b>Reference:</b> {{ requestors.reference_scholarship }}</td>
+		</tr>
+		<tr>
+			<td><b>Category:</b> {{ requestors.category }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Sector:</b> {{ requestors.sector_for_scholarship }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Program Title:</b> {{ requestors.prog_title }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Attendee:</b> </td>
+		</tr>
+
+		<tr>
+			<td><b>From:</b> {{ requestors.start_date }} <b> to:</b> {{ requestors.end_date }}</td>
+		</tr>
+		<tr>
+			<td><b>Personal Data Sheet:</b>
+				{% if attachment.personal_data_sheet %}
+				<a href="{{attachment.personal_data_sheet.url}}" target="_blank">{{attachment.personal_data_sheet|default_if_none:'#'}}</a>
+				{% else %}
+				<i>No attachment</i>
+				{%endif%}
+	 </td>
+		</tr>
+<tr>
+	<td>
+			<b>Individual Performance Commitment and Review</b>:
+			{% if attachment.individual_performance_commitment_and_review %}
+			<a href="{{attachment.individual_performance_commitment_and_review.url}}" target="_blank">{{attachment.individual_performance_commitment_and_review|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i>
+			{%endif%}
+		</td>
+		</tr>
+		<tr>
+			<td>
+					<b>Potential Assessment Form</b>:
+					{% if attachment.potential_assessment_form %}
+
+					<a href="{{attachment.potential_assessment_form.url}}" target="_blank">{{attachment.potential_assessment_form|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i>
+					{%endif%}
+				</td>
+				</tr>
+
+
+
+
+
+	</table>
+
+
+
+<!-- end of table -->
+
+<!-- dont remove by BRIAN-->
+</main>
+{% endblock content %}

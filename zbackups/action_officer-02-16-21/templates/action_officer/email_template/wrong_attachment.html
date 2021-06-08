@@ -1,0 +1,66 @@
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+</style>
+
+
+<table border="1" style="border: 1px solid black; border-collapse: collapse;">
+<tr>
+<th colspan="2" style="text-align:left; background-color:#0DF305; border: 1px solid black; border-collapse: collapse;">WRONG ATTACHMENT/S</th>
+</tr>
+  <tr>
+    <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">Hi, {{wrong_attachment.first_name}} {{wrong_attachment.first_name}}!<BR>
+
+      We would like to inform you that you have attached a wrong document/requirement(s) for
+  the requested travel (see request details below).<br>
+<i>Please attach the following within the day:</i> <b> {% for wrong_attachment in wrong_attachment.wrong_attachment%}{{wrong_attachment}}{% if forloop.last %}.
+                             {%else%},
+                         {% endif %}{%endfor%} </b><br><br>
+      Kindly visit the DOTMS and review all attached requirements specified. Please note that failure to comply within the timeline would mean a delay in the processing of TA.
+<br><br>
+Thank you!<br>
+-HRD Travel Team
+</td>
+  </tr>
+
+<tr>
+  <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">
+     <table border="1" width="100%" style="border: 1px solid black; border-collapse: collapse;">
+     <tr>
+     <th colspan="2" style="background-color:#A5AAA8">REQUEST DETAILS</th>
+     </tr>
+        <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Request Reference Number:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;"> TR-{{ wrong_attachment.date_filed|date:"Y-m-d"}}-{{ wrong_attachment.travelreq_id }}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Request Date:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{wrong_attachment.date_filed}}</td>
+       </tr>
+       <tr>
+       <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Program Title/Purpose:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{wrong_attachment.program_title}}</td>
+       </tr>
+        <tr>
+        <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Travel Dates:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{wrong_attachment.programdates_from}} to {{wrong_attachment.programdates_to}}</td>
+       </tr>
+       <tr>
+   <td width="50%" style="background-color:#C8CFCC; border: 1px solid black; border-collapse: collapse;">Destination:</td>
+       <td width="50%" style="border: 1px solid black; border-collapse: collapse;">{{wrong_attachment.destination}}</td>
+       </tr>
+
+
+
+
+     </table>
+    </tr>
+</td>
+</tr>
+
+</table>

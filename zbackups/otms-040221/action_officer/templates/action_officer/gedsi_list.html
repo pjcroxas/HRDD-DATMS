@@ -1,0 +1,172 @@
+{% extends "basetemp/main_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% for item in designation %}
+          {% if item.role_id == 2 %} <!-- Action Officer -->
+
+<script src="https//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"></script>
+<script src="https//cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css"></script>
+<style>
+  .dropbtn {
+    background-color: #0d47a1;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: 0;
+    cursor: pointer;
+    height: 52px;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    border: 75px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {background-color: #f1f1f1;}
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #0d47a1;
+  }
+</style
+<head>
+
+  <!-- XDSoft DateTimePicker -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+
+  </head>
+
+<div class="card">
+  <div class="card-header py-3">
+    <head>
+        <h2 style="color:#3091ff">
+          &nbsp<i class="fas fa-list" ></i>&nbspGEDSI Report
+        </h2>
+    </head>
+  </div>
+
+  <div class="card-body">
+    <div class='container'>
+      <form method ="get">
+      <div class="well">
+        &nbsp;
+       <div class="row">
+        <div>
+          {{ filter.form.programdates_from.label_tag }}
+          {% render_field filter.form.programdates_from class="form-control" %}
+        </div>
+        &nbsp&nbsp&nbsp
+        <div>
+          {{ filter.form.programdates_to.label_tag }}
+          {% render_field filter.form.programdates_to class="form-control" %}
+        </div>
+       </div>
+       &nbsp;&nbsp;
+       <div class="row">
+         <button type="submit" class="btn btn-primary">
+           <span class="glyphicon glyphicon-search"></span>Search
+         </button>
+         <a class="btn btn-danger" href="/action_officer/gender_reports">Reset</a>
+        </div>
+       </div>
+    </form>      &nbsp;&nbsp;
+
+      <!-- <div> -->
+      <div class='table-responsive'>
+        <table class="table table-bordered" id="table" width="100%" cellspacing="0">
+          <thead class="thead-default">
+            <tr>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Reference</th>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Gender</th>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Category</th>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Sector</th>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Program Title</th>
+                <!-- <th align='center' style='border-color: #a0b0bb; vertical-align: middle' colspan="2" scope="colgroup">Travel Date</th> -->
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Start Date</th>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>End Date</th>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Location</th>
+                <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>Status</th>
+            </tr>
+            <!-- <tr>
+
+              <th style='border-color: #a0b0bb' scope="col">Start Date</th>
+              <th style='border-color: #a0b0bb' scope="col">End Date</th>
+            </tr> -->
+          </thead>
+          <tbody>
+            {% for user in filter.qs %}
+              <tr>
+                <td align='center' style='border-color: #a0b0bb'>TR-{{ user.date_filed|date:"m/d/y"}}-{{ user.travelreq_id }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.gender }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.request_category }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.sector }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.program_title }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.programdates_from }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.programdates_to }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.destination }}</td>
+                <td align='center' style='border-color: #a0b0bb'>{{ user.status }}</td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td align='center' style='border-color: #a0b0bb' colspan="9">No data</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+        <div class ='col-12'>
+          <a href="/">Back Home</a>
+        </div>
+        </div>
+     </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  $(function () {
+      $("#datetimepicker").datetimepicker();
+    });
+
+    $(function () {
+      $('#table').excelTableFilter();
+    });
+</script>
+
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+
+</main>
+{% endblock content %}

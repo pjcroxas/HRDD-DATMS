@@ -1,0 +1,1087 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% for item in designation %}
+          {% if item.role_id == 1 %} <!-- Requestor -->
+
+{% for items in iden %}
+	{% if items.support_category == 'Training-Related Travel Request' %}
+	<script>
+		window.location.href = '/travelauth/edit_training/{{items.travelreq_id}}';
+	</script>
+	{% else %}
+<style>
+	.tamenus {
+		width: 50%;
+	}
+	.subta {
+		width: 30%;
+		margin-top: 10px;
+	}
+	.caption {
+		color: #0d47a1;
+	}
+</style>
+
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<div class="form-group">
+	
+	<h6 class="caption"><a href="/travelauth/dash/">New Foreign Travel Request</a> / {% for items in iden %}{{ items.support_category }}{% endfor %}</h6>
+	<br>
+              <div class="row">
+
+                
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                  <label for="sel1">Sector</label>
+                  <select class="form-control" id="sel1" name="sector">
+		   {% for items in iden %}
+			{% if items.support_category == "International Commitment" %}
+                    <option value = "1">DOTr - CO</option>
+			{% else %}
+		    <option value = "1"{% if items.sector_id == 1 %}selected{% endif %}>DOTr - CO</option>
+                    <option value = "2"{% if items.sector_id == 2 %}selected{% endif %}>Maritime</option>
+                    <option value = "3"{% if items.sector_id == 3 %}selected{% endif %}>Road</option>
+                    <option value = "4"{% if items.sector_id == 4 %}selected{% endif %}>Aviation</option>
+                    <option value = "5"{% if items.sector_id == 5 %}selected{% endif %}>Rail</option>
+			{% endif %}
+		   {% endfor %}
+                  </select>
+                </div>
+
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#attendee">Attendee Details</button>
+                    <div id="attendee" class="collapse in">
+                    	<br>
+                      <!-- start of attendee details -->
+                      <table>
+                      	<tr>
+                      		<td>Program Title/ Purpose <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="program_title" class="form-control" value = "{{items.program_title}}" required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Last Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="lname" class="form-control" value = "{{items.last_name}}"required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>First Name <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="fname" class="form-control" value = "{{items.first_name}}"required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Middle Initial <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="mname" class="form-control" value = "{{items.middle_initial}}"required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Suffix</td>
+                      		<td><input type="text" name="suff" class="form-control" value = "{{items.suffix}}"></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Position <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="pos" class="form-control" value = "{{items.position}}"required></td>
+                      	</tr>
+                      	<tr>
+                      		<td>Gender <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="gender">
+				                    <option value="Male"{% if items.gender == "Male" %}selected{% endif %}>Male</option>
+				                    <option value="Female"{% if items.gender == "Female" %}selected{% endif %}>Female</option>
+						    <option value="Prefer not to say"{% if items.gender == "Prefer not to say" %}selected{% endif %}>Prefer not to say</option>
+				                </select>
+			            	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Civil Status <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<select class="form-control" id="sel1" name="civil_status">
+				                    <option value="Single"{% if items.civil_status == "Single" %}selected{% endif %}>Single</option>
+				                    <option value="Married"{% if items.civil_status == "Married" %}selected{% endif %}>Married</option>
+						    <option value="Separated"{% if items.civil_status == "Separated" %}selected{% endif %}>Separated</option>
+				                    <option value="Divorced"{% if items.civil_status == "Divorced" %}selected{% endif %}>Divorced</option>
+				                    <option value="Widowed"{% if items.civil_status == "Widowed" %}selected{% endif %}>Widowed</option>
+				                </select>
+			            	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Disability</td>
+                      		<td><input type="text" name="disability" class="form-control" value = "{{items.disability}}"></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Ethnicity</td>
+                      		<td><input type="text" name="ethnicity" class="form-control" value = "{{items.ethnicity}}"></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Agency <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+	                      		<input type = "text" name = "agency" value = "{{items.agency}}" class = "form-control">
+				        	</td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Destination/Location <i style="font-size:14px;color:red">*</i></td>
+                      		<td><input type="text" name="destination" class="form-control" value = "{{items.destination}}" required></td>
+                      	</tr>
+
+                      	<tr>
+                      		<td>Program Dates <i style="font-size:14px;color:red">*</i></td>
+                      		<td>
+                      			From: <input type="date" name="from" value = "{{items.programdates_from}}"required>
+                      			To: <input type="date" name="to" value = "{{items.programdates_to}}" required>
+                      		</td>
+                      	</tr>
+                      </table>
+                      
+                      <!-- end of attendee details -->
+                    </div>
+                 </div> 
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-md-12 col-xs-12">
+                    <button type="button" class="btn btn-primary tamenus" data-toggle="collapse" data-target="#attachments">Attachements </button>
+                    <div id="attachments" class="collapse in">
+			<!-- start of ic -->
+			{% for items in iden %}
+						{% if items.support_category == "International Commitment" %}
+							
+							
+                    	<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#meetings">International Commitment</button>
+	                    <div id="meetings" class="collapse in">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Endorsement from Usec. concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_endorsement }}">/media/{{MEDIA_URL}}{{ items.ic_endorsement }}</a>
+	                      		</td>
+					<td><a href = "/travelauth/iceditendorsement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+	                      	</tr>
+				<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_icd }}">{{ items.ic_icd }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/icediticd/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_invitation }}">{{ items.ic_invitation }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditinvitation/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_no_pending_task }}">{{ items.ic_no_pending_task }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/icedittask/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_no_admin_case }}">{{ items.ic_no_admin_case }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditcase/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_service_record }}">{{ items.ic_service_record }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditservice/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of availability of funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_funds }}">{{ items.ic_funds }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditfunds/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_expenses }}">{{ items.ic_expenses }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditexpenses/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_unliquidated }}">{{ items.ic_unliquidated }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditunliquidated/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_retirement }}">{{ items.ic_retirement }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditretirement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_undertaking }}">{{ items.ic_undertaking }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/iceditundertaking/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}">{{ items.additional_requirement_1 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a1edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}">{{ items.additional_requirement_2 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a2edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+
+			</table>
+	                    </div>	
+	                    {% endif %}
+						{% endfor %}
+
+			<!-- end of ic -->
+                    	<!-- start of international mc -->
+                    	
+                    	{% for items in iden %}
+						{% if items.support_category == "Meetings/Conferences/Special Missions" %}
+							
+							
+                    	<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#meetings">Meetings/Conferences/Special Missions </button>
+	                    <div id="meetings" class="collapse in">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Endorsement from Usec. concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_endorsement }}">/media/{{MEDIA_URL}}{{ items.mc_endorsement }}</a>
+	                      		</td>
+					<td><a href = "/travelauth/mceditendorsement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+	                      	</tr>
+				<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_icd }}">{{ items.mc_icd }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mcediticd/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_invitation }}">{{ items.mc_invitation }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditinvitation/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_no_pending_task }}">{{ items.mc_no_pending_task }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mcedittask/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_no_admin_case }}">{{ items.mc_no_admin_case }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditcase/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_service_record }}">{{ items.mc_service_record }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditservice/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of availability of funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_funds }}">{{ items.mc_funds }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditfunds/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_expenses }}">{{ items.mc_expenses }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditexpenses/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_unliquidated }}">{{ items.mc_unliquidated }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditunliquidated/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_retirement }}">{{ items.mc_retirement }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditretirement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_undertaking }}">{{ items.mc_undertaking }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/mceditundertaking/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+				
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}">{{ items.additional_requirement_1 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a1edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}">{{ items.additional_requirement_2 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a2edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+			</table>
+	                    </div>	
+	                    {% endif %}
+						{% endfor %}
+                    	<!-- end of internatioanl mc -->
+			<br>
+			<!-- start of trainings -->
+			{% for items in iden %}
+						{% if items.support_category == "Trainings/Scholarship/Seminars/Workshops" %}
+							
+							
+                    	<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#meetings">{{items.support_category}}</button>
+	                    <div id="meetings" class="collapse in">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Endorsement from Usec. concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_endorsement }}">/media/{{MEDIA_URL}}{{ items.ts_endorsement }}</a>
+	                      		</td>
+					<td><a href = "/travelauth/tseditendorsement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+	                      	</tr>
+				<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_icd }}">{{ items.ts_icd }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tsediticd/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_invitation }}">{{ items.ts_invitation }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditinvitation/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Acceptance Letter	
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_acceptance }}">{{ items.ts_acceptance }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditacceptance/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Minutes of Agency Scholarship Committee Deliberation	
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_minutes }}">{{ items.ts_minutes }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditminutes/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Scholarship Contract	
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_scholarship }}">{{ items.ts_scholarship }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditscholarship/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+
+				
+
+
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_no_pending_task }}">{{ items.ts_no_pending_task }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tsedittask/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_no_admin_case }}">{{ items.ts_no_admin_case }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditcase/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_service_record }}">{{ items.ts_service_record }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditservice/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of availability of funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_funds }}">{{ items.ts_funds }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditfunds/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_expenses }}">{{ items.ts_expenses }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditexpenses/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_unliquidated }}">{{ items.ts_unliquidated }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditunliquidated/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_retirement }}">{{ items.ts_retirement }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditretirement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_undertaking }}">{{ items.ts_undertaking }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/tseditundertaking/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}">{{ items.additional_requirement_1 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a1edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}">{{ items.additional_requirement_2 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a2edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+			</table>
+	                    </div>	
+	                    {% endif %}
+						{% endfor %}
+	
+
+			<!-- end of trainings -->
+                    	
+                      	<!-- start of FAT -->
+                      	{% for items in iden %}
+						{% if items.support_category == "FAT/Inspection" %}
+							
+							
+                    	<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#meetings">International Commitment</button>
+	                    <div id="meetings" class="collapse in">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Endorsement from Usec. concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_endorsement }}">/media/{{MEDIA_URL}}{{ items.fi_endorsement }}</a>
+	                      		</td>
+					<td><a href = "/travelauth/fieditendorsement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+	                      	</tr>
+				<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_icd }}">{{ items.fi_icd }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fiediticd/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_invitation }}">{{ items.fi_invitation }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditinvitation/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Contract Agreement/Terms of Reference
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_agreement }}">{{ items.fi_agreement }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditagreement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_no_pending_task }}">{{ items.fi_no_pending_task }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fiedittask/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_no_admin_case }}">{{ items.fi_no_admin_case }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditcase/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_service_record }}">{{ items.fi_service_record }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditservice/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of availability of funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_funds }}">{{ items.fi_funds }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditfunds/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_expenses }}">{{ items.fi_expenses }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditexpenses/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_unliquidated }}">{{ items.fi_unliquidated }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditunliquidated/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_retirement }}">{{ items.fi_retirement }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditretirement/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_undertaking }}">{{ items.fi_undertaking }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/fieditundertaking/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}">{{ items.additional_requirement_1 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a1edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}">{{ items.additional_requirement_2 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a2edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+			</table>
+	                    </div>	
+	                    {% endif %}
+						{% endfor %}
+
+                      	<!-- end of FAT -->
+
+			<!-- start of personal for -->
+
+			{% for items in iden %}
+						{% if items.support_category == "Personal Travel" %}
+							
+							
+                    	<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#meetings">Personal Travel</button>
+	                    <div id="meetings" class="collapse in">
+	                      <table>
+	                      	<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_icd }}">{{ items.pt_icd }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/ptediticd/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                       <tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_no_pending_task }}">{{ items.pt_no_pending_task }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/ptedittask/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_no_admin_case }}">{{ items.pt_no_admin_case }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/pteditcase/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_service_record }}">{{ items.pt_service_record }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/pteditservice/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Approved Leave Application
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_leave_application }}">{{ items.pt_leave_application }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/pteditleave/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Clearance from Properties and Accountabilities
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_clearance }}">{{ items.pt_clearance }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/pteditclearance/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}">{{ items.additional_requirement_1 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a1edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}">{{ items.additional_requirement_2 }}</a>
+	                      		</td>
+					</td>
+					<td><a href = "/travelauth/a2edit/{{items.travelreq_id}}" class = "btn btn-primary">EDIT ATTACHMENT</a>
+					</td>
+
+	                      	</tr>
+
+
+
+
+	                      	</table>
+	                    </div>	
+	                    {% endif %}
+						{% endfor %}
+
+			<!-- end of personal for -->
+                    </div>
+                 </div> 
+              </div>
+
+              <br>
+
+              
+              <!-- start of buttons -->
+              <br>
+              <div class="row">
+              	<div class="col-lg-12 col-md-12 col-xs-12">
+			
+              		<input type="submit" name="draft" value="Save as Draft" class="btn btn-warning" {% for items in iden %}{% if items.status_id != 3 %}disabled{% endif %}{% endfor %}>
+			
+              		<input type="submit" name="save" value="Submit" class="btn btn-danger">
+              	</div>
+              </div>
+              <!-- end of buttons -->	
+            </div>
+		</form>
+        </main>
+        
+{% endif %}
+
+{% endfor %}
+{% else %}
+<center>
+<h1>PAGE DOES NOT EXIST</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+{% endblock content %}

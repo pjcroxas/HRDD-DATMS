@@ -1,0 +1,431 @@
+[2021-02-04 09:36:32 +0800] [468523] [INFO] Starting gunicorn 20.0.4
+[2021-02-04 09:36:32 +0800] [468523] [INFO] Listening at: http://0.0.0.0:8000 (468523)
+[2021-02-04 09:36:32 +0800] [468523] [INFO] Using worker: sync
+[2021-02-04 09:36:32 +0800] [468525] [INFO] Booting worker with pid: 468525
+[2021-02-04 09:38:49 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468525)
+[2021-02-04 09:38:49 +0800] [468525] [INFO] Worker exiting (pid: 468525)
+[2021-02-04 09:38:49 +0800] [468608] [INFO] Booting worker with pid: 468608
+[2021-02-04 09:40:19 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468608)
+[2021-02-04 09:40:19 +0800] [468608] [INFO] Worker exiting (pid: 468608)
+[2021-02-04 09:40:19 +0800] [468750] [INFO] Booting worker with pid: 468750
+[2021-02-04 09:41:56 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468750)
+[2021-02-04 09:41:56 +0800] [468750] [INFO] Worker exiting (pid: 468750)
+[2021-02-04 09:41:56 +0800] [468850] [INFO] Booting worker with pid: 468850
+[2021-02-04 09:44:04 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468850)
+[2021-02-04 09:44:04 +0800] [468850] [INFO] Worker exiting (pid: 468850)
+[2021-02-04 09:44:04 +0800] [468949] [INFO] Booting worker with pid: 468949
+[2021-02-04 09:44:35 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468949)
+[2021-02-04 09:44:35 +0800] [468949] [INFO] Worker exiting (pid: 468949)
+[2021-02-04 09:44:35 +0800] [468951] [INFO] Booting worker with pid: 468951
+[2021-02-04 09:48:17 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468951)
+[2021-02-04 09:48:17 +0800] [468951] [INFO] Worker exiting (pid: 468951)
+[2021-02-04 09:48:17 +0800] [468971] [INFO] Booting worker with pid: 468971
+[2021-02-04 09:49:36 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468971)
+[2021-02-04 09:49:36 +0800] [468971] [INFO] Worker exiting (pid: 468971)
+[2021-02-04 09:49:36 +0800] [468976] [INFO] Booting worker with pid: 468976
+[2021-02-04 09:50:49 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468976)
+[2021-02-04 09:50:49 +0800] [468976] [INFO] Worker exiting (pid: 468976)
+[2021-02-04 09:50:50 +0800] [468982] [INFO] Booting worker with pid: 468982
+[2021-02-04 09:51:28 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:468982)
+[2021-02-04 09:51:28 +0800] [468982] [INFO] Worker exiting (pid: 468982)
+[2021-02-04 09:51:28 +0800] [469095] [INFO] Booting worker with pid: 469095
+[2021-02-04 09:53:31 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469095)
+[2021-02-04 09:53:31 +0800] [469095] [INFO] Worker exiting (pid: 469095)
+[2021-02-04 09:53:31 +0800] [469180] [INFO] Booting worker with pid: 469180
+[2021-02-04 09:55:37 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469180)
+[2021-02-04 09:55:37 +0800] [469180] [INFO] Worker exiting (pid: 469180)
+[2021-02-04 09:55:37 +0800] [469272] [INFO] Booting worker with pid: 469272
+[2021-02-04 09:56:58 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469272)
+[2021-02-04 09:56:58 +0800] [469272] [INFO] Worker exiting (pid: 469272)
+[2021-02-04 09:56:58 +0800] [469315] [INFO] Booting worker with pid: 469315
+[2021-02-04 09:57:29 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469315)
+[2021-02-04 09:57:29 +0800] [469315] [INFO] Worker exiting (pid: 469315)
+[2021-02-04 09:57:30 +0800] [469319] [INFO] Booting worker with pid: 469319
+[2021-02-04 09:58:01 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469319)
+[2021-02-04 09:58:01 +0800] [469319] [INFO] Worker exiting (pid: 469319)
+[2021-02-04 09:58:01 +0800] [469320] [INFO] Booting worker with pid: 469320
+[2021-02-04 09:58:32 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469320)
+[2021-02-04 09:58:32 +0800] [469320] [INFO] Worker exiting (pid: 469320)
+[2021-02-04 09:58:32 +0800] [469339] [INFO] Booting worker with pid: 469339
+[2021-02-04 09:59:21 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469339)
+[2021-02-04 09:59:21 +0800] [469339] [INFO] Worker exiting (pid: 469339)
+[2021-02-04 09:59:21 +0800] [469364] [INFO] Booting worker with pid: 469364
+[2021-02-04 09:59:52 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469364)
+[2021-02-04 09:59:52 +0800] [469364] [INFO] Worker exiting (pid: 469364)
+[2021-02-04 09:59:52 +0800] [469401] [INFO] Booting worker with pid: 469401
+[2021-02-04 10:00:25 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469401)
+[2021-02-04 10:00:25 +0800] [469401] [INFO] Worker exiting (pid: 469401)
+[2021-02-04 10:00:25 +0800] [469408] [INFO] Booting worker with pid: 469408
+[2021-02-04 10:00:56 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469408)
+[2021-02-04 10:00:56 +0800] [469408] [INFO] Worker exiting (pid: 469408)
+[2021-02-04 10:00:56 +0800] [469410] [INFO] Booting worker with pid: 469410
+[2021-02-04 10:02:13 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469410)
+[2021-02-04 10:02:13 +0800] [469410] [INFO] Worker exiting (pid: 469410)
+[2021-02-04 10:02:13 +0800] [469412] [INFO] Booting worker with pid: 469412
+[2021-02-04 10:05:22 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469412)
+[2021-02-04 10:05:22 +0800] [469412] [INFO] Worker exiting (pid: 469412)
+[2021-02-04 10:05:22 +0800] [469486] [INFO] Booting worker with pid: 469486
+[2021-02-04 10:05:55 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469486)
+[2021-02-04 10:05:55 +0800] [469486] [INFO] Worker exiting (pid: 469486)
+[2021-02-04 10:05:55 +0800] [469488] [INFO] Booting worker with pid: 469488
+[2021-02-04 10:06:48 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469488)
+[2021-02-04 10:06:48 +0800] [469488] [INFO] Worker exiting (pid: 469488)
+[2021-02-04 10:06:48 +0800] [469490] [INFO] Booting worker with pid: 469490
+[2021-02-04 10:12:17 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469490)
+[2021-02-04 10:12:17 +0800] [469490] [INFO] Worker exiting (pid: 469490)
+[2021-02-04 10:12:17 +0800] [469632] [INFO] Booting worker with pid: 469632
+[2021-02-04 10:12:48 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469632)
+[2021-02-04 10:12:48 +0800] [469632] [INFO] Worker exiting (pid: 469632)
+[2021-02-04 10:12:48 +0800] [469634] [INFO] Booting worker with pid: 469634
+[2021-02-04 10:13:22 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469634)
+[2021-02-04 10:13:22 +0800] [469634] [INFO] Worker exiting (pid: 469634)
+[2021-02-04 10:13:22 +0800] [469635] [INFO] Booting worker with pid: 469635
+[2021-02-04 10:14:26 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469635)
+[2021-02-04 10:14:26 +0800] [469635] [INFO] Worker exiting (pid: 469635)
+[2021-02-04 10:14:26 +0800] [469637] [INFO] Booting worker with pid: 469637
+[2021-02-04 10:15:12 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469637)
+[2021-02-04 10:15:12 +0800] [469637] [INFO] Worker exiting (pid: 469637)
+[2021-02-04 10:15:12 +0800] [469644] [INFO] Booting worker with pid: 469644
+[2021-02-04 10:17:27 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469644)
+[2021-02-04 10:17:27 +0800] [469644] [INFO] Worker exiting (pid: 469644)
+[2021-02-04 10:17:27 +0800] [469651] [INFO] Booting worker with pid: 469651
+[2021-02-04 10:17:58 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469651)
+[2021-02-04 10:17:58 +0800] [469651] [INFO] Worker exiting (pid: 469651)
+[2021-02-04 10:17:58 +0800] [469653] [INFO] Booting worker with pid: 469653
+[2021-02-04 10:24:25 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469653)
+[2021-02-04 10:24:25 +0800] [469653] [INFO] Worker exiting (pid: 469653)
+[2021-02-04 10:24:25 +0800] [469664] [INFO] Booting worker with pid: 469664
+[2021-02-04 10:39:16 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469664)
+[2021-02-04 10:39:16 +0800] [469664] [INFO] Worker exiting (pid: 469664)
+[2021-02-04 10:39:16 +0800] [469918] [INFO] Booting worker with pid: 469918
+[2021-02-04 10:40:57 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:469918)
+[2021-02-04 10:40:57 +0800] [469918] [INFO] Worker exiting (pid: 469918)
+[2021-02-04 10:40:57 +0800] [470046] [INFO] Booting worker with pid: 470046
+[2021-02-04 10:55:43 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:470046)
+[2021-02-04 10:55:43 +0800] [470046] [INFO] Worker exiting (pid: 470046)
+[2021-02-04 10:55:43 +0800] [470249] [INFO] Booting worker with pid: 470249
+[2021-02-04 11:01:13 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:470249)
+[2021-02-04 11:01:13 +0800] [470249] [INFO] Worker exiting (pid: 470249)
+[2021-02-04 11:01:14 +0800] [470401] [INFO] Booting worker with pid: 470401
+[2021-02-04 11:02:04 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:470401)
+[2021-02-04 11:02:04 +0800] [470401] [INFO] Worker exiting (pid: 470401)
+[2021-02-04 11:02:04 +0800] [470404] [INFO] Booting worker with pid: 470404
+[2021-02-04 11:06:51 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:470404)
+[2021-02-04 11:06:51 +0800] [470404] [INFO] Worker exiting (pid: 470404)
+[2021-02-04 11:06:51 +0800] [470417] [INFO] Booting worker with pid: 470417
+[2021-02-04 12:23:32 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:470417)
+[2021-02-04 12:23:32 +0800] [470417] [INFO] Worker exiting (pid: 470417)
+[2021-02-04 12:23:32 +0800] [470557] [INFO] Booting worker with pid: 470557
+[2021-02-04 12:51:14 +0800] [470956] [INFO] Booting worker with pid: 470956
+[2021-02-04 12:53:46 +0800] [470984] [INFO] Booting worker with pid: 470984
+[2021-02-04 13:03:38 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:470984)
+[2021-02-04 13:03:38 +0800] [470984] [INFO] Worker exiting (pid: 470984)
+[2021-02-04 13:03:38 +0800] [471026] [INFO] Booting worker with pid: 471026
+[2021-02-04 13:04:09 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:471026)
+[2021-02-04 13:04:09 +0800] [471026] [INFO] Worker exiting (pid: 471026)
+[2021-02-04 13:04:09 +0800] [471027] [INFO] Booting worker with pid: 471027
+[2021-02-04 13:07:54 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:471027)
+[2021-02-04 13:07:54 +0800] [471027] [INFO] Worker exiting (pid: 471027)
+[2021-02-04 13:07:55 +0800] [471037] [INFO] Booting worker with pid: 471037
+[2021-02-04 13:08:26 +0800] [468523] [CRITICAL] WORKER TIMEOUT (pid:471037)
+[2021-02-04 13:08:26 +0800] [471037] [INFO] Worker exiting (pid: 471037)
+[2021-02-04 13:08:26 +0800] [471041] [INFO] Booting worker with pid: 471041
+[2021-02-04 13:08:26 +0800] [471041] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/app/OTMS/OTMS/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/django/apps/registry.py", line 114, in populate
+    app_config.import_models()
+  File "/home/devappsadmin/.virtualenvs/OTMS/lib/python3.8/site-packages/django/apps/config.py", line 211, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 779, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 916, in get_code
+  File "<frozen importlib._bootstrap_external>", line 846, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/app/OTMS/requestor/models.py", line 114
+    start_date = models.DateField(null=True)
+    ^
+SyntaxError: invalid syntax
+[2021-02-04 13:08:26 +0800] [471041] [INFO] Worker exiting (pid: 471041)
+[2021-02-04 13:08:26 +0800] [468523] [INFO] Shutting down: Master
+[2021-02-04 13:08:26 +0800] [468523] [INFO] Reason: Worker failed to boot.
+[2021-02-10 09:29:58 +0800] [507566] [INFO] Starting gunicorn 20.0.4
+[2021-02-10 09:29:58 +0800] [507566] [INFO] Listening at: http://0.0.0.0:8000 (507566)
+[2021-02-10 09:29:58 +0800] [507566] [INFO] Using worker: sync
+[2021-02-10 09:29:58 +0800] [507569] [INFO] Booting worker with pid: 507569
+[2021-02-10 09:32:25 +0800] [507590] [INFO] Starting gunicorn 20.0.4
+[2021-02-10 09:32:25 +0800] [507590] [INFO] Listening at: http://0.0.0.0:8000 (507590)
+[2021-02-10 09:32:25 +0800] [507590] [INFO] Using worker: sync
+[2021-02-10 09:32:25 +0800] [507592] [INFO] Booting worker with pid: 507592
+[2021-02-10 09:33:11 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:507592)
+[2021-02-10 09:33:11 +0800] [507592] [INFO] Worker exiting (pid: 507592)
+[2021-02-10 09:33:11 +0800] [507597] [INFO] Booting worker with pid: 507597
+[2021-02-11 09:25:30 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:507597)
+[2021-02-11 09:25:30 +0800] [507597] [INFO] Worker exiting (pid: 507597)
+[2021-02-11 09:25:30 +0800] [513218] [INFO] Booting worker with pid: 513218
+[2021-02-11 10:24:21 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:513218)
+[2021-02-11 10:24:21 +0800] [513218] [INFO] Worker exiting (pid: 513218)
+[2021-02-11 10:24:21 +0800] [515890] [INFO] Booting worker with pid: 515890
+[2021-02-11 15:03:34 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:515890)
+[2021-02-11 15:03:34 +0800] [515890] [INFO] Worker exiting (pid: 515890)
+[2021-02-11 15:03:35 +0800] [517342] [INFO] Booting worker with pid: 517342
+[2021-02-11 15:37:45 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:517342)
+[2021-02-11 15:37:45 +0800] [517342] [INFO] Worker exiting (pid: 517342)
+[2021-02-11 15:37:45 +0800] [517457] [INFO] Booting worker with pid: 517457
+[2021-02-11 15:39:09 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:517457)
+[2021-02-11 15:39:09 +0800] [517457] [INFO] Worker exiting (pid: 517457)
+[2021-02-11 15:39:09 +0800] [517458] [INFO] Booting worker with pid: 517458
+[2021-02-11 15:41:17 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:517458)
+[2021-02-11 15:41:17 +0800] [517458] [INFO] Worker exiting (pid: 517458)
+[2021-02-11 15:41:17 +0800] [517463] [INFO] Booting worker with pid: 517463
+[2021-02-11 15:45:12 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:517463)
+[2021-02-11 15:45:12 +0800] [517463] [INFO] Worker exiting (pid: 517463)
+[2021-02-11 15:45:12 +0800] [517471] [INFO] Booting worker with pid: 517471
+[2021-02-15 07:36:11 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:517471)
+[2021-02-15 07:36:11 +0800] [517471] [INFO] Worker exiting (pid: 517471)
+[2021-02-15 07:36:11 +0800] [531134] [INFO] Booting worker with pid: 531134
+[2021-02-15 07:36:42 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:531134)
+[2021-02-15 07:36:42 +0800] [531134] [INFO] Worker exiting (pid: 531134)
+[2021-02-15 07:36:42 +0800] [531136] [INFO] Booting worker with pid: 531136
+[2021-02-15 07:37:25 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:531136)
+[2021-02-15 07:37:25 +0800] [531136] [INFO] Worker exiting (pid: 531136)
+[2021-02-15 07:37:25 +0800] [531143] [INFO] Booting worker with pid: 531143
+[2021-02-15 07:37:57 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:531143)
+[2021-02-15 07:37:57 +0800] [531143] [INFO] Worker exiting (pid: 531143)
+[2021-02-15 07:37:57 +0800] [531146] [INFO] Booting worker with pid: 531146
+[2021-02-15 08:29:22 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:531146)
+[2021-02-15 08:29:22 +0800] [531146] [INFO] Worker exiting (pid: 531146)
+[2021-02-15 08:29:22 +0800] [531568] [INFO] Booting worker with pid: 531568
+[2021-02-15 08:54:01 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:531568)
+[2021-02-15 08:54:01 +0800] [531568] [INFO] Worker exiting (pid: 531568)
+[2021-02-15 08:54:01 +0800] [531853] [INFO] Booting worker with pid: 531853
+[2021-02-15 09:15:22 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:531853)
+[2021-02-15 09:15:22 +0800] [531853] [INFO] Worker exiting (pid: 531853)
+[2021-02-15 09:15:22 +0800] [532154] [INFO] Booting worker with pid: 532154
+[2021-02-15 10:16:16 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:532154)
+[2021-02-15 10:16:16 +0800] [532154] [INFO] Worker exiting (pid: 532154)
+[2021-02-15 10:16:17 +0800] [533248] [INFO] Booting worker with pid: 533248
+[2021-02-16 13:30:02 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:533248)
+[2021-02-16 13:30:02 +0800] [533248] [INFO] Worker exiting (pid: 533248)
+[2021-02-16 13:30:02 +0800] [539491] [INFO] Booting worker with pid: 539491
+[2021-02-16 13:30:48 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:539491)
+[2021-02-16 13:30:48 +0800] [539491] [INFO] Worker exiting (pid: 539491)
+[2021-02-16 13:30:48 +0800] [539494] [INFO] Booting worker with pid: 539494
+[2021-02-16 17:09:25 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:539494)
+[2021-02-16 17:09:25 +0800] [539494] [INFO] Worker exiting (pid: 539494)
+[2021-02-16 17:09:26 +0800] [540289] [INFO] Booting worker with pid: 540289
+[2021-02-16 17:10:30 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540289)
+[2021-02-16 17:10:30 +0800] [540289] [INFO] Worker exiting (pid: 540289)
+[2021-02-16 17:10:30 +0800] [540294] [INFO] Booting worker with pid: 540294
+[2021-02-16 17:12:24 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540294)
+[2021-02-16 17:12:24 +0800] [540294] [INFO] Worker exiting (pid: 540294)
+[2021-02-16 17:12:24 +0800] [540297] [INFO] Booting worker with pid: 540297
+[2021-02-16 17:13:01 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540297)
+[2021-02-16 17:13:01 +0800] [540297] [INFO] Worker exiting (pid: 540297)
+[2021-02-16 17:13:01 +0800] [540299] [INFO] Booting worker with pid: 540299
+[2021-02-16 17:13:32 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540299)
+[2021-02-16 17:13:32 +0800] [540299] [INFO] Worker exiting (pid: 540299)
+[2021-02-16 17:13:32 +0800] [540302] [INFO] Booting worker with pid: 540302
+[2021-02-16 17:18:11 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540302)
+[2021-02-16 17:18:11 +0800] [540302] [INFO] Worker exiting (pid: 540302)
+[2021-02-16 17:18:11 +0800] [540313] [INFO] Booting worker with pid: 540313
+[2021-02-16 17:21:15 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540313)
+[2021-02-16 17:21:15 +0800] [540313] [INFO] Worker exiting (pid: 540313)
+[2021-02-16 17:21:15 +0800] [540321] [INFO] Booting worker with pid: 540321
+[2021-02-16 17:25:10 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540321)
+[2021-02-16 17:25:10 +0800] [540321] [INFO] Worker exiting (pid: 540321)
+[2021-02-16 17:25:10 +0800] [540346] [INFO] Booting worker with pid: 540346
+[2021-02-17 09:45:17 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:540346)
+[2021-02-17 09:45:17 +0800] [540346] [INFO] Worker exiting (pid: 540346)
+[2021-02-17 09:45:17 +0800] [543074] [INFO] Booting worker with pid: 543074
+[2021-02-17 09:46:17 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:543074)
+[2021-02-17 09:46:17 +0800] [543074] [INFO] Worker exiting (pid: 543074)
+[2021-02-17 09:46:17 +0800] [543097] [INFO] Booting worker with pid: 543097
+[2021-02-18 12:10:28 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:543097)
+[2021-02-18 12:10:28 +0800] [543097] [INFO] Worker exiting (pid: 543097)
+[2021-02-18 12:10:28 +0800] [547656] [INFO] Booting worker with pid: 547656
+[2021-02-26 10:26:34 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:547656)
+[2021-02-26 10:26:34 +0800] [547656] [INFO] Worker exiting (pid: 547656)
+[2021-02-26 10:26:34 +0800] [589969] [INFO] Booting worker with pid: 589969
+[2021-03-01 08:15:41 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:589969)
+[2021-03-01 08:15:41 +0800] [589969] [INFO] Worker exiting (pid: 589969)
+[2021-03-01 08:15:41 +0800] [601825] [INFO] Booting worker with pid: 601825
+[2021-03-01 08:16:25 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:601825)
+[2021-03-01 08:16:25 +0800] [601825] [INFO] Worker exiting (pid: 601825)
+[2021-03-01 08:16:25 +0800] [601826] [INFO] Booting worker with pid: 601826
+[2021-03-01 08:25:39 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:601826)
+[2021-03-01 08:25:39 +0800] [601826] [INFO] Worker exiting (pid: 601826)
+[2021-03-01 08:25:39 +0800] [601851] [INFO] Booting worker with pid: 601851
+[2021-03-01 08:26:10 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:601851)
+[2021-03-01 08:26:10 +0800] [601851] [INFO] Worker exiting (pid: 601851)
+[2021-03-01 08:26:10 +0800] [601852] [INFO] Booting worker with pid: 601852
+[2021-03-01 08:51:40 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:601852)
+[2021-03-01 08:51:40 +0800] [601852] [INFO] Worker exiting (pid: 601852)
+[2021-03-01 08:51:40 +0800] [601905] [INFO] Booting worker with pid: 601905
+[2021-03-01 11:47:52 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:601905)
+[2021-03-01 11:47:52 +0800] [601905] [INFO] Worker exiting (pid: 601905)
+[2021-03-01 11:47:52 +0800] [602281] [INFO] Booting worker with pid: 602281
+[2021-03-01 11:50:36 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602281)
+[2021-03-01 11:50:36 +0800] [602281] [INFO] Worker exiting (pid: 602281)
+[2021-03-01 11:50:36 +0800] [602288] [INFO] Booting worker with pid: 602288
+[2021-03-01 11:53:45 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602288)
+[2021-03-01 11:53:45 +0800] [602288] [INFO] Worker exiting (pid: 602288)
+[2021-03-01 11:53:46 +0800] [602295] [INFO] Booting worker with pid: 602295
+[2021-03-01 13:39:48 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602295)
+[2021-03-01 13:39:48 +0800] [602295] [INFO] Worker exiting (pid: 602295)
+[2021-03-01 13:39:48 +0800] [602500] [INFO] Booting worker with pid: 602500
+[2021-03-01 13:41:01 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602500)
+[2021-03-01 13:41:01 +0800] [602500] [INFO] Worker exiting (pid: 602500)
+[2021-03-01 13:41:01 +0800] [602503] [INFO] Booting worker with pid: 602503
+[2021-03-01 13:41:32 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602503)
+[2021-03-01 13:41:32 +0800] [602503] [INFO] Worker exiting (pid: 602503)
+[2021-03-01 13:41:32 +0800] [602505] [INFO] Booting worker with pid: 602505
+[2021-03-01 13:44:09 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602505)
+[2021-03-01 13:44:09 +0800] [602505] [INFO] Worker exiting (pid: 602505)
+[2021-03-01 13:44:10 +0800] [602518] [INFO] Booting worker with pid: 602518
+[2021-03-01 13:44:41 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602518)
+[2021-03-01 13:44:41 +0800] [602518] [INFO] Worker exiting (pid: 602518)
+[2021-03-01 13:44:41 +0800] [602521] [INFO] Booting worker with pid: 602521
+[2021-03-01 13:57:07 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602521)
+[2021-03-01 13:57:07 +0800] [602521] [INFO] Worker exiting (pid: 602521)
+[2021-03-01 13:57:07 +0800] [602565] [INFO] Booting worker with pid: 602565
+[2021-03-01 14:00:12 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602565)
+[2021-03-01 14:00:12 +0800] [602565] [INFO] Worker exiting (pid: 602565)
+[2021-03-01 14:00:12 +0800] [602577] [INFO] Booting worker with pid: 602577
+[2021-03-01 14:03:11 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602577)
+[2021-03-01 14:03:11 +0800] [602577] [INFO] Worker exiting (pid: 602577)
+[2021-03-01 14:03:11 +0800] [602599] [INFO] Booting worker with pid: 602599
+[2021-03-01 14:04:06 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602599)
+[2021-03-01 14:04:06 +0800] [602599] [INFO] Worker exiting (pid: 602599)
+[2021-03-01 14:04:06 +0800] [602601] [INFO] Booting worker with pid: 602601
+[2021-03-01 14:05:32 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602601)
+[2021-03-01 14:05:32 +0800] [602601] [INFO] Worker exiting (pid: 602601)
+[2021-03-01 14:05:32 +0800] [602607] [INFO] Booting worker with pid: 602607
+[2021-03-01 14:23:22 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602607)
+[2021-03-01 14:23:22 +0800] [602607] [INFO] Worker exiting (pid: 602607)
+[2021-03-01 14:23:22 +0800] [602643] [INFO] Booting worker with pid: 602643
+[2021-03-01 14:23:53 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602643)
+[2021-03-01 14:23:53 +0800] [602643] [INFO] Worker exiting (pid: 602643)
+[2021-03-01 14:23:53 +0800] [602645] [INFO] Booting worker with pid: 602645
+[2021-03-04 08:50:11 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:602645)
+[2021-03-04 08:50:11 +0800] [602645] [INFO] Worker exiting (pid: 602645)
+[2021-03-04 08:50:11 +0800] [612890] [INFO] Booting worker with pid: 612890
+[2021-03-04 08:50:42 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:612890)
+[2021-03-04 08:50:42 +0800] [612890] [INFO] Worker exiting (pid: 612890)
+[2021-03-04 08:50:42 +0800] [612891] [INFO] Booting worker with pid: 612891
+[2021-03-04 08:55:04 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:612891)
+[2021-03-04 08:55:04 +0800] [612891] [INFO] Worker exiting (pid: 612891)
+[2021-03-04 08:55:04 +0800] [612902] [INFO] Booting worker with pid: 612902
+[2021-03-04 08:58:45 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:612902)
+[2021-03-04 08:58:45 +0800] [612902] [INFO] Worker exiting (pid: 612902)
+[2021-03-04 08:58:45 +0800] [612909] [INFO] Booting worker with pid: 612909
+[2021-03-04 08:59:16 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:612909)
+[2021-03-04 08:59:16 +0800] [612909] [INFO] Worker exiting (pid: 612909)
+[2021-03-04 08:59:16 +0800] [612911] [INFO] Booting worker with pid: 612911
+[2021-03-04 09:00:10 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:612911)
+[2021-03-04 09:00:10 +0800] [612911] [INFO] Worker exiting (pid: 612911)
+[2021-03-04 09:00:10 +0800] [612915] [INFO] Booting worker with pid: 612915
+[2021-03-04 10:03:12 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:612915)
+[2021-03-04 10:03:12 +0800] [612915] [INFO] Worker exiting (pid: 612915)
+[2021-03-04 10:03:12 +0800] [613047] [INFO] Booting worker with pid: 613047
+[2021-03-04 10:07:33 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:613047)
+[2021-03-04 10:07:33 +0800] [613047] [INFO] Worker exiting (pid: 613047)
+[2021-03-04 10:07:33 +0800] [613060] [INFO] Booting worker with pid: 613060
+[2021-03-04 10:09:53 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:613060)
+[2021-03-04 10:09:53 +0800] [613060] [INFO] Worker exiting (pid: 613060)
+[2021-03-04 10:09:53 +0800] [613070] [INFO] Booting worker with pid: 613070
+[2021-03-04 11:31:37 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:613070)
+[2021-03-04 11:31:37 +0800] [613070] [INFO] Worker exiting (pid: 613070)
+[2021-03-04 11:31:37 +0800] [613222] [INFO] Booting worker with pid: 613222
+[2021-03-04 11:32:08 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:613222)
+[2021-03-04 11:32:08 +0800] [613222] [INFO] Worker exiting (pid: 613222)
+[2021-03-04 11:32:08 +0800] [613223] [INFO] Booting worker with pid: 613223
+[2021-03-04 15:42:30 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:613223)
+[2021-03-04 15:42:30 +0800] [613223] [INFO] Worker exiting (pid: 613223)
+[2021-03-04 15:42:30 +0800] [614666] [INFO] Booting worker with pid: 614666
+[2021-03-04 15:43:01 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:614666)
+[2021-03-04 15:43:01 +0800] [614666] [INFO] Worker exiting (pid: 614666)
+[2021-03-04 15:43:01 +0800] [614667] [INFO] Booting worker with pid: 614667
+[2021-03-15 13:53:27 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:614667)
+[2021-03-15 13:53:27 +0800] [614667] [INFO] Worker exiting (pid: 614667)
+[2021-03-15 13:53:27 +0800] [655828] [INFO] Booting worker with pid: 655828
+[2021-03-15 13:53:58 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:655828)
+[2021-03-15 13:53:58 +0800] [655828] [INFO] Worker exiting (pid: 655828)
+[2021-03-15 13:53:58 +0800] [655830] [INFO] Booting worker with pid: 655830
+[2021-03-15 13:54:40 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:655830)
+[2021-03-15 13:54:40 +0800] [655830] [INFO] Worker exiting (pid: 655830)
+[2021-03-15 13:54:40 +0800] [655833] [INFO] Booting worker with pid: 655833
+[2021-03-15 13:55:11 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:655833)
+[2021-03-15 13:55:11 +0800] [655833] [INFO] Worker exiting (pid: 655833)
+[2021-03-15 13:55:11 +0800] [655838] [INFO] Booting worker with pid: 655838
+[2021-03-15 13:56:44 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:655838)
+[2021-03-15 13:56:44 +0800] [655838] [INFO] Worker exiting (pid: 655838)
+[2021-03-15 13:56:44 +0800] [655841] [INFO] Booting worker with pid: 655841
+[2021-03-15 13:57:15 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:655841)
+[2021-03-15 13:57:15 +0800] [655841] [INFO] Worker exiting (pid: 655841)
+[2021-03-15 13:57:15 +0800] [655842] [INFO] Booting worker with pid: 655842
+[2021-03-15 14:12:03 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:655842)
+[2021-03-15 14:12:03 +0800] [655842] [INFO] Worker exiting (pid: 655842)
+[2021-03-15 14:12:03 +0800] [655868] [INFO] Booting worker with pid: 655868
+[2021-03-31 10:16:29 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:655868)
+[2021-03-31 10:16:29 +0800] [655868] [INFO] Worker exiting (pid: 655868)
+[2021-03-31 10:16:29 +0800] [739187] [INFO] Booting worker with pid: 739187
+[2021-03-31 15:02:20 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:739187)
+[2021-03-31 15:02:20 +0800] [739187] [INFO] Worker exiting (pid: 739187)
+[2021-03-31 15:02:20 +0800] [740227] [INFO] Booting worker with pid: 740227
+[2021-04-05 09:09:25 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:740227)
+[2021-04-05 09:09:25 +0800] [740227] [INFO] Worker exiting (pid: 740227)
+[2021-04-05 09:09:25 +0800] [757514] [INFO] Booting worker with pid: 757514
+[2021-05-31 13:00:01 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:757514)
+[2021-05-31 13:00:01 +0800] [757514] [INFO] Worker exiting (pid: 757514)
+[2021-05-31 13:00:01 +0800] [1012505] [INFO] Booting worker with pid: 1012505
+[2021-05-31 13:18:08 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:1012505)
+[2021-05-31 13:18:08 +0800] [1012505] [INFO] Worker exiting (pid: 1012505)
+[2021-05-31 13:18:08 +0800] [1012688] [INFO] Booting worker with pid: 1012688
+[2021-05-31 13:23:42 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:1012688)
+[2021-05-31 13:23:42 +0800] [1012688] [INFO] Worker exiting (pid: 1012688)
+[2021-05-31 13:23:42 +0800] [1012794] [INFO] Booting worker with pid: 1012794
+[2021-05-31 13:47:28 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:1012794)
+[2021-05-31 13:47:28 +0800] [1012794] [INFO] Worker exiting (pid: 1012794)
+[2021-05-31 13:47:28 +0800] [1013210] [INFO] Booting worker with pid: 1013210
+[2021-05-31 13:57:59 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:1013210)
+[2021-05-31 13:57:59 +0800] [1013210] [INFO] Worker exiting (pid: 1013210)
+[2021-05-31 13:57:59 +0800] [1013243] [INFO] Booting worker with pid: 1013243
+[2021-05-31 13:58:30 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:1013243)
+[2021-05-31 13:58:30 +0800] [1013243] [INFO] Worker exiting (pid: 1013243)
+[2021-05-31 13:58:30 +0800] [1013245] [INFO] Booting worker with pid: 1013245
+[2021-05-31 14:03:39 +0800] [507590] [CRITICAL] WORKER TIMEOUT (pid:1013245)
+[2021-05-31 14:03:39 +0800] [1013245] [INFO] Worker exiting (pid: 1013245)
+[2021-05-31 14:03:39 +0800] [1013253] [INFO] Booting worker with pid: 1013253

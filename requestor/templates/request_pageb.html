@@ -1,0 +1,265 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .nrmodal {
+      width: 125%;
+    }
+
+    .rtbl {
+      overflow-x: scroll;
+    }
+    .caption {
+    color: #0d47a1;
+    }
+    .ab {
+      width: 60px;
+      margin-top: 5px;
+    }
+    .ficon {
+      color: gray;
+    }
+    .subta {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    }
+    .smenu {
+      float: right;
+    }
+    .es {
+      width: 100%;
+    }
+  </style>
+
+
+    <div class="container">
+
+
+      <ol class="breadcrumb my-4">
+
+        <ul class="breadcrumb-item active"><b>Submissions</b></ul>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+
+        <!-- start of dropdown list -->
+         <div class="dropdown show">
+  <a class="btn btn-primary" href="/travelauth/local_dash" role="button">
+    Local Travel Application
+  </a>
+
+<a class="btn btn-primary" href="/travelauth/dash" role="button">
+    Foreign Travel Application
+  </a>
+
+</div>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- end of dropdown list -->
+        <li position='right'>
+
+            <a href="/requestor/requests/22/new_application" class="btn btn-secondary">Scholarship Program Application</a>
+        </li>
+
+      </ol>
+      <!-- expanding  search -->
+
+
+              <button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#attendee">Search</button>
+                    <div id="attendee" class="collapse in">
+                      <table class="es">
+                        <tr>
+                          <td>
+                            <input type="text" name="category" placeholder="Search" class="form-control" autocomplete="off" id = "myInput">
+                          </td>
+                        </tr>
+
+                      </table>
+                    </div>
+                    <br>
+
+
+      <!-- end of expanding search -->
+
+      <!-- start of filter -->
+
+      <!-- start of travel table -->
+      <table class="table rtbl">
+        <h6 class="caption">Travel Requests</h6>
+        <thead class="thead-default">
+          <tr>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>ID</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Reference</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Date Filed</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Category</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Program Title</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Destination</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Attendee</th>
+            <th align='center'  colspan="2" scope="colgroup" >Travel Date</th>
+
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>History</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Status</th>
+            <th align='center' rowspan='2' style='border-color: #000000; vertical-align: middle'>Action</th>
+          </tr>
+          <tr>
+            <th  style='border-color: #000000' scope="col">Start Date</th>
+            <th  style='border-color: #000000' scope="col">End Date</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          {% for request in reqtravel %}
+            <tr>
+                <td align='center' style='border-color: #000000'>#{{ request.travelreq_id }}</td>
+                <td align='center' style='border-color: #000000'>TR-{{ request.date_filed|date:"m/d/y"}}-{{ request.travelreq_id }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.date_filed }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.request_category }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.program_title }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.destination }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.last_name  }} {{request.first_name}} {{request.middle_initial}}</td>
+                <td align='center' style='border-color: #000000'>{{ request.programdates_from  }}</td>
+                <td align='center' style='border-color: #000000'>{{ request.programdates_to  }}</td>
+                <!-- <td align='center' style='border-color: #000000'><a href="/travelauth/travel_files/{{request.travelreq_id}}"><i class="fa fa-file ficon" style="font-size:24px"></i></a></td> -->
+                <td align='center' style='border-color: #000000'><a href="/travelauth/history/{{ request.travelreq_id }}">view</a></td>
+                <td align='center' style='border-color: #000000'>
+                  {% if request.status|stringformat:"s" == "New" %}
+                  Submitted
+                  {%elif request.status|stringformat:"s" == "For Evaluation" or request.status|stringformat:"s" == "For Evaluation: Complete Documents"  or request.status|stringformat:"s" == "For Evaluation: Discrepancy on Documents" or request.status|stringformat:"s" == "For Evaluation: Unsigned Documents (Advanced Copy)" or request.status|stringformat:"s" == "For Evaluation: Pending Approval"%}
+
+                  Processing
+                  {% elif request.status|stringformat:"s" == "For Evaluation: Incomplete Documents" %}
+                  On Hold: Lacking DOcuments <br>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{request.pk}}">
+                  <small>View</small>
+                  </button>
+                              <!-- Modal -->
+                          <div class="modal fade" id="{{request.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Lacking Documents</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                                <b> {%for data in request.lacking_documents%}
+                               {%if '0' in data%}
+                             <li>Endorsement from Usec. concerned</li><br>
+                               {%elif '1' in data%}
+                             <li>Request for Travel Authority</li><br>
+                              {%elif '2' in data%}
+                              <li>Invitation Letter from the host/country</li><br>
+                             {%elif '3' in data%}
+                             <li>Certificate as to no pending task/Office-in-charge</li><br>
+                              {%elif '4' in data%}
+                              <li>Certification as to no pending admin case</li><br>
+                               {%elif '5' in data%}
+                                 <li>Service Record</li><br>
+                                {%elif '6' in data%}
+                                <li>Certificate of Availability of Funds</li><br>
+                                 {%elif '7' in data%}
+                                <li> Estimate Breakdown of expenses </li><br>
+                                 {%elif '8' in data%}
+                                 <li>Certificate as to no unliquidated cash advance </li><br>
+                               {%elif '9' in data%}
+                               <li>Certificate as to not due to retirement/resign</li><br>
+                               {%elif '10' in data%}
+                              <li> Certificate of undertaking</li><br>
+                               {%endif%}
+                                {%endfor%}<b>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+
+                  {%elif request.status|stringformat:"s" == "Approved"%}
+                  Approved<br>
+                  {{request.ta_signed_upload.url}}
+                  <!-- {% if ta_signed_upload %} -->
+                  <a href="{{request.ta_signed_upload.url}}" target="_blank" class="btn btn-danger ab"><center><small>Downl..</small></center></a></b>
+                  <!-- {% else %} -->
+
+                  <!-- {%endif%} -->
+
+                  {%elif request.status|stringformat:"s" == "Cancelled"%}
+                  Cancelled
+                  {%elif request.status|stringformat:"s" == "Disapproved: Failed Evaluation Process"%}
+                  Disapproved
+                  {%elif request.status|stringformat:"s" == "On Hold: Lacking Original Documents" %}
+                  {{request.status}}
+
+
+                  {%elif request.status|stringformat:"s" == "Submitted Original Documents"%}
+                  Released for Approval
+                  {%endif%}
+                </td>
+                </td>
+                <td align='center' style='border-color: #000000'>
+                  <!-- view -->
+                  <a href="/travelauth/view/{{request.travelreq_id}}" class="btn btn-primary ab"><small>View</small></a>
+                  <!-- end of view -->
+
+                  <!-- cancel -->
+                  {% if request.status == '9' %}
+                  <button class="btn btn-warning ab" disabled><small>Cancel</small></button>
+
+                  {% else %}
+                  <a href="/travelauth/cancel/{{request.travelreq_id}}" class="btn btn-warning ab"><small>Cancel</small></a>
+                  {% endif %}
+
+                  <!-- end of cancel -->
+
+                  <!-- edit -->
+                  {% if request.status == '1' %}
+                  <button class="btn btn-danger ab" disabled><small>Edit</small></button>
+                  {% elif request.status == '9' %}
+                  <button class="btn btn-danger ab" disabled><small>Edit</small></button>
+                  {% else %}
+                  <a href="/travelauth/edit/{{ request.travelreq_id }}" class="btn btn-danger ab"><small>Edit</small></a>
+                  {% endif %}
+                  <!-- end of edit -->
+
+
+
+
+                </td>
+
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- end of travel table -->
+   <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+    </div>
+
+
+
+</main>
+
+
+
+{% endblock content %}

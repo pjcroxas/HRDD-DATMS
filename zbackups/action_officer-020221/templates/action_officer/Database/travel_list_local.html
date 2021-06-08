@@ -1,0 +1,30 @@
+{%for tforeign in travelforeign %}
+  <tr>
+
+      <td>{{tforeign.pk}}</td>
+      <td>TR-{{ tforeign.date_filed|date:"m/d/y"}}-{{ tforeign.travelreq_id }}</td>
+      <td>{{tforeign.first_name}} {{tforeign.last_name}}</td>
+      <td>{{tforeign.position}}</td>
+      <td>{{tforeign.agency}}</td>
+      <td>{{tforeign.program_title}}</td>
+      <td>{{tforeign.inviting_institute}}</td>
+      <td>{{tforeign.venue}}</td>
+      <td>{{tforeign.programdates_from}}</td>
+      <td>{{tforeign.programdates_to}}</td>
+      <td>{{tforeign.fee}}</td>
+      <td>{{tforeign.perday}}</td>
+      <td>{{tforeign.other_expense}}</td>
+      <td>{{tforeign.echo}}</td>
+      <td>{{tforeign.training_report}}</td>
+      <td>{{tforeign.received}}</td>
+      <td>{{tforeign.released}}</td>
+      <td>{{tforeign.remarks}}</td>
+
+      <td  ><button type="button"
+              class="btn btn-secondary btn-sm js-update-travel"
+              data-url="{% url 'dtravelupdatelocal' tforeign.pk %}">
+      <i class="fa fa-pencil"></i>
+      </button></td>
+    </tr>
+
+{% endfor %}

@@ -1,0 +1,923 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+<style>
+table {
+	width: 100%;
+}
+th, td {
+	font-size: 14px;
+}
+
+.breadcrumb {
+    margin-bottom: 0;
+    background-color: #fcfcfc;
+}
+</style>
+
+<script>
+
+	$(document).ready(function(){
+		$(".resources #ta_signed_upload-clear_id").hide();
+		$('label[for="ta_signed_upload-clear_id"]').hide();
+		$('form').submit(function() {
+      $('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').attr('disabled', true);
+			form.submit()
+	  });
+
+
+
+		// with issues //
+		let rm = $("input#id_with_issues").val().replace(/[\[\]']+/g,'');
+		let rm2 = rm.replace(/\s*,\s*/g, ", ");
+		$("input#id_with_issues").val(rm2)
+
+
+		// unsigned_docs//
+		let udrm = $("input#id_unsigned_docs").val().replace(/[\[\]']+/g,'');
+		let udrm2 = udrm.replace(/\s*,\s*/g, ", ");
+		$("input#id_unsigned_docs").val(udrm2)
+
+		let warm = $("input#id_wrong_attachment").val().replace(/[\[\]']+/g,'');
+		let warm2 = warm.replace(/\s*,\s*/g, ", ");
+		$("input#id_wrong_attachment").val(warm2)
+
+
+		if($('#id_status').val() == '13') {
+			$('.resources').show();
+			$(".resources #id_ta_signed_upload").prop('required',true);
+
+		} else {
+			$('.resources').hide();
+			$(".resources #id_ta_signed_upload").prop('required',false);
+		}
+
+		if($('#id_status').val() == '9') {
+			$('.resources2').show();
+		} else {
+			$('.resources2').hide();
+		}
+
+		if($('#id_status').val() == '18') {
+			$('.resources3').show();
+
+			// let rm3 = rm2.replace(/,(?=[^\s])/g, ", ");
+
+
+	// 	 	$("#onclick").click(function(){
+  //     let print =	$("input#id_with_issues").val();
+	// 		let arr = print.split(',');
+	// 		// var val = '[' + print + ']';
+	// 		// alert(arr);
+	// 		// console.log(arr);
+	// 		var quotedIds = arr.map(function(id) { return "'" + id + "'"; }).join(", ");
+	// 		var val = '[' + quotedIds + ']';
+	// 		console.log(val)
+	// 		$("input#id_with_issues").val(val);
+	//
+  // });
+		} else {
+			$('.resources3').hide();
+
+		}
+
+		if($('#id_status').val() == '19') {
+			$('.resources5').show();
+
+		} else {
+			$('.resources5').hide();
+
+		}
+
+		if($('#id_status').val() == '11') {
+			$('.resources4').show();
+
+			// let rm3 = rm2.replace(/,(?=[^\s])/g, ", ");
+
+
+	// 	 	$("#onclick").click(function(){
+  //     let print =	$("input#id_with_issues").val();
+	// 		let arr = print.split(',');
+	// 		// var val = '[' + print + ']';
+	// 		// alert(arr);
+	// 		// console.log(arr);
+	// 		var quotedIds = arr.map(function(id) { return "'" + id + "'"; }).join(", ");
+	// 		var val = '[' + quotedIds + ']';
+	// 		console.log(val)
+	// 		$("input#id_with_issues").val(val);
+	//
+  // });
+		} else {
+			$('.resources4').hide();
+		}
+
+
+  $('#id_status').change(function(){
+    if($('#id_status').val() == '13') {
+      $('.resources').show();
+			$(".resources #id_ta_signed_upload").prop('required',true);
+    }
+
+		else {
+      $('.resources').hide();
+			$(".resources #id_ta_signed_upload").prop('required',false);
+
+    }
+
+		if($('#id_status').val() == '9') {
+			$('.resources2').show();
+		}
+		else {
+			$('.resources2').hide();
+}
+
+			if($('#id_status').val() == '18') {
+				$('.resources3').show();
+				let rm = $("input#id_with_issues").val().replace(/[\[\]']+/g,'');
+				let rm2 = rm.replace(/\s*,\s*/g, ", ");
+
+
+				$("input#id_with_issues").val(rm2)
+
+			}
+			else {
+				$('.resources3').hide();
+					}
+
+
+
+				if($('#id_status').val() == '11') {
+					$('.resources4').show();
+					let udrm = $("input#id_unsigned_docs").val().replace(/[\[\]']+/g,'');
+					let udrm2 = udrm.replace(/\s*,\s*/g, ", ");
+					$("input#id_unsigned_docs").val(udrm2)
+				}
+				else {
+					$('.resources4').hide();
+
+		}
+
+		if($('#id_status').val() == '19') {
+			$('.resources5').show();
+			let warm = $("input#id_wrong_attachment").val().replace(/[\[\]']+/g,'');
+			let warm2 = warm.replace(/\s*,\s*/g, ", ");
+			$("input#id_wrong_attachment").val(warm2)
+		}
+		else {
+			$('.resources5').hide();
+
+}
+
+});
+
+});
+</script>
+
+
+
+
+{% if messages %}
+
+
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+          <p><h6>{{ message }}</h6></p>
+      </div>
+      {% endfor %}
+
+
+
+{% endif %}
+
+
+<ol class="breadcrumb my-3" style="font-size: 16px;">
+	 <li class="breadcrumb-item"><a href="{%url 'action-dash' 1 %}">Dashboard</a></li>
+	 <li class="breadcrumb-item"><a href="{%url 'assigned' 1 %}">My Assigned Requests</a></li>
+	 <li class="breadcrumb-item active" > Update Details </li>
+ </ol>
+
+
+<div class="row">
+
+        <div class="col-md-4 col-lg-4">
+
+          <div class="widget-small primary coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4><b>Filed:</b>  {{travel.date_filed}}</h4>
+              <b>By:</b>  {{travel.first_name}} {{travel.last_name}}
+            </div>
+          </div>
+        </div>
+</div>
+
+
+
+<!-- start of table -->
+<div class="container">
+	<table class='table' border="0">
+		<tr>
+			<td><b>Reference:</b> TR-{{ travel.date_filed|date:"m/d/y"}}-{{ travel.travelreq_id }}</td>
+		</tr>
+		<tr>
+			<td><b>Category:</b> {{ travel.sub_category }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Sector:</b> {{ travel.sector}}</td>
+		</tr>
+
+		<tr>
+			<td><b>Program Title:</b> {{ travel.program_title }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Attendee:</b> {{travel.first_name}} {{travel.last_name}}</td>
+		</tr>
+
+		<tr>
+			<td><b>From:</b> {{ travel.programdates_from }} <b> to:</b> {{ travel.programdates_to }}</td>
+		</tr>
+		<tr>
+			<td><b>Support Category:</b> {{ travel.support_category }}  </td>
+		</tr>
+</table>
+
+<div id="accordion">
+	<div class="card">
+		<div class="card-header text-white" style="background-color: #00AA9E;  ">
+			<a class="card-link" data-toggle="collapse" href="#collapseOne">
+				<b style="color: white !important;"> ATTACHMENTS </b>
+			</a>
+		</div>
+		<div id="collapseOne" class="collapse show" data-parent="#accordion">
+			<div class="card-body">
+
+<table class='table' border="0">
+
+{% if travel.support_category == "International Commitment" %}
+
+		<tr>
+			<td><b>
+				Endorsement from Usec. concerned:
+				{%if travel.ic_endorsement%}
+				 <a href="{{travel.ic_endorsement.url}}" target="_blank">{{travel.ic_endorsement|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Request for Travel Authority:
+				{%if travel.ic_icd%}
+				 <a href="{{travel.ic_icd.url}}" target="_blank">{{travel.ic_icd|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Invitation Letter from the host/country:
+				{%if travel.ic_invitation%}
+				 <a href="{{travel.ic_invitation.url}}" target="_blank">{{travel.ic_invitation|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Certificate as to no pending task/Office-in-charge:
+				{%if travel.ic_no_pending_task%}
+				 <a href="{{travel.ic_no_pending_task.url}}" target="_blank">{{travel.ic_no_pending_task|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Certification as to no pending admin case:
+				{%if travel.ic_no_admin_case%}
+				 <a href="{{travel.ic_no_admin_case.url}}" target="_blank">{{travel.ic_no_admin_case|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Service Record:
+				{%if travel.ic_service_record%}
+				 <a href="{{travel.ic_service_record.url}}" target="_blank">{{travel.ic_service_record|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Certificate of Availability of Funds:
+				{%if travel.ic_funds%}
+				 <a href="{{travel.ic_funds.url}}" target="_blank">{{travel.ic_funds|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Estimate Breakdown of Expenses:
+				{%if travel.ic_expenses%}
+				 <a href="{{travel.ic_expenses.url}}" target="_blank">{{travel.ic_expenses|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Certificate as to no unliquidated cash advance:
+				{%if travel.ic_unliquidated%}
+				 <a href="{{travel.ic_unliquidated.url}}" target="_blank">{{travel.ic_unliquidated|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+				Certificate as to not due to retirement/resign:
+				{%if travel.ic_retirement%}
+				 <a href="{{travel.ic_retirement.url}}" target="_blank">{{travel.ic_retirement|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+		<tr>
+			<td><b>
+					Certificate of undertaking:
+				{%if travel.ic_undertaking%}
+				 <a href="{{travel.ic_undertaking.url}}" target="_blank">{{travel.ic_undertaking|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i></b>
+					{%endif%}
+	 </td>
+		</tr>
+
+{% elif travel.support_category == "Meetings/Conferences/Special Missions" %}
+<tr>
+	<td>
+		Endorsement from Usec. concerned:
+		{%if travel.mc_endorsement%}
+		 <i><a href="{{travel.mc_endorsement.url}}" target="_blank">{{travel.mc_endorsement|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		Request for Travel Authority:
+		{%if travel.mc_icd%}
+		 <i><a href="{{travel.mc_icd.url}}" target="_blank">{{travel.mc_icd|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td>
+		Invitation
+		{%if travel.mc_invitation%}
+		 <i><a href="{{travel.mc_invitation.url}}" target="_blank">{{travel.mc_invitation|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		Certificate as to no pending task/Office-in-charge
+		{%if travel.mc_no_pending_task%}
+		 <i><a href="{{travel.mc_no_pending_task.url}}" target="_blank">{{travel.mc_no_pending_task|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		Certificate as to no pending Admin case
+		{%if travel.mc_no_admin_case%}
+		 <i><a href="{{travel.mc_no_admin_case.url}}" target="_blank">{{travel.mc_no_admin_case|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		Service Record
+		{%if travel.mc_service_record%}
+		 <i><a href="{{travel.mc_service_record.url}}" target="_blank">{{travel.mc_service_record|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		Certificate of availability of funds
+		{%if travel.mc_funds%}
+		 <i><a href="{{travel.mc_funds.url}}" target="_blank">{{travel.mc_funds|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		Estimate breakdown of expenses
+		{%if travel.mc_expenses%}
+		 <i><a href="{{travel.mc_expenses.url}}" target="_blank">{{travel.mc_expenses|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		ECertificate as to no unliquidated cash advance
+		{%if travel.mc_unliquidated%}
+		 <i><a href="{{travel.mc_unliquidated.url}}" target="_blank">{{travel.mc_unliquidated|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td>
+		Certificate as to not due to retirement/resign
+		{%if travel.mc_retirement%}
+		 <i><a href="{{travel.mc_retirement.url}}" target="_blank">{{travel.mc_retirement|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td>
+		Certificate of undertaking
+		{%if travel.mc_undertaking%}
+		 <i><a href="{{travel.mc_undertaking.url}}" target="_blank">{{travel.mc_undertaking|default_if_none:'#'}}</a></i>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+
+
+{% elif travel.support_category == "Trainings/Scholarship/Seminars/Workshops" %}
+<tr>
+
+	<td><b>
+		Endorsement from Usec. concerned:
+		{%if travel.ts_endorsement%}
+		 <a href="{{travel.ts_endorsement.url}}" target="_blank">{{travel.ts_endorsement|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Request for Travel Authority:
+		{%if travel.ts_icd%}
+		 <a href="{{travel.ts_icd.url}}" target="_blank">{{travel.ts_icd|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+<tr>
+	<td><b>
+		Invitation:
+		{%if travel.ts_invitation%}
+		 <a href="{{travel.ts_invitation.url}}" target="_blank">{{travel.ts_invitation|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+<tr>
+	<td><b>
+		Acceptance Letter:
+		{%if travel.ts_acceptance%}
+		 <a href="{{travel.ts_acceptance.url}}" target="_blank">{{travel.ts_acceptance|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+<tr>
+	<td><b>
+		Minutes of Agency Scholarship Committee Deliberation
+		{%if travel.ts_minutes%}
+		 <a href="{{travel.ts_minutes.url}}" target="_blank">{{travel.ts_minutes|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td><b>
+		Scholarship Contract
+		{%if travel.ts_scholarship%}
+		 <a href="{{travel.ts_scholarship.url}}" target="_blank">{{travel.ts_scholarship|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td><b>
+		Certificate as to no pending task/Office-in-charge:
+		{%if travel.ts_no_pending_task%}
+		 <a href="{{travel.ts_no_pending_task.url}}" target="_blank">{{travel.ts_no_pending_task|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certification as to no pending admin case:
+		{%if travel.ts_no_admin_case%}
+		 <a href="{{travel.ts_no_admin_case.url}}" target="_blank">{{travel.ts_no_admin_case|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Service Record:
+		{%if travel.ts_service_record%}
+		 <a href="{{travel.ts_service_record.url}}" target="_blank">{{travel.ts_service_record|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certificate of Availability of Funds:
+		{%if travel.ts_funds%}
+		 <a href="{{travel.ts_funds.url}}" target="_blank">{{travel.ts_funds|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Estimate Breakdown of Expenses:
+		{%if travel.ts_expenses%}
+		 <a href="{{travel.ts_expenses.url}}" target="_blank">{{travel.ts_expenses|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certificate as to no unliquidated cash advance:
+		{%if travel.ts_unliquidated%}
+		 <a href="{{travel.ts_unliquidated.url}}" target="_blank">{{travel.ts_unliquidated|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certificate as to not due to retirement/resign:
+		{%if travel.ts_retirement%}
+		 <a href="{{travel.ts_retirement.url}}" target="_blank">{{travel.ts_retirement|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+			Certificate of undertaking:
+		{%if travel.ts_undertaking%}
+		 <a href="{{travel.ts_undertaking.url}}" target="_blank">{{travel.ts_undertaking|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+
+
+
+
+{% elif travel.support_category == "FAT/Inspection" %}
+
+
+<tr>
+
+	<td><b>
+		Endorsement from Usec. concerned:
+		{%if travel.fi_endorsement%}
+		 <a href="{{travel.fi_endorsement.url}}" target="_blank">{{travel.fi_endorsement|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Request for Travel Authority:
+		{%if travel.fi_icd%}
+		 <a href="{{travel.fi_icd.url}}" target="_blank">{{travel.fi_icd|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+<tr>
+	<td><b>
+		Invitation:
+		{%if travel.fi_invitation%}
+		 <a href="{{travel.fi_invitation.url}}" target="_blank">{{travel.fi_invitation|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+<tr>
+	<td><b>
+		Contract Agreement/Terms of Reference
+		{%if travel.fi_agreement%}
+		 <a href="{{travel.fi_agreement.url}}" target="_blank">{{travel.fi_agreement|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+	<td><b>
+		Certificate as to no pending task/Office-in-charge:
+		{%if travel.fi_no_pending_task%}
+		 <a href="{{travel.fi_no_pending_task.url}}" target="_blank">{{travel.fi_no_pending_task|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certification as to no pending admin case:
+		{%if travel.fi_no_admin_case%}
+		 <a href="{{travel.fi_no_admin_case.url}}" target="_blank">{{travel.fi_no_admin_case|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Service Record:
+		{%if travel.fi_service_record%}
+		 <a href="{{travel.fi_service_record.url}}" target="_blank">{{travel.fi_service_record|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certificate of Availability of Funds:
+		{%if travel.fi_funds%}
+		 <a href="{{travel.fi_funds.url}}" target="_blank">{{travel.fi_funds|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Estimate Breakdown of Expenses:
+		{%if travel.fi_expenses%}
+		 <a href="{{travel.fi_expenses.url}}" target="_blank">{{travel.fi_expenses|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certificate as to no unliquidated cash advance:
+		{%if travel.fi_unliquidated%}
+		 <a href="{{travel.fi_unliquidated.url}}" target="_blank">{{travel.fi_unliquidated|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+		Certificate as to not due to retirement/resign:
+		{%if travel.fi_retirement%}
+		 <a href="{{travel.fi_retirement.url}}" target="_blank">{{travel.fi_retirement|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+<tr>
+	<td><b>
+			Certificate of undertaking:
+		{%if travel.fi_undertaking%}
+		 <a href="{{travel.fi_undertaking.url}}" target="_blank">{{travel.fi_undertaking|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+
+
+{% elif travel.support_category == "Personal Travel" %}
+
+<tr>
+	<td><b>
+		Request for Travel Authority:
+		{%if travel.pt_icd%}
+		 <a href="{{travel.pt_icd.url}}" target="_blank">{{travel.pt_icd|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td><b>
+		Certificate as to no Pending Task:
+		{%if travel.pt_no_pending_task%}
+		 <a href="{{travel.pt_no_pending_task.url}}" target="_blank">{{travel.pt_no_pending_task|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td><b>
+		Certificate as to no Pending Admin Case:
+		{%if travel.pt_no_admin_case%}
+		 <a href="{{travel.pt_no_admin_case.url}}" target="_blank">{{travel.pt_no_admin_case|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td><b>
+		Service Record:
+		{%if travel.pt_service_record%}
+		 <a href="{{travel.pt_service_record.url}}" target="_blank">{{travel.pt_service_record|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td><b>
+	Approved Leave Application:
+		{%if travel.fi_icd%}
+		 <a href="{{travel.pt_leave_application.url}}" target="_blank">{{travel.pt_leave_application|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+<tr>
+	<td><b>
+	Clearance from Properties and Accountabilities:
+		{%if travel.pt_clearance%}
+		 <a href="{{travel.pt_clearance.url}}" target="_blank">{{travel.pt_clearance|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i></b>
+			{%endif%}
+</td>
+</tr>
+
+
+
+
+
+{%endif%}
+
+
+
+
+	</table>
+</div>
+</div>
+</div>
+</div>
+<br>
+
+
+
+<form method="POST" enctype="multipart/form-data">
+	{%csrf_token%}
+<div class="row">
+	<div class="form-group col-md-6 mb-0">
+			<b> {{form.status|as_crispy_field}}</b>
+
+<div class="resources">
+<b>Attach File: &nbsp;{{form.ta_signed_upload}}</b><br><br>
+</div>
+
+<div class="resources2">
+<b>Lacking Documents:</b>
+{% for checkbox in form.lacking_documents %}
+<div class="checkbox">
+    <label>
+      &nbsp   {{ checkbox.tag }} {{ checkbox.choice_label }}
+    </label>
+</div>
+{% endfor %}
+</div>
+<div class="resources3">
+<b>{{form.with_issues|as_crispy_field}}</b>
+</div>
+
+<div class="resources4">
+<b> {{form.unsigned_docs|as_crispy_field}}</b>
+</div>
+
+<div class="resources5">
+ <b>{{form.wrong_attachment|as_crispy_field}}</b>
+</div>
+<button type="submit" id="btn-one" class="btn btn-primary">
+	Submit
+</button>
+
+</div>
+
+
+</form>
+
+</div>
+
+<!-- end of table -->
+
+<!-- dont remove by BRIAN-->
+
+<div class="container">
+
+ </div>
+
+
+
+
+
+</main>
+{% endblock content %}

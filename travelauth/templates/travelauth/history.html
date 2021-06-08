@@ -1,0 +1,127 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.collapsible {
+  background-color: #244A80;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #377A98;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #D0EFFF;
+}
+
+.collapsible, .content {
+  width: 900px;
+}
+.noborder {
+  border: 0;
+}
+/* .container_2 {
+	display: none;
+} */
+.bb {
+  background-color: black;
+  color: white;
+}
+.htitle {
+	background-color: #dddddd;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+.cont {
+	background-color: #dddddd;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+@media print {
+        /* body * {
+          display:none;
+        } */
+        .container_1 {
+          display:none;
+        }
+        .random {
+          display:none;
+        }
+        .title {
+          display:none;
+        }
+
+        .container_2 {
+          display:block;
+        }
+      }
+</style>
+<body>
+  {% for requestors in rdata %}
+    <div class="container_1" id='not_printable'>
+      <table class='table'>
+        <tr>
+          <td style='border-color: #000000'><b>Reference:</b> TR-{{ requestors.date_filed|date:"m/d/y"}}-{{ requestors.travelreq_id }}</td>
+          <td style='border-color: #000000'><b>Category:</b> {{ requestors.support_category }}</td>
+
+          <td style='border-color: #000000'><b>Program Title:</b> {{ requestors.program_title }}</td>
+
+        </tr>
+      </table>
+    </div>
+   {% endfor %}
+
+   <h5>Travel Request History</h5>
+
+   {% for items in hdata %}
+   {% if items.status == "Submitted" %}
+   <h6 class="cont"><span class="glyphicon glyphicon-list-alt"></span>Received by <i>{{items.a_officer}}</i>. For evaluation. <i>({{items.eval_date|date:"m/d/y"}})</i></h6>
+
+   {% elif items.status == "For Evaluation: Complete Documents" %}
+   <h6 class="cont"><span class="glyphicon glyphicon-list-alt"></span>Evaluated: Completed Documents <i>({{items.eval_date|date:"m/d/y"}})</i></h6>
+
+   {% elif items.status == "Submitted Original Documents" %}
+   <h6 class="cont"><span class="glyphicon glyphicon-list-alt"></span>Released for Approval <i>({{items.eval_date|date:"m/d/y"}})</i></h6>
+
+   {% elif items.status == "Approved" %}
+   <h6 class="cont"><span class="glyphicon glyphicon-list-alt"></span>Approved <i>({{items.eval_date|date:"m/d/y"}})</i></h6>
+
+   {% else %}
+   <h6 class="cont"><span class="glyphicon glyphicon-list-alt"></span>{{items.status}} <i>({{items.eval_date|date:"m/d/y"}})</i></h6>
+
+   {% endif %}
+   {% endfor %}
+</main>
+{% endblock content %}

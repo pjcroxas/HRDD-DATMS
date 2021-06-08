@@ -1,0 +1,28 @@
+{%for ptr in ptr %}
+  <tr>
+
+
+
+    <td style="width:120px;">{{ptr.first_name}} {{ptr.middle_initial}}  {{ptr.last_name}}</td>
+      <td>{{ptr.gender}}</td>
+      <td>{{ptr.position}}</td>
+      <td>{{ptr.office}}</td>
+      <td>{{ptr.training_institution}}</td>
+        <td>{{ptr.course_name}}</td>
+        <td>{{ptr.duration_in_days}}</td>
+        <td>{{ptr.programdates_from}}</td>
+        <td>{{ptr.programdates_to}}</td>
+        <td>{{ptr.program_fee}}</td>
+        <td>{{ptr.post_report_submit_date}}</td>
+        <td>{{ptr.echo_seminar_date}}</td>
+        <td>{{ptr.remarks}}</td>
+
+
+      <td><button type="button"
+              class="btn btn-info btn-sm js-update-pendingtrainingreport"
+              data-url="{% url 'updatependingtrainingreport' ptr.pk %}">
+      Edit
+      </button></td>
+    </tr>
+
+{% endfor %}

@@ -1,0 +1,920 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.collapsible {
+  background-color: #244A80;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #377A98;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #D0EFFF;
+}
+
+.collapsible, .content {
+  width: 900px;
+}
+.noborder {
+  border: 0;
+}
+/* .container_2 {
+	display: none;
+} */
+.bb {
+  background-color: black;
+  color: white;
+}
+table w {
+  width: 30px;
+}
+.hid {
+  visibility: hidden;
+}
+@media print {
+        /* body * {
+          display:none;
+        } */
+        .container_1 {
+          display:none;
+        }
+        .random {
+          display:none;
+        }
+        .title {
+          display:none;
+        }
+
+        .container_2 {
+          display:block;
+        }
+      }
+      td{
+      text-transform:uppercase
+      }
+</style>
+<body>
+  {% for requestors in rdata %}
+    <div class="container_1" id='not_printable'>
+      <table class='table'>
+        <tr>
+          <td style = "text-transform:uppercase; border-color: #000000"><b>Reference:</b>{{ requestors.request_category.shorterm  }}{{ requestors.date_filed|date:"y-m-d"}}-00{{ requestors.incrementor }}</td>
+          <td style= "text-transform:uppercase;border-color: #000000"><b>Category:</b> {{ requestors.support_category }}</td>
+          <td style="text-transform:uppercase;border-color: #000000"><b>Sector:</b> {{ requestors.sector }}</td>
+        </tr>
+        <tr>
+          <td style='text-transform:uppercase;border-color: #000000'><b>Program Title:</b> {{ requestors.program_title }}</td>
+          <td style='text-transform:uppercase;border-color: #000000'><b>Venue:</b> {{ requestors.destination }}</td>
+          <td style='text-transform:uppercase;border-color: #000000'><b>From:</b> {{ requestors.programdates_from }} <b> to:</b> {{ requestors.programdates_to }}</td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class = "container_2" id="printable">
+      <table class='table'>
+        <tr class='row'>
+          <p class="bb"><b>Attendee Details</b></p>
+        </tr>
+        <tr>
+          <td><b>Name :</b></td>
+          <td>{{ requestors.last_name }}, {{ requestors.first_name }} {{ requestors.middle_initial }}</td>
+        </tr>
+        <tr>
+          <td><b>Position :</b></td>
+          <td>{{ requestors.position }}</td>
+        </tr>
+       <tr>
+          <td><b>Agency :</b></td>
+          <td>{{ requestors.agency }}</td>
+        </tr>
+        <tr>
+          <td><b>Destination :</b></td>
+          <td>{{ requestors.destination }}</td>
+        </tr>
+        <tr>
+          <td><b>Program Dates:</b></td>
+          <td>From: {{ requestors.programdates_from }} &nbsp; &nbsp; &nbsp; To: {{ requestors.programdates_to }}</td>
+        </tr>
+        <!--  -->
+      </table>
+	{% if requestors.status_id == 2 %}
+	<table class = 'table'>
+	<tr>
+	<td>Status: </td>
+	<td><b>{{requestors.status}}</b></td>
+	</tr>
+	<tr>
+	<td>
+	Attachment for Cancellation: 
+	</td>
+	<td>
+	<a href = "/media/{{MEDIA_URL}}{{ requestors.cancel_file }}"><p>{{ requestors.cancel_file }}</p></a>
+	</td>
+	</tr>
+	</table>
+	{% endif %}
+     <!-- tbl -->
+	<table class='table'>
+        <tr class='row'>
+          <p class="bb"><b>Gender Equality, Disability and Social Inclusion (GEDSI)</b></p>
+        </tr>
+        <tr>
+          <td><b>Gender :</b></td>
+          <td>{{ requestors.gender }}</td>
+        </tr>
+        <tr>
+          <td><b>Civil Status :</b></td>
+          <td>{{ requestors.civil_status }}</td>
+        </tr>
+       <tr>
+          <td><b>Disability :</b></td>
+          <td>{{ requestors.disability }}</td>
+        </tr>
+        <tr>
+          <td><b>Ethnicity :</b></td>
+          <td>{{ requestors.ethnicity }}</td>
+        </tr>
+ 	<tr class = "hid">
+          <td><b>Program Dates:</b></td>
+          <td>From: {{ requestors.programdates_from }} &nbsp; &nbsp; &nbsp; To: {{ requestors.programdates_to }}</td>
+        </tr>
+
+        <!--  -->
+      </table>
+
+        <!-- end of print div -->
+    </div>
+    <!-- f div -->
+    
+
+    <div class="random">
+
+   {% for items in rdata %}
+
+      {% if items.support_category == "International Commitment" %}
+	 <table class='table'>
+<tr class='row'>
+          <p class="bb"><b>File Attachments</b></p>
+        </tr>
+
+	<tr>
+	                      		<td>
+	                   				Endorsement from Usec. concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_endorsement }}"><p>{{ items.ic_endorsement }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_icd }}"><p>{{ items.ic_icd }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation Letter from the host/country
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_invitation }}"><p>{{ items.ic_invitation }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_no_pending_task }}"><p>{{ items.ic_no_pending_task }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certification as to no pending admin case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_no_admin_case }}"><p>{{ items.ic_no_admin_case }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_service_record }}"><p>{{ items.ic_service_record }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of Availability of Funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_funds }}"><p>{{ items.ic_funds }}</p></a>	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate Breakdown of expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_expenses }}"><p>{{ items.ic_expenses }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_unliquidated }}"><p>{{ items.ic_unliquidated }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_retirement }}"><p>{{ items.ic_retirement }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ic_undertaking }}"><p>{{ items.ic_undertaking }}</p></a>	                      		</td>
+	                      	</tr>
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}"><p>{{ items.additional_requirement_1 }}</p></a>	                      		</td>
+	                      	</tr>
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}"><p>{{ items.additional_requirement_2}}</p></a>	                      		</td>
+	                      	</tr>
+
+
+
+             </table>
+
+      {% elif items.support_category == "Trainings/Scholarship/Seminars/Workshops" %}
+	<table class = "table">
+	<tr>
+	                      		<td>
+	                   				Endorsement from Usec concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_endorsement }}"><p>{{ items.ts_endorsement }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_icd }}"><p>{{ items.ts_icd }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_invitation }}"><p>{{ items.ts_invitation }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Acceptance Letter
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_acceptance }}"><p>{{ items.ts_acceptance }}</p></a>	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Minutes of Agency Scholarship
+	                   				Committee Deliberation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_minutes }}"><p>{{ items.ts_minutes }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Scholarship Contract
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_scholarship }}"><p>{{ items.ts_scholarship }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_no_pending_task }}"><p>{{ items.ts_no_pending_task }}</p></a>	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin Case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_no_admin_case }}"><p>{{ items.ts_no_admin_case }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_service_record }}"><p>{{ items.ts_service_record }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of Availability of Funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_funds }}"><p>{{ items.ts_funds }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of Expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_expenses }}"><p>{{ items.ts_expenses }}</p></a>	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_unliquidated }}"><p>{{ items.ts_unliquidated }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_retirement }}"><p>{{ items.ts_retirement }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_undertaking }}"><p>{{ items.ts_undertaking }}</p></a>	                      		</td>
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1}}"><p>{{ items.additional_requirement_1 }}</p></a>	                      		</td>
+	                      	</tr>
+				
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2}}"><p>{{ items.additional_requirement_2 }}</p></a>	                      		</td>
+	                      	</tr>
+
+
+	</table>
+
+      {% elif items.support_category == "Meetings/Conferences/Special Missions" %}
+	<table class = "table">
+{% for items in rdata %}
+	<tr>
+	                      		<td>
+	                   				Endorsement from Usec. concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_endorsement }}"><p>{{ items.mc_endorsement }}</p></a>
+
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_icd }}"><p>{{ items.mc_icd }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_invitation }}"><p>{{ items.mc_invitation }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_no_pending_task }}"><p>{{ items.mc_no_pending_task }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_no_admin_case }}"><p>{{ items.mc_no_admin_case }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_service_record }}"><p>{{ items.mc_service_record }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of availability of funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_funds }}"><p>{{ items.mc_funds }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_expenses }}"><p>{{ items.mc_expenses }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_unliquidated }}"><p>{{ items.mc_unliquidated }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_retirement }}"><p>{{ items.mc_retirement }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.mc_undertaking }}"><p>{{ items.mc_undertaking }}</p></a>
+	                      		</td>
+	                      	</tr>
+				
+					<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}"><p>{{ items.additional_requirement_1 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+
+					<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}"><p>{{ items.additional_requirement_2 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	{% endfor %}
+	</table>
+      {% elif items.support_category == "FAT/Inspection" %}
+	<table class = "table">
+	<tr>
+	                      		<td>
+	                   				Endorsement from Usec concerned
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_endorsement }}"><p>{{ items.fi_endorsement }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_icd }}"><p>{{ items.fi_icd }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Invitation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_invitation }}"><p>{{ items.fi_invitation }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Contract Agreement/Terms of Reference
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_agreement }}"><p>{{ items.fi_agreement }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending task/Office-in-charge
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_no_pending_task }}"><p>{{ items.fi_no_pending_task }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no pending Admin Case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_no_admin_case }}"><p>{{ items.fi_no_admin_case }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_service_record }}"><p>{{ items.fi_service_record }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of Availability of Funds
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_funds }}"><p>{{ items.fi_funds }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Estimate breakdown of Expenses
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_expenses }}"><p>{{ items.fi_expenses }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no unliquidated cash advance
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_unliquidated }}"><p>{{ items.fi_unliquidated }}</p></a>	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to not due to retirement/resign
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_retirement }}"><p>{{ items.fi_retirement }}</p></a>	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of undertaking
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.fi_undertaking }}"><p>{{ items.fi_undertaking }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additiona_requirement_1}}"><p>{{ items.additiona_requirement_1 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additiona_requirement_2}}"><p>{{ items.additiona_requirement_2 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+
+
+	</table>
+      {% elif items.support_category == "Personal Travel" %}
+	<table class = "table">
+	<tr>
+	                      		<td>
+	                   				Request for Travel Authority
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_icd }}"><p>{{ items.pt_icd }}</p></a>
+
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no Pending Task
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_no_pending_task }}"><p>{{ items.pt_no_pending_task }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Certificate as to no Pending Admin Case
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_no_admin_case }}"><p>{{ items.pt_no_admin_case }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Service Record
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_service_record }}"><p>{{ items.pt_service_record }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Approved Leave Application
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_leave_application }}"><p>{{ items.pt_leave_application }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Clearance from Properties and Accountabilities
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.pt_clearance }}"><p>{{ items.pt_clearance }}</p></a>
+	                      		</td>
+	                      	</tr>
+				
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1}}"><p>{{ items.additional_requirement_1}}</p></a>
+	                      		</td>
+	                      	</tr>
+
+				<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2}}"><p>{{ items.additional_requirement_2}}</p></a>
+	                      		</td>
+	                      	</tr>
+
+
+
+	</table>
+      {% elif items.support_category == "Training-Related Travel Request" %}
+	<p class="bb"><b>File Attachments</b></p>
+
+	<table class = "table">
+	<tr>
+	                      		<td>
+	                   				Pre-registration form from inviting institution
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.t_pre_registration}}"><p>{{ items.t_pre_registration }}</p></a>
+
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Personal Data Sheet
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.t_pds }}"><p>{{ items.t_pds }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Individual Performance Commitment and Review
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.t_ipcr }}"><p>{{ items.t_ipcr }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Potential Assessment Form
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.t_paf }}"><p>{{ items.t_paf }}</p></a>
+	                      		</td>
+	                      	</tr>
+	                      	
+	                      	<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}"><p>{{ items.additional_requirement_1 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}"><p>{{ items.additional_requirement_2 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	</table>
+
+
+      {% elif items.support_category == "Non-Training Related" %}
+	<p class="bb"><b>File Attachments</b></p>
+
+         <table class = "table">
+	<tr>
+	                      		<td>
+	                   				Invitation, Program
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.nt_invitation}}"><p>{{ items.nt_invitation }}</p></a>
+
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_1 }}"><p>{{ items.additional_requirement_1 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Additional Attachment
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.additional_requirement_2 }}"><p>{{ items.additional_requirement_2 }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+
+	                      	<tr>
+	                      		<td>
+	                   				Transportation
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.nt_transportation}}"><p>{{ items.nt_transportation }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Daily Subsistence Allowance, if applicabl based on EO 77
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.nt_allowance }}"><p>{{ items.nt_allowance }}</p></a>
+	                      		</td>
+	                      	</tr>
+
+	                      	<tr>
+	                      		<td>
+	                   				Others
+	                      		</td>
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.nt_others}}"><p>{{ items.nt_others}}</p></a>
+	                      		</td>
+	                      	</tr>
+	</table>
+
+	{% endif %}
+     {% endfor %}
+    </div>
+    {% endfor %}
+    </body>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function divPrint() {
+        // Some logic determines which div should be printed...
+        // This example uses div3.
+        $("#printable").addClass("printable");
+        window.print();
+      }
+    </script>
+
+</main>
+{% endblock content %}

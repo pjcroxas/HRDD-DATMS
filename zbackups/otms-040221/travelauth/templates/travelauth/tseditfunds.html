@@ -1,0 +1,39 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+<style>
+.bwidth {
+	width: 120px;
+}
+</style>
+<h6>Update file</h6>
+<form method = "POST" enctype = "multipart/form-data">
+{% csrf_token %}
+ <table class = "table">
+	                      	<tr>
+	                      		<td>
+	                   				Certificate of availability of funds
+	                      		</td>
+					{% for items in rdata %}
+
+	                      		<td>
+	                      			<a href = "/media/{{MEDIA_URL}}{{ items.ts_funds }}">/media/{{MEDIA_URL}}{{ items.ts_funds }}</a>
+	                      		</td>
+
+					{% endfor %}
+					<td><input type = "file" name = "funds"></td>
+	                      	</tr>
+				<tr>
+				<td><input type = "submit" name = "edit" value = "UPDATE FILE" class = "btn btn-primary bwidth"></td>
+				</tr>
+				<tr>
+				<td>
+				{% for items in rdata %}
+				<a href = "/travelauth/edit/{{items.travelreq_id}}" class = "btn btn-primary bwidth">RETURN</a>
+				{% endfor %}
+				</td>
+				</tr>
+</table>
+
+</form>
+{% endblock content %}

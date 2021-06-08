@@ -1,0 +1,380 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load static %}
+{% load bootstrap_pagination %}
+{% for item in designation %}
+          {% if item.role_id == 1 %} <!-- Requestor -->
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .nrmodal {
+      width: 125%;
+    }
+
+    .rtbl {
+      overflow-x: scroll;
+    }
+    .caption {
+    color: #0d47a1;
+    }
+    .ab {
+      width: 60px;
+      margin-top: 5px;
+    }
+    .ficon {
+      color: gray;
+    }
+    .subta {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    }
+    .smenu {
+      float: right;
+    }
+    .es {
+      width: 100%;
+    }
+    .sbar {
+     width: 40%;
+   }
+
+
+
+   #myTable tbody td div{
+      width:160px;
+      height:28px;
+      overflow:hidden;
+      word-wrap:break-word;
+      white-space: nowrap;
+      }
+  </style>
+
+
+<!-- expanding  search -->
+<button type="button" class="btn btn-primary subta" data-toggle="collapse" data-target="#attendee">Search</button>
+      <div id="attendee" class="collapse in">
+        <table class="es">
+          <tr>
+            <td>
+              <input type="text" name="category" placeholder="Search" class="form-control sbar" autocomplete="off" id = "myInput">
+            </td>
+          </tr>
+
+        </table>
+      </div>
+      <br>
+<!-- end of expanding search -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h1 class="m-0 font-weight-bold text-info">
+          <i class="fas fa-paper-plane"></i>&nbsp&nbspTravel Request</h1>
+  </div>
+  <div class="card-body">
+    <div class='table-responsive'>
+      <table class="table" id="table" width="100%">
+        <thead class="thead-default">
+        <tr>
+          <!-- <th align='center' rowspan='2' style='border-color: #a0b0bb; vertical-align: middle'>ID</th> -->
+          <th>REFERENCE</th>
+          <th style="text-align:left">CREATED</th>
+          <th style="text-align:left">CATEGORY</th>
+          <th style="text-align:left">PROGRAM</th>
+          <th style="text-align:left">DESTINATION</th>
+          <th style="text-align:left">ATTENDEE</th>
+          <th style="text-align:left">FROM</th>
+	        <th style="text-align:left">TO</th>
+          <!--<th align='center'  colspan="2"  scope="colgroup" >Travel Date</th>-->
+          <th style="text-align:left">HISTORY</th>
+          <th style="text-align:left">STATUS</th>
+          <th style="text-align:left">ACTION</th>
+        </tr>
+        <!--<tr>
+          <th  style='border-color: #a0b0bb' scope="col">Start Date</th>
+          <th  style='border-color: #a0b0bb' scope="col">End Date</th>
+        </tr>-->
+      </thead>
+      <tbody id="myTable">
+        {% for request in reqtravelrequest %}
+          <tr height="100">
+
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{{ request.request_category.shorterm  }}{{ request.date_filed|date:"y-m-d"}}-00{{ request.incrementor }}</td>
+              <!--<td style = "text-transform:uppercase; color:gray; text-align: left;">TR{{ request.date_filed|date:"y-m-d"}}-00{{ request.travelreq_id }}</td>-->
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{% if request.status|stringformat:"s" == "Approved" %}{{ request.date_filed }}  {% else %}{{ request.date_filed }}<br><small><b>({{ request.date_filed|timesince}})</b></small>{% endif %}</td>
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{{ request.request_category.true_name }}</td>
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{{ request.program_title |truncatechars:9 }}</td>
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{{ request.destination }}</td>
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{{ request.last_name  }} {{request.first_name}} {{request.middle_initial}}</td>
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{{ request.programdates_from  }}</td>
+              <td style = "text-transform:uppercase; color:gray; text-align: left;">{{ request.programdates_to  }}</td>
+              <!-- <td align='center' style='border-color: #000000'><a href="/travelauth/travel_files/{{request.travelreq_id}}"><i class="fa fa-file ficon" style="font-size:24px"></i></a></td> -->
+              <td style = "text-transform:uppercase; color:gray; text-align: left;"><a href="/travelauth/history/{{ request.travelreq_id }}">view</a></td>
+
+              <td style="text-transform:uppercase;text-align: left; color:gray;valign: top; whitespace: nowrap; width:10px; overflow:hidden; word-wrap:break-word;">
+
+                  {% if request.status|stringformat:"s" == "New" %}
+                  <!-- Submitted --> {{request.status}}
+                  {%elif request.status|stringformat:"s" == "For Evaluation" or request.status|stringformat:"s" == "For Evaluation: Complete Documents"  or request.status|stringformat:"s" == "For Evaluation: Discrepancy on Documents"  or request.status|stringformat:"s" == "For Evaluation: Pending Approval"%}
+
+                  {{request.status}}
+                  {% elif request.status|stringformat:"s" == "For Evaluation: Incomplete Documents" %}
+                  <!-- On Hold: Lacking DOcuments     -->
+                  {{request.status}} <br>
+                  <!-- Button trigger modal -->
+                  <a href="#"  data-toggle="modal" data-target="#{{request.pk}}">
+        <i class="fas fa-eye fa-lg" ></i></a>
+                
+                              <!-- Modal -->
+                          <div class="modal fade" id="{{request.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Lacking Documents</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                                <b> {%for data in request.lacking_documents%}
+                               {%if '0' in data%}
+                             <li>Endorsement from Usec. concerned</li><br>
+                               {%elif '1' in data%}
+                             <li>Request for Travel Authority</li><br>
+                              {%elif '2' in data%}
+                              <li>Invitation Letter from the host/country</li><br>
+                             {%elif '3' in data%}
+                             <li>Certificate as to no pending task/Office-in-charge</li><br>
+                              {%elif '4' in data%}
+                              <li>Certification as to no pending admin case</li><br>
+                               {%elif '5' in data%}
+                                 <li>Service Record</li><br>
+                                {%elif '6' in data%}
+                                <li>Certificate of Availability of Funds</li><br>
+                                 {%elif '7' in data%}
+                                <li> Estimate Breakdown of expenses </li><br>
+                                 {%elif '8' in data%}
+                                 <li>Certificate as to no unliquidated cash advance </li><br>
+                               {%elif '9' in data%}
+                               <li>Certificate as to not due to retirement/resign</li><br>
+                               {%elif '10' in data%}
+                              <li> Certificate of undertaking</li><br>
+                               {%endif%}
+                                {%endfor%}<b>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+
+                  {%elif request.status|stringformat:"s" == "Approved"%}
+                  Approved<br>
+
+                  {% if request.ta_signed_upload %}
+                  <b><a href="{{request.ta_signed_upload.url}}"><i class="fa fa-download" aria-hidden="true"></i></a></b>
+                  {% else %}
+
+                  {%endif%}
+
+                  {%elif request.status|stringformat:"s" == "Cancelled"%}
+                  {{request.status}}
+                  {%elif request.status|stringformat:"s" == "Disapproved: Failed Evaluation Process"%}
+                  {{request.status}}
+                  {%elif request.status|stringformat:"s" == "On Hold: Lacking Original Documents" %}
+                  {{request.status}}
+
+
+                  {%elif request.status|stringformat:"s" == "Submitted Original Documents"%}
+                  Submitted Original Documents
+
+                 {%elif request.status|stringformat:"s" == "Released for Approval" %}
+                  {{request.status}}
+
+                  {%elif request.status|stringformat:"s" == "For Evaluation: Other Issues" %}
+                   For Evaluation: Other Issues<br>
+
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#oi{{request.pk}}">
+                   <small>View</small>
+                   </button>
+                               <!-- Modal -->
+                           <div class="modal fade" id="oi{{request.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">Other Issues</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                   <span aria-hidden="true">&times;</span>
+                                 </button>
+                               </div>
+                               <div class="modal-body">
+
+                <h5>  <div class="d-flex justify-content-center" id="demo">...</div> </h5>
+
+                <script>
+                    var fruits = {% autoescape off %} {{request.with_issues}} {% endautoescape %};
+                    document.getElementById("demo").innerHTML = "<ul><li>" +
+                        fruits.join("</li><li>") +
+                            "</li></ul>";
+                            </script>
+
+
+                               </div>
+                               <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                               </div>
+                             </div>
+                           </div>
+                           </div>
+
+                           {%elif request.status|stringformat:"s" == "For Evaluation: Unsigned Documents (Advanced Copy)" %}
+                            For Evaluation: Other Issues<br>
+
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ud{{request.pk}}">
+                            <small>View</small>
+                            </button>
+                                        <!-- Modal -->
+                                    <div class="modal fade" id="ud{{request.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Unsigned Docs</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                         <h5>  <div class="d-flex justify-content-center" id="demo"></div> </h5>
+                         <script>
+                             var unsigned_docs = {% autoescape off %} {{request.unsigned_docs}} {% endautoescape %};
+                             document.getElementById("demo").innerHTML = "<ul><li>" +
+                                 unsigned_docs.join("</li><li>") +
+                                     "</li></ul>";
+                                     </script>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    </div>
+
+                                    {%elif request.status|stringformat:"s" == "For Evaluation: Wrong Requirement/Attachment" %}
+                                     For Evaluation: Wrong Requirement/Attachment<br>
+
+                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#wr{{request.pk}}">
+                                     <small>View</small>
+                                     </button>
+                                                 <!-- Modal -->
+                                             <div class="modal fade" id="wr{{request.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                             <div class="modal-dialog" role="document">
+                                               <div class="modal-content">
+                                                 <div class="modal-header">
+                                                   <h5 class="modal-title" id="exampleModalLabel">Wrong Attachment/s</h5>
+                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                     <span aria-hidden="true">&times;</span>
+                                                   </button>
+                                                 </div>
+                                                 <div class="modal-body">
+
+                                  <h5>  <div class="d-flex justify-content-center" id="demo"></div> </h5>
+                                  <script>
+                                      var unsigned_docs = {% autoescape off %} {{request.wrong_attachment}} {% endautoescape %};
+                                      document.getElementById("demo").innerHTML = "<ul><li>" +
+                                          unsigned_docs.join("</li><li>") +
+                                              "</li></ul>";
+                                              </script>
+
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                 </div>
+                                               </div>
+                                             </div>
+                                             </div>
+
+
+{%else%}
+{{request.status}}
+                  {%endif%}
+                </td>
+                <td align='center' style='width: 100px; overflow: hidden; '>
+                    <!-- view -->
+                    <a href="/travelauth/view/{{request.travelreq_id}}" title="View"><i class="fas fa-eye fa-lg" style=";color:green"></i></a>
+                    <!-- end of view -->
+                    &nbsp;
+                    <!-- edit -->
+                    {% if request.status == '1' %}
+                    <a disabled><i class="fas fa-edit fa lg"style="color:blue" style="color:blue"></i></a>
+                    {% elif request.status == '9' %}
+                    <a disabled><i class="fas fa-edit fa lg" style="color:blue"></i></a>
+            		    {% elif request.status == '13' %}
+            		    <a disabled><i class="fas fa-edit fa lg" style="color:blue"></i></a>
+			{% elif request.status|stringformat:"s" == "Cancelled" %}
+			 <a href="#" title="Edit"><i class="fas fa-edit fa lg" style="color:gray"></i></a>
+                    {% else %}
+                    <a href="/travelauth/edit/{{ request.travelreq_id }}" title="Edit"><i class="fas fa-edit fa lg" style="color:blue"></i></a>
+
+                    {% endif %}
+                    <!-- end of edit -->
+                    &nbsp;
+                    <!-- cancel -->
+                    {% if request.status|stringformat:"s" == "Cancelled" %}
+                    <a href="#" title="Cancel" disabled><i class="fas fa-ban fa-lg" style="color:gray"></i></a>
+                    {% else %}
+                    <a href="/travelauth/cancel/{{request.travelreq_id}}" title="Cancel"><i class="fas fa-ban fa-lg" style="color:red"></i></a>
+                    {% endif %}
+
+                    <!-- end of cancel -->
+			{% if request.status|stringformat:"s" == "Cancelled" %}
+			<a href="#" title="Follow Up"><i class="fas fa-bell fa-lg" style="color:gray"></i></a>
+			{% else %}
+		    <a href="{% url 'travelauth-followup' request.travelreq_id %}" title="Follow Up"><i class="fas fa-bell fa-lg" style="color:orange"></i></a>
+			{% endif %}
+                  </td>
+
+
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- Pagination start -->
+    <div class="pagination-row float-right">
+      {% bootstrap_paginate reqtravelrequest range=4 %}
+    </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+// $(function () {
+//   $('#table').excelTableFilter();
+// });
+</script>
+{% else %}
+<center>
+<h1>Unauthorized Access</h1>
+<img src="{% static 'basetemp/empty.svg' %}" alt="ic" class="img-responsive dp rounded">
+{% endif %}
+</center>
+{% endfor %}
+
+
+
+
+</main>
+
+
+
+{% endblock content %}

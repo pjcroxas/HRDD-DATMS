@@ -1,0 +1,373 @@
+{% extends "basetemp/main_base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+<style>
+table {
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #ddd;
+  padding: 8px;
+	font-size: 15px;
+}
+td:nth-child(2) {
+  width:70%;
+}
+
+.breadcrumb {
+    margin-bottom: 0;
+    background-color: #fcfcfc;
+}
+
+</style>
+
+
+<script>
+
+
+	$(document).ready(function(){
+	let rm = $("input#id_lacking_documents").val().replace(/[\[\]']+/g,'');
+	let rm2 = rm.replace(/\s*,\s*/g, ", ");
+	$("input#id_lacking_documents").val(rm2);
+
+	if($('#id_status').val() == '20') {
+		$('.resources').show();
+
+	} else {
+		$('.resources').hide();
+	}
+
+	if($('#id_status').val() == '22') {
+		$('.resources-pie').show();
+
+	} else {
+		$('.resources-pie').hide();
+	}
+
+	if($('#id_status').val() == '13') {
+		$('.resources-taupload').show();
+		$(".resources-taupload #id_ta_signed_upload").prop('required',true);
+
+	} else {
+		$('.resources-taupload').hide();
+		$(".resources-taupload #id_ta_signed_upload").prop('required',false);
+	}
+
+ $('#id_status').change(function(){
+			if($('#id_status').val() == '20') {
+				$('.resources').show();
+
+			} else {
+				$('.resources').hide();
+			}
+
+			if($('#id_status').val() == '22') {
+				$('.resources-pie').show();
+
+			} else {
+				$('.resources-pie').hide();
+			}
+
+			if($('#id_status').val() == '13') {
+				$('.resources-taupload').show();
+				$('.resources-taupload #id_ta_signed_upload').prop('required',true);
+
+			} else {
+				$('.resources-taupload').hide();
+				$('.resources-taupload #id_ta_signed_upload').prop('required',false);
+			}
+	});
+
+	$('form').submit(function() {
+		$('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').attr('disabled', true);
+		form.submit()
+	});
+
+	});
+
+
+</script>
+
+{% if messages %}
+
+
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+          <p><h6>{{ message }}</h6></p>
+      </div>
+      {% endfor %}
+
+
+
+{% endif %}
+
+<ol class="breadcrumb my-3" style="font-size: 16px;">
+	 <li class="breadcrumb-item"><a href="{%url 'action-dash' 2 %}">Dashboard</a></li>
+	 	 <li class="breadcrumb-item"><a href="{%url 'assigned' 2 %}">My Assigned Request</a></li>
+	 <li class="breadcrumb-item active">Scholarship Details</li>
+ </ol>
+
+<div class="row">
+
+        <div class="col-md-4 col-lg-4">
+          <a href="#" target="_blank">
+          <div class="widget-small info coloured-icon"><i class="icon"></i>
+            <div class="info">
+              <h4>Filed: {{requestors.date_filed}}</h4>
+            </div>
+          </div></a>
+        </div>
+</div>
+
+<!-- start of table -->
+<div class="container">
+
+<!-- Request Details	 -->
+
+	<div id="accordion">
+		<div class="card">
+			<div class="card-header text-white" style="background-color: #0d47a1;  ">
+				<a class="card-link" data-toggle="collapse" href="#collapseOne">
+					<b style="color: white !important;"> REQUEST DETAILS </b>
+				</a>
+			</div>
+			<div id="collapseOne" class="collapse show" data-parent="#accordion">
+				<div class="card-body">
+
+	<table class='table' border="0">
+		<tr>
+			<td><b>Reference:</b> </td>
+<td>{{ requestors.category.shortterm }}-{{requestors.date_filed|date:"y-m-d"}}-000{{ requestors.incrementor }}</td>
+		</tr>
+		<tr>
+			<td><b>Category:</b> </td>
+			<td>{{ requestors.category }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Sector:</b> </td>
+			<td>{{ requestors.sector_for_scholarship }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Program Title:</b> </td>
+		<td> {{ requestors.prog_title }}</td>
+		</tr>
+
+		<tr>
+			<td><b>Venue:</b></td>
+			<td>{{requestors.location}}</td>
+		</tr>
+
+		<tr>
+			<td><b>Program Dates:</b></td>
+			<td><b>From:</b> {{ requestors.start_date }} <b> To:</b> {{ requestors.end_date }}</td>
+		</tr>
+	</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Request Details	 -->
+
+<!-- Attendee Details -->
+
+<div id="accordion2">
+	<div class="card">
+		<div class="card-header text-white" style="background-color: #0d47a1;  ">
+			<a class="card-link" data-toggle="collapse" href="#collapse2">
+				<b style="color: white !important;"> NOMINEE'S INFORMATION </b>
+			</a>
+		</div>
+		<div id="collapse2" class="collapse show" data-parent="#accordion2">
+			<div class="card-body">
+
+<table class='table' border="0">
+	<tr>
+		<td><b>Name:</b> </td>
+<td>{{ requestors.first_name}} {{ requestors.last_name}}</td>
+	</tr>
+	<tr>
+		<td><b>Position:</b> </td>
+		<td>{{ requestors.position }}</td>
+	</tr>
+
+	<tr>
+		<td><b>Salary Grade:</b> </td>
+		<td>{{ requestors.salary_grade }}</td>
+	</tr>
+
+	<tr>
+	<td><b>Office Division:</b> </td>
+	<td> {{ requestors.office }}</td>
+	</tr>
+
+	<tr>
+		<td><b>Email:</b></td>
+		<td>{{requestors.e_mail}}</td>
+	</tr>
+
+	<tr>
+		<td><b>Mobile Number:</b></td>
+		<td> {{ requestors.mobile_no }}</td>
+	</tr>
+	<tr>
+		<td><b>Office Tel. Number:</b></td>
+		<td> {{ requestors.office_no}}</td>
+	</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Attendee Details -->
+
+
+<!-- GEDSI -->
+<div id="accordion3">
+	<div class="card">
+		<div class="card-header text-white" style="background-color: #0d47a1;  ">
+			<a class="card-link" data-toggle="collapse" href="#collapse3">
+				<b style="color: white !important;"> Gender Equality, Disability and Social Inclusion (GEDSI) </b>
+			</a>
+		</div>
+		<div id="collapse3" class="collapse show" data-parent="#accordion3">
+			<div class="card-body">
+
+
+<table class='table' border="0">
+	<tr>
+		<td><b>GENDER:</b> </td>
+<td>{{ requestors.gender}} </td>
+	</tr>
+	<tr>
+		<td><b>AGE:</b> </td>
+		<td>{{ requestors.age}}</td>
+	</tr>
+
+	<tr>
+		<td><b>CIVIL STATUS:</b> </td>
+		<td>{{ requestors.civil_status }}</td>
+	</tr>
+
+	<tr>
+	<td><b>DISABILITY:</b> </td>
+	<td> {{ requestors.disability }}</td>
+	</tr>
+
+	<tr>
+		<td><b>ETHNICITY:</b></td>
+		<td>{{requestors.ethnicity}}</td>
+	</tr>
+
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<!-- GEDSI -->
+
+			<div id="accordion4">
+				<div class="card">
+					<div class="card-header text-white" style="background-color: #0d47a1;  ">
+						<a class="card-link" data-toggle="collapse" href="#collapse4">
+							<b style="color: white !important;"> ATTACHMENTS </b>
+						</a>
+					</div>
+					<div id="collapse4" class="collapse show" data-parent="#accordion4">
+						<div class="card-body">
+		<table class='table' border="0">
+
+
+
+			<td><b>Personal Data Sheet:</b>
+				{% if requestors.personal_data_sheet %}
+				<a href="{{requestors.personal_data_sheet.url}}" target="_blank">{{requestors.personal_data_sheet|default_if_none:'#'}}</a>
+				{% else %}
+				<i>No attachment</i>
+				{%endif%}
+	 </td>
+		</tr>
+<tr>
+	<td>
+			<b>Individual Performance Commitment and Review</b>:
+			{% if requestors.individual_performance_commitment_and_review %}
+			<a href="{{requestors.individual_performance_commitment_and_review.url}}" target="_blank">{{requestors.individual_performance_commitment_and_review|default_if_none:'#'}}</a></b>
+			{% else %}
+			<i>No attachment</i>
+			{%endif%}
+		</td>
+		</tr>
+		<tr>
+			<td>
+					<b>Potential Assessment Form</b>:
+					{% if requestors.potential_assessment_form %}
+
+					<a href="{{requestors.potential_assessment_form.url}}" target="_blank">{{requestors.potential_assessment_form|default_if_none:'#'}}</a></b>
+					{% else %}
+					<i>No attachment</i>
+					{%endif%}
+				</td>
+				</tr>
+
+				<tr>
+					<td>
+							<b>Signed Nomination Form</b>:
+							{% if requestors.last_file %}
+
+							<a href="{{requestors.last_file.url}}" target="_blank">{{requestors.last_file|default_if_none:'#'}}</a></b>
+							{% else %}
+							<i>No attachment</i>
+							{%endif%}
+						</td>
+						</tr>
+
+
+
+
+
+	</table>
+	</div>
+	</div>
+</div>
+	</div>
+<br>
+
+<form method="POST" enctype="multipart/form-data">
+	{%csrf_token%}
+<div class="row">
+	<div class="form-group col-md-6 mb-0">
+&nbsp &nbsp<b>{{form.status|as_crispy_field}}</b>
+
+<div class="resources">
+<b> {{form.lacking_documents|as_crispy_field}}</b>
+<br>
+</div>
+<div class="resources-taupload">
+<b>Signed Nomination: {{form.ta_signed_upload}}</b>
+</div>
+
+<div class="resources-pie">
+<b>{{form.pie|as_crispy_field}}</b>
+<br>
+</div>
+
+<br>
+<button type="submit" class="btn btn-success" id="btn-one" position='right'>Submit</button>
+	</div>
+	</div>
+</form>
+
+
+</div>
+
+
+<!-- end of table -->
+
+<!-- dont remove by BRIAN-->
+</main>
+{% endblock content %}
