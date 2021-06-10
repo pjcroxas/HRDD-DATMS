@@ -42,7 +42,7 @@ def travelauth(request):
 		db.requestor = request.user
 
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/travelauth.html', query)
 
@@ -112,7 +112,7 @@ def tic(request):
 		db.additional_requirement_2 = request.FILES.get('a2')
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -154,7 +154,7 @@ def tic(request):
 
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/t_ic.html', query)
 
@@ -209,7 +209,7 @@ def tmc(request):
 
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -251,7 +251,7 @@ def tmc(request):
 
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/t_mc.html', query)
 
@@ -300,7 +300,7 @@ def ltmc(request):
 		db.mc_undertaking = request.FILES['undertaking']
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -339,7 +339,7 @@ def ltmc(request):
 		db.requestor = request.user
 
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/ltmc.html', query)
 
@@ -442,7 +442,7 @@ def tts(request):
 
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/t_ts.html', query)
 
@@ -497,13 +497,12 @@ def ltts(request):
 		db.t_pds = request.FILES.get('pds')
 		db.t_ipcr = request.FILES.get('ipcr')
 		db.t_paf = request.FILES.get('paf')
-<<<<<<< HEAD
-=======
+
 		db.additional_requirement_1 = request.FILES.get('a1')
 		db.additional_requirement_2 = request.FILES.get('a2')
->>>>>>> brian
+
 		db.requestor = request.user
-		db.save()		
+		db.save()
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -546,14 +545,13 @@ def ltts(request):
 		db.t_pds = request.FILES.get('pds')
 		db.t_ipcr = request.FILES.get('ipcr')
 		db.t_paf = request.FILES.get('paf')
-<<<<<<< HEAD
-=======
+
 		db.additional_requirement_1 = request.FILES.get('a1')
 		db.additional_requirement_2 = request.FILES.get('a2')
->>>>>>> brian
+
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/ltts.html', query)
 
@@ -591,7 +589,7 @@ def tfi(request):
 		db.programdates_from = request.POST.get('from')
 		db.programdates_to = request.POST.get('to')
 		db.status_id = 3
-		
+
 		db.fi_endorsement = request.FILES.get('endorsement')
 		db.fi_icd = request.FILES.get('icd')
 		db.fi_invitation = request.FILES.get('invitation')
@@ -608,7 +606,7 @@ def tfi(request):
 		db.additional_requirement_2 = request.FILES.get('a2')
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -650,7 +648,7 @@ def tfi(request):
 
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/t_fi.html', query)
 
@@ -686,10 +684,10 @@ def ltfi(request):
 		db.programdates_to = request.POST.get('to')
 		db.status_id = 3
 
-		
+
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -714,11 +712,11 @@ def ltfi(request):
 		db.programdates_to = request.POST.get('to')
 		db.status_id = 6
 
-		
-		
+
+
 		db.requestor = request.user
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/ltfi.html', query)
 
@@ -769,7 +767,7 @@ def tpt(request):
 		db.requestor = request.user
 
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -806,7 +804,7 @@ def tpt(request):
 		db.requestor = request.user
 
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/t_pt.html', query)
 
@@ -848,23 +846,18 @@ def ltpt(request):
 		db.nt_transportation = request.FILES.get('transportation')
 		db.nt_allowance = request.FILES.get('allowance')
 		db.nt_others = request.FILES.get('others')
-<<<<<<< HEAD
 
-		
-		db.requestor = request.user
-
-=======
 		db.additional_requirement_1 = request.FILES.get('a1')
 		db.additional_requirement_2 = request.FILES.get('a2')
-		
+
 		db.requestor = request.user
 
 		if request.POST.get('wge'):
 			db.nt_without_gov_expense = request.POST.get('wge')
 
->>>>>>> brian
+
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 
 	if request.method == "POST" and 'save' in request.POST:
@@ -889,16 +882,12 @@ def ltpt(request):
 		db.programdates_from = request.POST.get('from')
 		db.programdates_to = request.POST.get('to')
 		db.status_id = 6
-		
+
 		db.nt_invitation = request.FILES.get('invitation')
 		db.nt_transportation = request.FILES.get('transportation')
 		db.nt_allowance = request.FILES.get('allowance')
 		db.nt_others = request.FILES.get('others')
-<<<<<<< HEAD
 
-		db.requestor = request.user
-
-=======
 		db.additional_requirement_1 = request.FILES.get('a1')
 		db.additional_requirement_2 = request.FILES.get('a2')
 
@@ -907,9 +896,9 @@ def ltpt(request):
 		if request.POST.get('wge'):
 			db.nt_without_gov_expense = request.POST.get('wge')
 
->>>>>>> brian
+
 		db.save()
-		
+
 		return HttpResponseRedirect('/')
 	return render(request, 'travelauth/ltpt.html', query)
 
@@ -941,8 +930,8 @@ def cancel(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
-	if request.method == "POST": 
+
+	if request.method == "POST":
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.status_id = 2
 		upd.cancel_mess = request.POST.get('reason')
@@ -971,7 +960,7 @@ def edit(request, tag = 0):
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['tag'] = tag
 	query['iden'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'save' in request.POST:
 		db = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		db.sector_id = request.POST.get('sector')
@@ -1023,7 +1012,7 @@ def edit_non_training(request, tag = 0):
 		db.programdates_to = request.POST.get('to')
 		db.status = 0
 
-		
+
 		db.requestor = request.user
 
 		db.save()
@@ -1051,7 +1040,7 @@ def edit_non_training(request, tag = 0):
 		db.programdates_to = request.POST.get('to')
 		db.status = 1
 
-		
+
 
 		db.requestor = request.user
 
@@ -1077,13 +1066,13 @@ def mceditendorsement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_endorsement = request.FILES.get('endorsement')
 		upd.save()
-		
-		
+
+
 	return render(request, 'travelauth/mceditendorsement.html', query)
 
 def mcediticd(request, tag = 0):
@@ -1092,7 +1081,7 @@ def mcediticd(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_icd = request.FILES.get('icd')
@@ -1120,7 +1109,7 @@ def mcedittask(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_no_pending_task = request.FILES.get('task')
@@ -1134,7 +1123,7 @@ def mceditcase(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_no_admin_case = request.FILES.get('case')
@@ -1148,7 +1137,7 @@ def mceditservice(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_service_record = request.FILES.get('service')
@@ -1162,7 +1151,7 @@ def mceditfunds(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_funds = request.FILES.get('funds')
@@ -1176,7 +1165,7 @@ def mceditexpenses(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_expenses = request.FILES.get('expenses')
@@ -1190,7 +1179,7 @@ def mceditunliquidated(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_unliquidated = request.FILES.get('unliquidated')
@@ -1204,7 +1193,7 @@ def mceditretirement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_retirement = request.FILES.get('retirement')
@@ -1218,7 +1207,7 @@ def mceditundertaking(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.mc_undertaking = request.FILES.get('undertaking')
@@ -1233,13 +1222,13 @@ def iceditendorsement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_endorsement = request.FILES.get('endorsement')
 		upd.save()
-		
-		
+
+
 	return render(request, 'travelauth/iceditendorsement.html', query)
 
 def icediticd(request, tag = 0):
@@ -1248,7 +1237,7 @@ def icediticd(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_icd = request.FILES.get('icd')
@@ -1276,7 +1265,7 @@ def icedittask(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_no_pending_task = request.FILES.get('task')
@@ -1290,7 +1279,7 @@ def iceditcase(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_no_admin_case = request.FILES.get('case')
@@ -1304,7 +1293,7 @@ def iceditservice(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_service_record = request.FILES.get('service')
@@ -1318,7 +1307,7 @@ def iceditfunds(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_funds = request.FILES.get('funds')
@@ -1332,7 +1321,7 @@ def iceditexpenses(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_expenses = request.FILES.get('expenses')
@@ -1346,7 +1335,7 @@ def iceditunliquidated(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_unliquidated = request.FILES.get('unliquidated')
@@ -1360,7 +1349,7 @@ def iceditretirement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_retirement = request.FILES.get('retirement')
@@ -1374,7 +1363,7 @@ def iceditundertaking(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ic_undertaking = request.FILES.get('undertaking')
@@ -1390,13 +1379,13 @@ def tseditendorsement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_endorsement = request.FILES.get('endorsement')
 		upd.save()
-		
-		
+
+
 	return render(request, 'travelauth/tseditendorsement.html', query)
 
 def tsediticd(request, tag = 0):
@@ -1405,7 +1394,7 @@ def tsediticd(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_icd = request.FILES.get('icd')
@@ -1447,7 +1436,7 @@ def tseditminutes(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_minutes = request.FILES.get('minutes')
@@ -1461,7 +1450,7 @@ def tseditscholarship(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_scholarship = request.FILES.get('scholarship')
@@ -1476,7 +1465,7 @@ def tsedittask(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_no_pending_task = request.FILES.get('task')
@@ -1490,7 +1479,7 @@ def tseditcase(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_no_admin_case = request.FILES.get('case')
@@ -1504,7 +1493,7 @@ def tseditservice(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_service_record = request.FILES.get('service')
@@ -1518,7 +1507,7 @@ def tseditfunds(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_funds = request.FILES.get('funds')
@@ -1532,7 +1521,7 @@ def tseditexpenses(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_expenses = request.FILES.get('expenses')
@@ -1546,7 +1535,7 @@ def tseditunliquidated(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_unliquidated = request.FILES.get('unliquidated')
@@ -1560,7 +1549,7 @@ def tseditretirement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_retirement = request.FILES.get('retirement')
@@ -1574,7 +1563,7 @@ def tseditundertaking(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.ts_undertaking = request.FILES.get('undertaking')
@@ -1590,13 +1579,13 @@ def fieditendorsement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_endorsement = request.FILES.get('endorsement')
 		upd.save()
-		
-		
+
+
 	return render(request, 'travelauth/fieditendorsement.html', query)
 
 def fiediticd(request, tag = 0):
@@ -1605,7 +1594,7 @@ def fiediticd(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_icd = request.FILES.get('icd')
@@ -1648,7 +1637,7 @@ def fiedittask(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_no_pending_task = request.FILES.get('task')
@@ -1662,7 +1651,7 @@ def fieditcase(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_no_admin_case = request.FILES.get('case')
@@ -1676,7 +1665,7 @@ def fieditservice(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_service_record = request.FILES.get('service')
@@ -1690,7 +1679,7 @@ def fieditfunds(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_funds = request.FILES.get('funds')
@@ -1704,7 +1693,7 @@ def fieditexpenses(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_expenses = request.FILES.get('expenses')
@@ -1718,7 +1707,7 @@ def fieditunliquidated(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_unliquidated = request.FILES.get('unliquidated')
@@ -1732,7 +1721,7 @@ def fieditretirement(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_retirement = request.FILES.get('retirement')
@@ -1746,7 +1735,7 @@ def fieditundertaking(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.fi_undertaking = request.FILES.get('undertaking')
@@ -1762,7 +1751,7 @@ def ptediticd(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.pt_icd = request.FILES.get('icd')
@@ -1776,7 +1765,7 @@ def ptedittask(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.pt_no_pending_task = request.FILES.get('task')
@@ -1790,7 +1779,7 @@ def pteditcase(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.pt_no_admin_case = request.FILES.get('case')
@@ -1804,7 +1793,7 @@ def pteditservice(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.pt_service_record = request.FILES.get('service')
@@ -1818,7 +1807,7 @@ def pteditleave(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.pt_leave_application= request.FILES.get('leave')
@@ -1832,7 +1821,7 @@ def pteditclearance(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.pt_clearance= request.FILES.get('clearance')
@@ -1846,7 +1835,7 @@ def a1edit(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.additional_requirement_1 = request.FILES.get('a1')
@@ -1860,7 +1849,7 @@ def a2edit(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.additional_requirement_2 = request.FILES.get('a2')
@@ -1915,16 +1904,16 @@ def edit_training(request, tag = 0):
 		db.t_paf = request.FILES.get('paf')
 		db.requestor = request.user
 		db.save()
-		
+
 	return render(request, 'travelauth/edit_training.html', query)
-	
+
 def editreport(request, tag = 0):
 	query = {}
 	query['tag'] = tag
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.t_report= request.FILES.get('report')
@@ -1938,7 +1927,7 @@ def editpds(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.t_pds= request.FILES.get('pds')
@@ -1952,7 +1941,7 @@ def editpaf(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.t_paf= request.FILES.get('paf')
@@ -1966,7 +1955,7 @@ def editipcr(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.t_ipcr= request.FILES.get('ipcr')
@@ -1980,7 +1969,7 @@ def editpreregistration(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.t_pre_registration= request.FILES.get('preg')
@@ -2022,18 +2011,17 @@ def edit_ntraining(request, tag = 0):
 		db.nt_allowance = request.FILES.get('allowance')
 		db.nt_others = request.FILES.get('others')
 
-<<<<<<< HEAD
-=======
+
 		if request.POST.get('wge'):
 			db.nt_without_gov_expense = request.POST.get('wge')
 		else:
 			db.nt_without_gov_expense = 0
 
->>>>>>> brian
+
 		db.requestor = request.user
 
 		db.save()
-		
+
 	return render(request, 'travelauth/edit_ntraining.html', query)
 
 def nteinvitation(request, tag = 0):
@@ -2042,7 +2030,7 @@ def nteinvitation(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.nt_invitation= request.FILES.get('invitation')
@@ -2056,7 +2044,7 @@ def ntetransportation(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.nt_transportation= request.FILES.get('transportation')
@@ -2070,7 +2058,7 @@ def nteallowance(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.nt_allowance= request.FILES.get('allowance')
@@ -2084,7 +2072,7 @@ def nteothers(request, tag = 0):
 	query['user'] = User.objects.filter(username = request.user)
 	query['designation'] =  Author.objects.filter(user = request.user)
 	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
-	
+
 	if request.method == "POST" and 'edit' in request.POST:
 		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
 		upd.nt_others= request.FILES.get('others')
@@ -2119,7 +2107,7 @@ def fup(request, tag = 0, assigned = "", ref = "", fn = "", mi = "", ln = "", pt
 	message = greet+tbl
 	send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
 
-	
+
 	return redirect('/requestor/t_r')
 
 def travel_report(request):
@@ -2130,9 +2118,7 @@ def travel_report(request):
 
 	return render(request, 'travelauth/travel_report.html', query)
 
-<<<<<<< HEAD
 
-=======
 def edita1(request, tag = 0):
 
 	query = {
@@ -2196,28 +2182,3 @@ def ntedita2(request, tag = 0):
 		upd.save()
 
 	return render(request, 'travelauth/ntedita2.html', query)
->>>>>>> brian
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

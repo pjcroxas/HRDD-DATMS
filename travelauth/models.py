@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from requestor.models import *
-from datetime import datetime  
+from datetime import datetime
 
 # Create your models here.
 class request_category(models.Model):
@@ -71,8 +71,8 @@ class TravelRequest_tbl(models.Model):
     age = models.CharField(max_length=100, blank=True, null=True)
     pptr = models.CharField(max_length=100, blank=True, null=True)
 
- 
-    
+
+
     ic_endorsement = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     ic_icd = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     ic_invitation = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
@@ -142,10 +142,9 @@ class TravelRequest_tbl(models.Model):
     nt_transportation = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     nt_allowance = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     nt_others = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
-<<<<<<< HEAD
-=======
+
     nt_without_gov_expense = models.IntegerField(default=0, null = True)
->>>>>>> brian
+
 
     additional_requirement_1 = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     additional_requirement_2 = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
@@ -257,4 +256,3 @@ class Pending_training_report(models.Model):
 
     def __str__(self):
     	return str(self.course_name)
-

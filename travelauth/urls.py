@@ -19,13 +19,13 @@ urlpatterns = [
 	path('local_dash/', views.local_dash, name ='travelauth-local_dash'),
 	path('view/<int:tag>', views.view, name ='travelauth-v'),
 	path('travel_report/', views.travel_report, name = 'travelauth-tr'),
-	
-	path('fup/<int:tag>/<str:assigned>/<str:ref>/<str:fn>/<str:mi>/<str:ln>/<str:pt>/<str:frm>/<str:to>/<str:dest>/<str:st>', views.fup, name = 'fup'), 
-	
+
+	path('fup/<int:tag>/<str:assigned>/<str:ref>/<str:fn>/<str:mi>/<str:ln>/<str:pt>/<str:frm>/<str:to>/<str:dest>/<str:st>', views.fup, name = 'fup'),
+
 	path('nteinvitation/<int:tag>', views.nteinvitation, name ='travelauth-in'),
 	path('ntetransportation/<int:tag>', views.ntetransportation, name ='travelauth-tr'),
 	path('nteallowance/<int:tag>', views.nteallowance, name ='travelauth-al'),
-	path('nteothers/<int:tag>', views.nteothers, name ='travelauth-ot'),	
+	path('nteothers/<int:tag>', views.nteothers, name ='travelauth-ot'),
 
 	path('cancel/<int:tag>', views.cancel, name ='travelauth-c'),
 	path('edit/<int:tag>', views.edit, name ='travelauth-e'),
@@ -37,8 +37,7 @@ urlpatterns = [
 	path('editpds/<int:tag>', views.editpds, name ='travelauth-pds'),
 	path('editipcr/<int:tag>', views.editipcr, name ='travelauth-ipcr'),
 	path('editpaf/<int:tag>', views.editpaf, name ='travelauth-paf'),
-<<<<<<< HEAD
-=======
+
 
 	path('edita1/<int:tag>', views.edita1, name ='travelauth-ea1'),
 	path('edita2/<int:tag>', views.edita2, name ='travelauth-ea2'),
@@ -46,7 +45,7 @@ urlpatterns = [
 	path('ntedita1/<int:tag>', views.ntedita1, name ='travelauth-ntea1'),
 	path('ntedita2/<int:tag>', views.ntedita2, name ='travelauth-ntea2'),
 
->>>>>>> brian
+
 	path('editreport/<int:tag>', views.editreport, name ='travelauth-report'),
 	path('mceditendorsement/<int:tag>', views.mceditendorsement, name ='edit_endorsement_mc'),
 	path('mcediticd/<int:tag>', views.mcediticd, name ='edit_icd_mc'),
