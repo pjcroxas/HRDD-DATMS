@@ -142,7 +142,7 @@ class TravelRequest_tbl(models.Model):
     nt_transportation = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     nt_allowance = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     nt_others = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
-    nt_without_gov_expense = models.IntegerField(default=0)
+    nt_without_gov_expense = models.IntegerField(default=0, null = True)
 
     additional_requirement_1 = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
     additional_requirement_2 = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')

@@ -847,6 +847,9 @@ def ltpt(request):
 		
 		db.requestor = request.user
 
+		if request.POST['wge']:
+			db.nt_without_gov_expense = request.POST.get('wge')
+
 		db.save()
 		
 		return HttpResponseRedirect('/')
@@ -882,6 +885,9 @@ def ltpt(request):
 		db.additional_requirement_2 = request.FILES.get('a2')
 
 		db.requestor = request.user
+
+		if request.POST.get('wge'):
+			db.nt_without_gov_expense = request.POST.get('wge')
 
 		db.save()
 		
