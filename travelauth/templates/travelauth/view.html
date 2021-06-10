@@ -899,6 +899,18 @@ table w {
 	                      			<a href = "/media/{{MEDIA_URL}}{{ items.nt_others}}"><p>{{ items.nt_others}}</p></a>
 	                      		</td>
 	                      	</tr>
+	                      	
+	                      	<tr>
+                            <td>
+                            Without Government Expense
+                            {% if items.nt_without_gov_expense == 1 %}
+                              <input type="checkbox" name="wge" value="1" checked>
+                            	{% else %}
+                            	<input type="checkbox" name="wge" value="0">
+                            	{% endif %}
+                            </td>
+                            
+                          </tr>
 	</table>
 
 	{% endif %}

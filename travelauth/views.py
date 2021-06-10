@@ -847,7 +847,7 @@ def ltpt(request):
 		
 		db.requestor = request.user
 
-		if request.POST['wge']:
+		if request.POST.get('wge'):
 			db.nt_without_gov_expense = request.POST.get('wge')
 
 		db.save()
@@ -2002,6 +2002,11 @@ def edit_ntraining(request, tag = 0):
 		db.nt_transportation = request.FILES.get('transportation')
 		db.nt_allowance = request.FILES.get('allowance')
 		db.nt_others = request.FILES.get('others')
+
+		if request.POST.get('wge'):
+			db.nt_without_gov_expense = request.POST.get('wge')
+		else:
+			db.nt_without_gov_expense = 0
 
 		db.requestor = request.user
 
