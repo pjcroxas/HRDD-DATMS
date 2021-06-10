@@ -5,7 +5,10 @@ from django.utils import timezone
 
 # Create your models here.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> brian
 class Category(models.Model):
     categories = models.CharField(max_length=100)
     shortterm = models.CharField(max_length=20, null=True, blank=True)
@@ -19,10 +22,15 @@ class Category(models.Model):
     def get_short(self):
         return self.shortterm
 
+<<<<<<< HEAD
 
 class SectorForScholarship(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, null=True,  related_name="sector_for_scholarship_set")
+=======
+class SectorForScholarship(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True,  related_name="sector_for_scholarship_set")
+>>>>>>> brian
     sectorforscholarship = models.CharField(max_length=100)
     shortterm = models.CharField(max_length=10, null=True)
 
@@ -32,7 +40,10 @@ class SectorForScholarship(models.Model):
     def natural_key(self):
         return (self.sectorforscholarship)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> brian
 class SubCategory(models.Model):
     subcategories = models.CharField(max_length=100)
 
@@ -42,7 +53,10 @@ class SubCategory(models.Model):
     def natural_key(self):
         return (self.subcategories)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> brian
 class SupportCategory(models.Model):
     ShortTerm = models.CharField(max_length=10, null=True)
     supportcategories = models.CharField(max_length=100)
@@ -56,7 +70,10 @@ class SupportCategory(models.Model):
     def natural_key(self):
         return (self.supportcategories)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> brian
 class Sector(models.Model):
     sector = models.CharField(max_length=100)
 
@@ -67,6 +84,10 @@ class Sector(models.Model):
         return (self.sector)
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> brian
 class Status(models.Model):
     status = models.CharField(max_length=100)
 
@@ -74,7 +95,12 @@ class Status(models.Model):
         return self.status
 
     def natural_key(self):
+<<<<<<< HEAD
         return (self.status)
+=======
+        return (self.status) 
+
+>>>>>>> brian
 
 
 class Requestor(models.Model):
@@ -85,11 +111,16 @@ class Requestor(models.Model):
     incrementor = models.IntegerField(default=0)
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, blank=True, null=True,
+<<<<<<< HEAD
                              on_delete=models.CASCADE, default='')
+=======
+         on_delete=models.CASCADE, default='')
+>>>>>>> brian
     reference_scholarship = models.CharField(max_length=500, verbose_name=(
         'Reference'), default='Auto Assign', blank=True)
     ##### when i used date_filed in reference, the output is "nonetype" #####
     date_filed = models.DateTimeField(auto_now_add=True, null=True,
+<<<<<<< HEAD
                                       verbose_name='date_filed')
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  null=True, verbose_name="Category")
@@ -101,6 +132,19 @@ class Requestor(models.Model):
                                null=True, verbose_name="Sector")
     sector_for_scholarship = models.ForeignKey(SectorForScholarship,
                                                on_delete=models.CASCADE, null=True, verbose_name="Sector")
+=======
+         verbose_name='date_filed')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+         null=True, verbose_name="Category")
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE,
+         null=True, verbose_name="Sub Category")
+    supportcategory = models.ForeignKey(SupportCategory,
+         on_delete=models.CASCADE, null=True, verbose_name="Support Category")
+    sector = models.ForeignKey(Sector, on_delete=models.CASCADE,
+         null=True, verbose_name="Sector")
+    sector_for_scholarship = models.ForeignKey(SectorForScholarship,
+         on_delete=models.CASCADE, null=True, verbose_name="Sector")
+>>>>>>> brian
     location = models.CharField(max_length=50, blank=True, null=True)
     prog_title = models.CharField(max_length=50)
     status = models.ForeignKey(
@@ -108,6 +152,7 @@ class Requestor(models.Model):
     attachments = models.FileField(
         upload_to='uploads/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
     assigned = models.ForeignKey(User, blank=True, null=True,
+<<<<<<< HEAD
                                  on_delete=models.CASCADE, related_name='assigned')
    # field for cancel function
     reason = models.CharField(max_length=100, blank=True, null=True)
@@ -128,10 +173,31 @@ class Requestor(models.Model):
     other_expense = models.CharField(max_length=100, blank=True, null=True)
     service_obligation = models.CharField(
         max_length=100, blank=True, null=True)
+=======
+         on_delete=models.CASCADE, related_name='assigned')
+   # field for cancel function
+    reason = models.CharField(max_length=100, blank=True, null=True)
+    lacking_documents = models.CharField(max_length=250, blank=True, null=True)
+    ta_signed_upload = models.FileField(max_length=100, blank=True, null = True, upload_to ='uploads/')
+    taketimestamp = models.DateTimeField(blank=True, null=True)
+
+    # filing_date = models.DateField(null=True) ## Temporary
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    req_action = models.CharField(max_length=50, default = 0)
+    gender = models.CharField(max_length=100, blank=True, null=True)
+    scho_donor = models.CharField(max_length=100, blank=True, null=True)
+    other_expense = models.CharField(max_length=100, blank=True, null=True)
+    service_obligation =  models.CharField(max_length=100, blank=True, null=True)
+>>>>>>> brian
     echo = models.CharField(max_length=100, blank=True, null=True)
     training_report = models.CharField(max_length=100, blank=True, null=True)
     remarks = models.CharField(max_length=100, blank=True, null=True)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> brian
     # Nomination forms
     name_title = models.CharField(max_length=100, default='')
     last_name = models.CharField(max_length=100, default='')
@@ -146,7 +212,11 @@ class Requestor(models.Model):
     office_no = models.CharField(max_length=100, default='')
     address = models.CharField(max_length=100, default='')
 
+<<<<<<< HEAD
     # Gedsi
+=======
+    ## Gedsi
+>>>>>>> brian
     PENDING_CHOICES = (
         ('Male', 'Male'),
         ('Female', 'Female')
@@ -158,6 +228,7 @@ class Requestor(models.Model):
         ('annulled', 'Annulled'),
         ('widowed', 'Widowed')
     )
+<<<<<<< HEAD
     gender = models.CharField(
         max_length=10, choices=PENDING_CHOICES, default='')
     age = models.IntegerField(null=True, blank=True)
@@ -168,21 +239,42 @@ class Requestor(models.Model):
     duties = models.CharField(max_length=400, null=True, blank=True)
 
     # Eligibility Status
+=======
+    gender = models.CharField(max_length=10, choices=PENDING_CHOICES, default='')
+    age = models.IntegerField(null=True, blank=True)
+    civil_status = models.CharField(max_length=20, choices=CIVIL_STATUS_CHOICES, default='')
+    disability = models.CharField(max_length=100, null=True, blank=True)
+    ethnicity = models.CharField(max_length=100, null=True, blank=True)
+    duties = models.CharField(max_length= 400, null=True, blank=True)
+
+    ## Eligibility Status
+>>>>>>> brian
     PENDING_CHOICES = (
         ('True', 'Yes'),
         ('False', 'No'),
     )
+<<<<<<< HEAD
     pending_scholarship = models.CharField(
         max_length=10, choices=PENDING_CHOICES, null=True)
     scholarship_title = models.CharField(max_length=100, null=True)
     pending_reentry_action_plan = models.CharField(
         max_length=10, choices=PENDING_CHOICES, null=True, blank=True)
+=======
+    pending_scholarship = models.CharField(max_length=10, choices=PENDING_CHOICES, null=True)
+    scholarship_title = models.CharField(max_length=100, null=True)
+    pending_reentry_action_plan = models.CharField(max_length=10, choices=PENDING_CHOICES, null=True, blank=True)
+>>>>>>> brian
     reap_title = models.CharField(max_length=100, null=True, blank=True)
 
     last_file = models.FileField(
         upload_to='signed_nomination/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
 
+<<<<<<< HEAD
     # Preselection
+=======
+
+    ## Preselection
+>>>>>>> brian
     pending_task = models.FileField(
         upload_to='pending_tasks/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
     service_record = models.FileField(
@@ -193,17 +285,28 @@ class Requestor(models.Model):
     attended_training = models.FileField(
         upload_to='a_t/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
 
+<<<<<<< HEAD
     # Scholarship Requirements
     personal_data_sheet = models.FileField(
         upload_to='pds/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
     individual_performance_commitment_and_review = models.FileField(
         upload_to='ipcr/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
     potential_assessment_form = models.FileField(
+=======
+
+    ## Scholarship Requirements
+    personal_data_sheet = models.FileField(
+        upload_to='pds/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
+    individual_performance_commitment_and_review =  models.FileField(
+        upload_to='ipcr/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
+    potential_assessment_form =  models.FileField(
+>>>>>>> brian
         upload_to='paf/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
     justification = models.FileField(
         upload_to='justification/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
 
     ## Terms & Conditions
+<<<<<<< HEAD
     checkbox_certify = models.BooleanField(
         verbose_name="Certify", default="False")
     checkbox_ack = models.BooleanField(
@@ -216,6 +319,17 @@ class Requestor(models.Model):
     )
     followup = models.BooleanField(
         verbose_name="Follow up to HRDD", choices=FOLLOWCHOICE, default="False")
+=======
+    checkbox_certify = models.BooleanField(verbose_name="Certify", default="False")
+    checkbox_ack = models.BooleanField(verbose_name="Acknowledgement", default='False')
+    checkbox_agree = models.BooleanField(verbose_name="Agree", default='False')
+
+    FOLLOWCHOICE = (
+    (1, 'True'),
+    (0, 'False'),
+    )
+    followup = models.BooleanField(verbose_name="Follow up to HRDD", choices = FOLLOWCHOICE, default="False")
+>>>>>>> brian
 
     @property
     def filename(self):
@@ -231,8 +345,12 @@ class Requestor(models.Model):
 
     @property
     def extension(self):
+<<<<<<< HEAD
         name, extension = os.path.splitext(
             self.individual_performance_commitment_and_review.name)
+=======
+        name, extension = os.path.splitext(self.individual_performance_commitment_and_review.name)
+>>>>>>> brian
 
     @property
     def filename(self):
@@ -242,6 +360,12 @@ class Requestor(models.Model):
     def extension(self):
         name, extension = os.path.splitext(self.potential_assessment_form.name)
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> brian
     @property
     def filename(self):
         return os.path.basename(self.attachments.name)
@@ -250,6 +374,10 @@ class Requestor(models.Model):
     def extension(self):
         name, extension = os.path.splitext(self.attachments.name)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> brian
     def __str__(self):
         return self.reference
 
@@ -262,6 +390,7 @@ class Requestor(models.Model):
     def save(self):
         if self.incrementor == 0:
             if self.category.id == 1:
+<<<<<<< HEAD
                 latest_incrementor = Requestor.objects.all().filter(
                     category=1).values('incrementor').last()
                 latest_incrementor = latest_incrementor['incrementor']
@@ -275,6 +404,19 @@ class Requestor(models.Model):
                 latest_incrementor = latest_incrementor['incrementor']
                 self.incrementor = latest_incrementor + 1
                 # Uncomment this for first request
+=======
+                latest_incrementor = Requestor.objects.all().filter(category=1).values('incrementor').last()
+                latest_incrementor = latest_incrementor['incrementor']
+                self.incrementor = latest_incrementor + 1
+                ## Uncomment this for first request
+                #self.incrementor = self.incrementor + 0
+                super(Requestor, self).save()
+            elif self.category.id == 2:
+                latest_incrementor = Requestor.objects.all().filter(category=2).values('incrementor').last()
+                latest_incrementor = latest_incrementor['incrementor']
+                self.incrementor = latest_incrementor + 1
+                ## Uncomment this for first request
+>>>>>>> brian
                 #self.incrementor = self.incrementor + 0
                 super(Requestor, self).save()
             else:
@@ -282,7 +424,10 @@ class Requestor(models.Model):
         else:
             super(Requestor, self).save()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> brian
 class Nomination_Form(models.Model):
     nomination_id = models.AutoField(primary_key=True)
     # purpose = models.CharField(max_length=100)
@@ -301,7 +446,11 @@ class Nomination_Form(models.Model):
     office_no = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
 
+<<<<<<< HEAD
     # Gedsi
+=======
+    ## Gedsi
+>>>>>>> brian
     PENDING_CHOICES = (
         ('Male', 'Male'),
         ('Female', 'Female')
@@ -313,6 +462,7 @@ class Nomination_Form(models.Model):
         ('annulled', 'Annulled'),
         ('widowed', 'Widowed')
     )
+<<<<<<< HEAD
     gender = models.CharField(
         max_length=10, choices=PENDING_CHOICES, default='')
     age = models.IntegerField(null=True, blank=True)
@@ -321,24 +471,42 @@ class Nomination_Form(models.Model):
     disability = models.CharField(max_length=100, null=True, blank=True)
     ethnicity = models.CharField(max_length=100, null=True, blank=True)
     duties = models.CharField(max_length=400, null=True, blank=True)
+=======
+    gender = models.CharField(max_length=10, choices=PENDING_CHOICES, default='')
+    age = models.IntegerField(null=True, blank=True)
+    civil_status = models.CharField(max_length=20, choices=CIVIL_STATUS_CHOICES, default='')
+    disability = models.CharField(max_length=100, null=True, blank=True)
+    ethnicity = models.CharField(max_length=100, null=True, blank=True)
+    duties = models.CharField(max_length= 400, null=True, blank=True)
+>>>>>>> brian
 
     def __str__(self):
         return str(self.requestor)
 
 
 class Eligibility_Status(models.Model):
+<<<<<<< HEAD
     requestor = requestor = models.OneToOneField(
         Requestor, on_delete=models.CASCADE)
+=======
+    requestor = requestor = models.OneToOneField(Requestor, on_delete=models.CASCADE)
+>>>>>>> brian
     eligibility_id = models.AutoField(primary_key=True)
     PENDING_CHOICES = (
         ('True', 'Yes'),
         ('False', 'No'),
     )
+<<<<<<< HEAD
     pending_scholarship = models.CharField(
         max_length=10, choices=PENDING_CHOICES)
     scholarship_title = models.CharField(max_length=100)
     pending_reentry_action_plan = models.CharField(
         max_length=10, choices=PENDING_CHOICES)
+=======
+    pending_scholarship = models.CharField(max_length=10, choices=PENDING_CHOICES)
+    scholarship_title = models.CharField(max_length=100)
+    pending_reentry_action_plan = models.CharField(max_length=10, choices=PENDING_CHOICES)
+>>>>>>> brian
     reap_title = models.CharField(max_length=100)
 
     def __str__(self):
@@ -349,9 +517,15 @@ class Scholarship_Requirements(models.Model):
     requestor = models.OneToOneField(Requestor, on_delete=models.CASCADE)
     personal_data_sheet = models.FileField(
         upload_to='pds/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
+<<<<<<< HEAD
     individual_performance_commitment_and_review = models.FileField(
         upload_to='ipcr/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
     potential_assessment_form = models.FileField(
+=======
+    individual_performance_commitment_and_review =  models.FileField(
+        upload_to='ipcr/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
+    potential_assessment_form =  models.FileField(
+>>>>>>> brian
         upload_to='paf/%Y/%m/%d/', validators=[validate_file_extension], null=True, blank=True)
 
     @property
@@ -368,8 +542,12 @@ class Scholarship_Requirements(models.Model):
 
     @property
     def extension(self):
+<<<<<<< HEAD
         name, extension = os.path.splitext(
             self.individual_performance_commitment_and_review.name)
+=======
+        name, extension = os.path.splitext(self.individual_performance_commitment_and_review.name)
+>>>>>>> brian
 
     @property
     def filename(self):
@@ -394,19 +572,35 @@ class TermsCondition(models.Model):
     requestor = models.OneToOneField(Requestor, on_delete=models.CASCADE)
     checkbox_certify = models.BooleanField(verbose_name=label_certify)
     checkbox_ack = models.BooleanField(verbose_name=label_ack, default='False')
+<<<<<<< HEAD
     checkbox_agree = models.BooleanField(
         verbose_name=label_agree, default='False')
+=======
+    checkbox_agree = models.BooleanField(verbose_name=label_agree, default='False')
+>>>>>>> brian
 
     def __str__(self):
         return str(self.requestor)
 
 
+<<<<<<< HEAD
 class RequestorLog(models.Model):
     log_id = models.CharField(max_length=100, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              null=True, verbose_name="Users")
     content_type = models.ForeignKey(Status, on_delete=models.CASCADE,
                                      null=True, verbose_name="content")
+=======
+
+
+
+class RequestorLog(models.Model):
+    log_id = models.CharField(max_length=100, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+         null=True, verbose_name="Users")
+    content_type = models.ForeignKey(Status, on_delete=models.CASCADE,
+         null=True, verbose_name="content")
+>>>>>>> brian
 
     change_msg = models.CharField(max_length=100)
 

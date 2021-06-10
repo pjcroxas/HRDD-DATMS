@@ -37,6 +37,16 @@ urlpatterns = [
 	path('editpds/<int:tag>', views.editpds, name ='travelauth-pds'),
 	path('editipcr/<int:tag>', views.editipcr, name ='travelauth-ipcr'),
 	path('editpaf/<int:tag>', views.editpaf, name ='travelauth-paf'),
+<<<<<<< HEAD
+=======
+
+	path('edita1/<int:tag>', views.edita1, name ='travelauth-ea1'),
+	path('edita2/<int:tag>', views.edita2, name ='travelauth-ea2'),
+
+	path('ntedita1/<int:tag>', views.ntedita1, name ='travelauth-ntea1'),
+	path('ntedita2/<int:tag>', views.ntedita2, name ='travelauth-ntea2'),
+
+>>>>>>> brian
 	path('editreport/<int:tag>', views.editreport, name ='travelauth-report'),
 	path('mceditendorsement/<int:tag>', views.mceditendorsement, name ='edit_endorsement_mc'),
 	path('mcediticd/<int:tag>', views.mcediticd, name ='edit_icd_mc'),

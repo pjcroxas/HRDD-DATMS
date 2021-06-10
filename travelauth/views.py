@@ -497,6 +497,11 @@ def ltts(request):
 		db.t_pds = request.FILES.get('pds')
 		db.t_ipcr = request.FILES.get('ipcr')
 		db.t_paf = request.FILES.get('paf')
+<<<<<<< HEAD
+=======
+		db.additional_requirement_1 = request.FILES.get('a1')
+		db.additional_requirement_2 = request.FILES.get('a2')
+>>>>>>> brian
 		db.requestor = request.user
 		db.save()		
 		return HttpResponseRedirect('/')
@@ -541,6 +546,11 @@ def ltts(request):
 		db.t_pds = request.FILES.get('pds')
 		db.t_ipcr = request.FILES.get('ipcr')
 		db.t_paf = request.FILES.get('paf')
+<<<<<<< HEAD
+=======
+		db.additional_requirement_1 = request.FILES.get('a1')
+		db.additional_requirement_2 = request.FILES.get('a2')
+>>>>>>> brian
 		db.requestor = request.user
 		db.save()
 		
@@ -838,10 +848,21 @@ def ltpt(request):
 		db.nt_transportation = request.FILES.get('transportation')
 		db.nt_allowance = request.FILES.get('allowance')
 		db.nt_others = request.FILES.get('others')
+<<<<<<< HEAD
 
 		
 		db.requestor = request.user
 
+=======
+		db.additional_requirement_1 = request.FILES.get('a1')
+		db.additional_requirement_2 = request.FILES.get('a2')
+		
+		db.requestor = request.user
+
+		if request.POST.get('wge'):
+			db.nt_without_gov_expense = request.POST.get('wge')
+
+>>>>>>> brian
 		db.save()
 		
 		return HttpResponseRedirect('/')
@@ -873,9 +894,20 @@ def ltpt(request):
 		db.nt_transportation = request.FILES.get('transportation')
 		db.nt_allowance = request.FILES.get('allowance')
 		db.nt_others = request.FILES.get('others')
+<<<<<<< HEAD
 
 		db.requestor = request.user
 
+=======
+		db.additional_requirement_1 = request.FILES.get('a1')
+		db.additional_requirement_2 = request.FILES.get('a2')
+
+		db.requestor = request.user
+
+		if request.POST.get('wge'):
+			db.nt_without_gov_expense = request.POST.get('wge')
+
+>>>>>>> brian
 		db.save()
 		
 		return HttpResponseRedirect('/')
@@ -1990,6 +2022,14 @@ def edit_ntraining(request, tag = 0):
 		db.nt_allowance = request.FILES.get('allowance')
 		db.nt_others = request.FILES.get('others')
 
+<<<<<<< HEAD
+=======
+		if request.POST.get('wge'):
+			db.nt_without_gov_expense = request.POST.get('wge')
+		else:
+			db.nt_without_gov_expense = 0
+
+>>>>>>> brian
 		db.requestor = request.user
 
 		db.save()
@@ -2090,7 +2130,73 @@ def travel_report(request):
 
 	return render(request, 'travelauth/travel_report.html', query)
 
+<<<<<<< HEAD
 
+=======
+def edita1(request, tag = 0):
+
+	query = {
+		'tag': tag
+	}
+	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
+	query['user'] = User.objects.filter(username = request.user)
+	query['designation'] =  Author.objects.filter(user = request.user)
+
+	if request.method == "POST" and 'edit' in request.POST:
+		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
+		upd.additional_requirement_1 = request.FILES.get('a1')
+		upd.save()
+
+	return render(request, 'travelauth/edita1.html', query)
+
+def edita2(request, tag = 0):
+
+	query = {
+		'tag': tag
+	}
+	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
+	query['user'] = User.objects.filter(username = request.user)
+	query['designation'] =  Author.objects.filter(user = request.user)
+
+	if request.method == "POST" and 'edit' in request.POST:
+		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
+		upd.additional_requirement_2 = request.FILES.get('a2')
+		upd.save()
+
+	return render(request, 'travelauth/edita2.html', query)
+
+def ntedita1(request, tag = 0):
+
+	query = {
+		'tag': tag
+	}
+	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
+	query['user'] = User.objects.filter(username = request.user)
+	query['designation'] =  Author.objects.filter(user = request.user)
+
+	if request.method == "POST" and 'edit' in request.POST:
+		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
+		upd.additional_requirement_1 = request.FILES.get('a1')
+		upd.save()
+
+	return render(request, 'travelauth/ntedita1.html', query)
+
+def ntedita2(request, tag = 0):
+
+	query = {
+		'tag': tag
+	}
+	query['rdata'] = TravelRequest_tbl.objects.filter(travelreq_id = tag)
+	query['user'] = User.objects.filter(username = request.user)
+	query['designation'] =  Author.objects.filter(user = request.user)
+
+	if request.method == "POST" and 'edit' in request.POST:
+		upd = TravelRequest_tbl.objects.get(travelreq_id = tag)
+		upd.additional_requirement_2 = request.FILES.get('a2')
+		upd.save()
+
+	return render(request, 'travelauth/ntedita2.html', query)
+>>>>>>> brian
 
 
 
