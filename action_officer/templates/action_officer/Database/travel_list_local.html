@@ -2,7 +2,7 @@
   <tr>
 
       <td>{{tforeign.pk}}</td>
-      <td>TR-{{ tforeign.date_filed|date:"m/d/y"}}-{{ tforeign.travelreq_id }}</td>
+      <td>{{ tforeign.request_category.shorterm  }}-{{ tforeign.date_filed|date:"y-m-d"}}-00{{ tforeign.incrementor }}<</td>
       <td>{{tforeign.first_name}} {{tforeign.last_name}}</td>
       <td>{{tforeign.position}}</td>
       <td>{{tforeign.agency}}</td>
