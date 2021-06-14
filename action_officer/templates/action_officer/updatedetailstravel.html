@@ -50,7 +50,7 @@ th, td {
 <div class="container">
 	<table class='table' border="0">
 		<tr>
-			<td><b>Reference:</b> TR-{{ travel.date_filed|date:"m/d/y"}}-{{ travel.travelreq_id }}</td>
+			<td><b>Reference:</b> {{ travel.request_category.shorterm  }}{{ travel.date_filed|date:"y-m-d"}}-00{{ travel.incrementor }}</td>
 		</tr>
 		<tr>
 			<td><b>Category:</b> {{ travel.sub_category }}</td>
