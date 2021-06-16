@@ -919,6 +919,21 @@ table w {
                             </td>
                             
                           </tr>
+                          <tr>
+                          	<td>
+				{% if items.request_category_id == 3 %}
+					{% if items.nt_without_gov_expense == 1 %}
+					<b>Without Government Expense</b>:
+					<a href="/media/{{items.nt_gov_expense_file}}" target="_blank">{{items.nt_gov_expense_file}}</a>
+					{% else %}
+					<b>With Government Expense</b>:
+					<a href="/media/{{items.nt_gov_expense_file}}" target="_blank">
+						{{items.nt_gov_expense_file}}	
+					</a>
+					{% endif %}
+				{% endif %}
+			</td>
+                          </tr>
 	</table>
 
 	{% endif %}

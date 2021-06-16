@@ -1015,6 +1015,22 @@ Potential Assessment Form:
 </td>
 </tr>
 
+<tr>
+			<td>
+				{% if travel.request_category_id == 3 %}
+					{% if travel.nt_without_gov_expense == 1 %}
+					<b>Without Government Expense</b>:
+					<a href="/media/{{travel.nt_gov_expense_file}}" target="_blank">{{travel.nt_gov_expense_file}}</a>
+					{% else %}
+					<b>With Government Expense</b>:
+					<a href="/media/{{travel.nt_gov_expense_file}}" target="_blank">
+						{{travel.nt_gov_expense_file}}	
+					</a>
+					{% endif %}
+				{% endif %}
+			</td>
+		</tr>
+
 
 	</table>
 </div>
