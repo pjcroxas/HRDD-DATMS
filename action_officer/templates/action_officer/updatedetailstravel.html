@@ -71,6 +71,14 @@ th, td {
 		<tr>
 			<td><b>From:</b> {{ travel.programdates_from }} <b> to:</b> {{ travel.programdates_to }}</td>
 		</tr>
+		{% if travel.request_category_id == 3 %}
+		<tr>
+			<td>
+				<b>Without Government Expense: </b> <input type="checkbox" {% if travel.nt_without_gov_expense == 1 %}checked{% endif %}>
+			</td>
+		</tr>
+
+		{% endif %}
 		<tr>
 			<td><b>Personal Data Sheet:</b>
 
@@ -107,8 +115,21 @@ th, td {
 
 <form method="POST" enctype="multipart/form-data">
 	{%csrf_token%}
+{% if travel.request_category_id == 3 %}
+	{% if travel.nt_without_gov_expense == 1 %}
+	&nbsp; &nbsp;<b>Without Government Expense: <a href="{% static 'basetemp/wo.docx' %}" download>Without Government Expense Template</a></b>
+	{%else%}
+	&nbsp; &nbsp;<b>With Government Expense: <a href="{% static 'basetemp/we.docx' %}" download>With Government Expense Template</a></b>
+	{% endif %}
+	{{form.nt_gov_expense_file}}
+	<br><br>
+
+{% endif %}
+
 &nbsp &nbsp<b>Status: {{form.status}}</b>
 <br><br>
+
+
 <div class="resources">
 &nbsp &nbsp<b>TA Signed Upload: &nbsp {{form.ta_signed_upload}}</b>
 </div>

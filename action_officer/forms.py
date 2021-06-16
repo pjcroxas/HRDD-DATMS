@@ -55,7 +55,7 @@ class UpdateFormTravel(forms.ModelForm):
 
     class Meta:
         model = TravelRequest_tbl
-        fields = ('status','ta_signed_upload','lacking_documents', 'with_issues', 'unsigned_docs', 'wrong_attachment' )
+        fields = ('status', 'nt_gov_expense_file', 'ta_signed_upload','lacking_documents', 'with_issues', 'unsigned_docs', 'wrong_attachment' )
 
 class DatabaseTravelUpdateForm(forms.ModelForm):
     class Meta:
